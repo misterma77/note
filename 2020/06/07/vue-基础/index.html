@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Vue.js[TOC] vue.jsvue.js 是一套用于构建用户界面的渐进式框架 渐进式Vue 核心 声明式渲染 组件  引入我们还是先通过 &lt;script&gt; 的方式来引入 vue 1&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;vue&#x2F;dist&#x2F;vue.js&quot;&gt;&lt;&#x2F;script&gt;    组件vue 的核心功能之一就是组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-基础">
+<meta property="og:url" content="http://yoursite.com/2020/06/07/vue-%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="Vue.js[TOC] vue.jsvue.js 是一套用于构建用户界面的渐进式框架 渐进式Vue 核心 声明式渲染 组件  引入我们还是先通过 &lt;script&gt; 的方式来引入 vue 1&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;vue&#x2F;dist&#x2F;vue.js&quot;&gt;&lt;&#x2F;script&gt;    组件vue 的核心功能之一就是组">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-07T02:59:05.195Z">
+<meta property="article:modified_time" content="2020-06-07T02:59:05.195Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/07/vue-%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>vue-基础 | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/vue-%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vue-基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Vue-js"><a href="#Vue-js" class="headerlink" title="Vue.js"></a>Vue.js</h1><p>[TOC]</p>
+<h2 id="vue-js"><a href="#vue-js" class="headerlink" title="vue.js"></a>vue.js</h2><p><code>vue.js</code> 是一套用于构建用户界面的渐进式框架</p>
+<h3 id="渐进式"><a href="#渐进式" class="headerlink" title="渐进式"></a>渐进式</h3><h3 id="Vue-核心"><a href="#Vue-核心" class="headerlink" title="Vue 核心"></a>Vue 核心</h3><ul>
+<li>声明式渲染</li>
+<li>组件</li>
+</ul>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>我们还是先通过 &lt;script&gt; 的方式来引入 <u>vue</u></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p><code>vue</code> 的核心功能之一就是组件</p>
+<h3 id="组件基本分类"><a href="#组件基本分类" class="headerlink" title="组件基本分类"></a>组件基本分类</h3><ul>
+<li>根组件</li>
+<li>可复用的功能组件</li>
+</ul>
+<h3 id="根组件的创建"><a href="#根组件的创建" class="headerlink" title="根组件的创建"></a>根组件的创建</h3><p>通过 <code>vue</code> 提供的构造函数可以实例化出来一个跟组件实例对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> app = <span class="keyword">new</span> Vue(创建组件所需要的一些配置选项);</span><br></pre></td></tr></table></figure>
+
+<h3 id="可复用的功能组件"><a href="#可复用的功能组件" class="headerlink" title="可复用的功能组件"></a>可复用的功能组件</h3><p>通过 <code>Vue</code> 提供的静态方法 <code>component</code> 窗口可复用的功能组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> component1 = Vue.component(创建组件所需要的一些配置选项)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>组件配置选项：<a href="https://cn.vuejs.org/v2/api/" target="_blank" rel="noopener">https://cn.vuejs.org/v2/api/</a></p>
+</blockquote>
+<h2 id="组件内容渲染"><a href="#组件内容渲染" class="headerlink" title="组件内容渲染"></a>组件内容渲染</h2><p>渲染一个组件的内容可以通过两种方式来进行</p>
+<ul>
+<li>template 选项</li>
+<li>render 选项（函数）</li>
+</ul>
+<h3 id="template"><a href="#template" class="headerlink" title="template"></a>template</h3><p>type : string</p>
+<p>组件的模板结构（HTML），模板内容会被 <code>vue</code> 进行渲染，生成最终的 <code>HTML</code> 内容，并替换占位（挂载）元素</p>
+<h3 id="el"><a href="#el" class="headerlink" title="el"></a>el</h3><p>type : string | Element</p>
+<p>提供一个在页面上已存在的 DOM 元素作为 Vue 实例的挂载目标。可以是 CSS 选择器，也可以是一个 HTMLElement 实例，</p>
+<ul>
+<li>该选择只对 <code>new</code> 创建的实例有效</li>
+<li>如果提供 <code>el</code> ，但是没有提供 <code>template</code> ，则 <code>el</code> 的内容讲作为 <code>template</code></li>
+</ul>
+<h3 id="render"><a href="#render" class="headerlink" title="render"></a>render</h3><p>type : (createElement: () =&gt; VNode) =&gt; VNode</p>
+<p>发挥 <code>JavaScript</code> 最大的编程能力，直接创建 <code>VNode</code> （虚拟dom对象），优先级高于 <code>el</code> 和 <code>template</code></p>
+<ul>
+<li>有更强大的编程能力</li>
+<li>有更高的性能</li>
+</ul>
+<blockquote>
+<p><a href="https://cn.vuejs.org/v2/guide/render-function.html" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/render-function.html</a></p>
+</blockquote>
+<h3 id="使用-mount-方法延迟-Vue-实例的挂载"><a href="#使用-mount-方法延迟-Vue-实例的挂载" class="headerlink" title="使用 $mount 方法延迟 Vue 实例的挂载"></a>使用 $mount 方法延迟 <code>Vue</code> 实例的挂载</h3><p>当 <code>Vue</code> 实例没有 <code>el</code> 选项的时候，它会处于一种 <u>未挂载</u> 的状态，我们可以通过组件 <code>Vue</code> 实例对象的 <code>$mount</code> 方法来手动挂载，通过该方式，我们也可以达到延迟 <code>Vue</code> 实例的挂载的目的</p>
+<h2 id="组件中的数据（状态）"><a href="#组件中的数据（状态）" class="headerlink" title="组件中的数据（状态）"></a>组件中的数据（状态）</h2><h3 id="data"><a href="#data" class="headerlink" title="data"></a>data</h3><p>组件内部使用的数据，<code>data</code> 是一个对象，<code>data</code> 中的值可以中模板中直接访问</p>
+<ul>
+<li><code>Vue</code> 实例组件（根组件）的 <code>data</code> 是一个对象</li>
+<li>可复用功能组件的 <code>data</code> 必须是一个函数，且该函数必须返回一个对象（因为复用性，避免多个组件实例引用同一个对象。换句话说，组件中使用的数据必须是一个对象，但是可复用组件的这个数据对象必须通过函数返回</li>
+</ul>
+<h3 id="data-的访问"><a href="#data-的访问" class="headerlink" title="data 的访问"></a>data 的访问</h3><p><code>data</code> 数据可以直接通过组件实例对象访问，也可以通过实例对象下的 <code>$data</code> 属性进行访问</p>
+<blockquote>
+<p>组件实例对象下有很多的以 <code>$</code> 开头的属性，这些都是实例对象内置的一些属性和方法，<code>vue</code> 为了区分数据与内置属性方法，内置的属性和方法默认都是以 <code>$</code> 开始的，所以我们中数据中应该避免使用 <code>$</code> 开头的数据</p>
+</blockquote>
+<h2 id="模板语法"><a href="#模板语法" class="headerlink" title="模板语法"></a>模板语法</h2><p><u>vue</u> 使用了基于 <u>html</u> 的模板语法，使用声明式的方式把实例中的数据（<code>data</code>）与 <u>DOM</u> 进行绑定，<code>data</code> 中的数据在模板中可以直接使用</p>
+<h3 id="Mustache（双大括号，大胡子）-语法"><a href="#Mustache（双大括号，大胡子）-语法" class="headerlink" title="Mustache（双大括号，大胡子） 语法"></a>Mustache（双大括号，大胡子） 语法</h3><p>在 <u>vue</u> 中，我们是通过一对双大括号把实例中的数据渲染到模板内容中</p>
+<h4 id="插值表达式"><a href="#插值表达式" class="headerlink" title="插值表达式"></a>插值表达式</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在<span class="string">`&#123;&#123;&#125;&#125;`</span>中,我们可以放置表达式值</span><br><span class="line">&#123;&#123;表达式&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    title: <span class="string">'vue 框架'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">`&lt;div&gt;&#123;&#123;title&#125;&#125;&lt;/div&gt;`</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">      &#123;&#123;title&#125;&#125;</span><br><span class="line">  	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="actionscript">              title: <span class="string">'vue 框架'</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据到视图的更新"><a href="#数据到视图的更新" class="headerlink" title="数据到视图的更新"></a>数据到视图的更新</h3><p><u>vue</u> 会把  <code>data</code> 中的数据挂载到实例属性下，同时对它们进行主动的监听拦截，当数据发生变化的时候，重新渲染模板。我们可以通过实例对象对数据进行修改</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.title = <span class="string">'开课吧'</span>;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">app.$data.title = <span class="string">'开课吧'</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="检测变化的注意事项"><a href="#检测变化的注意事项" class="headerlink" title="检测变化的注意事项"></a>检测变化的注意事项</h3><p>在 <u>vue3</u> 之前，数据的监听是通过 <code>Object.defineProperty</code> 方法来实现的，但是该方法只能监听拦截单个数据，对于对象新增属性无法监听拦截。所以，对于数据对象中新增的属性，我们需要调用 <u>vue</u> 提供的方法来进行处理</p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>通过 <code>Object.defineProperty</code> 监听拦截中存在一些问题</p>
+<ul>
+<li>属性新增属性</li>
+<li>数组方法：push、pop、shift、unshift、splice、sort、reverse</li>
+<li>数组新增值：[]</li>
+<li>数组 length 属性</li>
+</ul>
+<p>以上的操作中并不会触发监听拦截</p>
+<blockquote>
+<p><code>vue</code> 对数组中的 <code>push</code>、<code>pop</code> 等方法进行重新包装，所以在 <code>vue</code> 中调用这些方法，可以对数组的修改进行监听拦截</p>
+<p><a href="https://cn.vuejs.org/v2/guide/list.html#变异方法-mutation-method" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/list.html#%E5%8F%98%E5%BC%82%E6%96%B9%E6%B3%95-mutation-method</a></p>
+</blockquote>
+<h3 id="使用-Vue-set-方法添加新数据"><a href="#使用-Vue-set-方法添加新数据" class="headerlink" title="使用 Vue.set 方法添加新数据"></a>使用 Vue.set 方法添加新数据</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>title: &#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>user.username: &#123;&#123;user.username&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>user.gender: &#123;&#123;user.gender&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="actionscript">                title: <span class="string">'vue 框架'</span>,</span></span><br><span class="line">                user: &#123;</span><br><span class="line"><span class="actionscript">                    username: <span class="string">'zMouse'</span></span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在模板中，我们使用了一个不存在的数据 <code>user.gender</code></p>
+<p>如果我们通过 <code>app.user.gender = &#39;男&#39;</code>的方式来新增，是不会被 <u>vue</u> 拦截监听处理的，我们需要使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.set(app.user, <span class="string">'gender'</span>, <span class="string">'男'</span>);</span><br><span class="line"><span class="comment">// 实例.$set 是 Vue.set 的别名</span></span><br><span class="line">app.$<span class="keyword">set</span>(app.user, 'gender', '男');</span><br></pre></td></tr></table></figure>
+
+<p>这样的方式，<code>set</code> 方法给 <code>app.user</code>  添加 <code>gender</code> 属性的同时，对它进行了 <code>defineProperty</code></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/koa/" rel="prev" title="koa">
+      <i class="fa fa-chevron-left"></i> koa
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/vue-%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6/" rel="next" title="vue-单文件组件">
+      vue-单文件组件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue-js"><span class="nav-number">1.</span> <span class="nav-text">Vue.js</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-js"><span class="nav-number">1.1.</span> <span class="nav-text">vue.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#渐进式"><span class="nav-number">1.1.1.</span> <span class="nav-text">渐进式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-核心"><span class="nav-number">1.1.2.</span> <span class="nav-text">Vue 核心</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入"><span class="nav-number">1.2.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件"><span class="nav-number">1.3.</span> <span class="nav-text">组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组件基本分类"><span class="nav-number">1.3.1.</span> <span class="nav-text">组件基本分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根组件的创建"><span class="nav-number">1.3.2.</span> <span class="nav-text">根组件的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可复用的功能组件"><span class="nav-number">1.3.3.</span> <span class="nav-text">可复用的功能组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件内容渲染"><span class="nav-number">1.4.</span> <span class="nav-text">组件内容渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#template"><span class="nav-number">1.4.1.</span> <span class="nav-text">template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#el"><span class="nav-number">1.4.2.</span> <span class="nav-text">el</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#render"><span class="nav-number">1.4.3.</span> <span class="nav-text">render</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-mount-方法延迟-Vue-实例的挂载"><span class="nav-number">1.4.4.</span> <span class="nav-text">使用 $mount 方法延迟 Vue 实例的挂载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件中的数据（状态）"><span class="nav-number">1.5.</span> <span class="nav-text">组件中的数据（状态）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#data"><span class="nav-number">1.5.1.</span> <span class="nav-text">data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#data-的访问"><span class="nav-number">1.5.2.</span> <span class="nav-text">data 的访问</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板语法"><span class="nav-number">1.6.</span> <span class="nav-text">模板语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mustache（双大括号，大胡子）-语法"><span class="nav-number">1.6.1.</span> <span class="nav-text">Mustache（双大括号，大胡子） 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插值表达式"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">插值表达式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据到视图的更新"><span class="nav-number">1.6.2.</span> <span class="nav-text">数据到视图的更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测变化的注意事项"><span class="nav-number">1.6.3.</span> <span class="nav-text">检测变化的注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展"><span class="nav-number">1.6.4.</span> <span class="nav-text">扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Vue-set-方法添加新数据"><span class="nav-number">1.6.5.</span> <span class="nav-text">使用 Vue.set 方法添加新数据</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="事件绑定1.on&#x2F;off2.bind&#x2F;unbind3.live&#x2F;delegete在JQuery1.7之后推出了on&#x2F;off，废弃了live&#x2F;delegete方法on&#x2F;off整合了bind&#x2F;unbind方法.on(参数1，参数2，参数3，参数4)  参数1：必填。事件类型，，可同时绑定多个事件，仅限于功能相同时,事件之间空格间隔   功能不同时，采用链式编程参数2：可选。具体执行功能的子元素参数3：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jq事件的绑定">
+<meta property="og:url" content="http://yoursite.com/2020/06/07/jq%E4%BA%8B%E4%BB%B6%E7%9A%84%E7%BB%91%E5%AE%9A/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="事件绑定1.on&#x2F;off2.bind&#x2F;unbind3.live&#x2F;delegete在JQuery1.7之后推出了on&#x2F;off，废弃了live&#x2F;delegete方法on&#x2F;off整合了bind&#x2F;unbind方法.on(参数1，参数2，参数3，参数4)  参数1：必填。事件类型，，可同时绑定多个事件，仅限于功能相同时,事件之间空格间隔   功能不同时，采用链式编程参数2：可选。具体执行功能的子元素参数3：">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204115810173.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204115824620.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204120407859.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204120410689.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204121752276.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204121750775.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204121915182.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204121923299.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204135112261.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204135113382.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204135510392.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204140744788.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020020414081355.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020020414224355.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204142309393.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204143952290.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204144007881.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204144105123.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200204144116219.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-06-07T02:59:05.193Z">
+<meta property="article:modified_time" content="2020-06-07T02:59:05.193Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200204115810173.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/07/jq%E4%BA%8B%E4%BB%B6%E7%9A%84%E7%BB%91%E5%AE%9A/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>jq事件的绑定 | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/jq%E4%BA%8B%E4%BB%B6%E7%9A%84%E7%BB%91%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          jq事件的绑定
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a><a href=""></a>事件绑定</h4><p>1.on/off<br>2.bind/unbind<br>3.live/delegete<br>在JQuery1.7之后推出了<code>on/off</code>，废弃了<code>live/delegete</code>方法<br><code>on/off</code>整合了<code>bind/unbind</code>方法<br><code>.on(参数1，参数2，参数3，参数4)</code></p>
+<blockquote>
+<p>参数1：必填。事件类型，，可同时绑定多个事件，仅限于功能相同时,事件之间空格间隔<br>   功能不同时，采用链式编程<br>参数2：可选。具体执行功能的子元素<br>参数3：可选。传递到函数内部的数据（类似实参），通过event.data来获取<br>参数4：具体功能<br>代码：<img src="https://img-blog.csdnimg.cn/20200204115810173.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<strong>依次点击第二、第三、第一个div</strong><br><img src="https://img-blog.csdnimg.cn/20200204115824620.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>代码：通过对象的方法添加多个事件<br><img src="https://img-blog.csdnimg.cn/20200204120407859.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200204120410689.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">#### 事件的命名空间<br>有时，我们想对事件进行移除。但对于同名同元素绑定的事件移除往往比较麻烦，这个时候，可以使用事件的命名空间解决<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200204121752276.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200204121750775.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h4 id="接除事件绑定"><a href="#接除事件绑定" class="headerlink" title="接除事件绑定"></a><a href=""></a>接除事件绑定</h4><p><code>.off(参数1，参数2，参数3)</code></p>
+<blockquote>
+<p>参数1：必须要符合要解除的事件类型，事件命名<br>参数2：可选。指定哪些后代元素可以触发绑定的事件<br>参数3：可选。规定当事件发生时运行的函数<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200204121915182.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200204121923299.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h6 id="区别"><a href="#区别" class="headerlink" title="区别"></a><a href=""></a>区别</h6><p>通过on绑定和直接通过事件名绑定的区别</p>
+<blockquote>
+<p><code>事件名</code>：在页面加载后，获取所有符合条件的元素，然后绑定事件，如果通过其它操作再生成一个新的符合条件的元素，则新元素不会绑定这个事件<br><code>.on()</code>：只起到了监听的效果，可以实现动态html元素绑定</p>
+</blockquote>
+<h6 id="读取和使用鼠标状态"><a href="#读取和使用鼠标状态" class="headerlink" title="读取和使用鼠标状态"></a><a href=""></a>读取和使用鼠标状态</h6><p><code>event.which</code><br>返回1为鼠标左键，返回2为鼠标中键，返回3为鼠标右键</p>
+<h6 id="return"><a href="#return" class="headerlink" title="return"></a><a href=""></a>return</h6><p><code>return true</code>返回正常的处理结果<br><code>return false</code> 返回错误的处理结果;终止处理;阻止提交表单;阻止执行默认的行为<br><code>return</code> 把控制权返回给页面</p>
+<h4 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a><a href=""></a>事件委托</h4><p>事件委托是利用事件冒泡来实现，只指定一个事件处理程序 来管理某一类型的所有事件</p>
+<h6 id="为什么要用事件委托"><a href="#为什么要用事件委托" class="headerlink" title="为什么要用事件委托"></a><a href=""></a>为什么要用事件委托</h6><p>1.在js中添加到页面的事件处理程序的个数直接关系到页面的整体加载速度.<br>因为每个事件处理程序都是一个对象，对象会占用内存。对象越多需要加载的内存就越多<br>2.有很多个数据的表格以及很长的列表逐个添加事件，对于开发人员而言，就是噩梦。<br>事件委托能极大的提高页面的加载速度 ，减少开发人员的工作量</p>
+<h6 id="事件委托的使用场景-作用"><a href="#事件委托的使用场景-作用" class="headerlink" title="事件委托的使用场景/作用"></a><a href=""></a>事件委托的使用场景/作用</h6><p>1.操作子元素时，不用一 一遍历，可以根据事件触发的对象来进行相应的操作<br>2.将事件委托给父级后，动态创建(删除)的子元素不用重新绑定(解绑)事件，实现了时间和元素的同步更新</p>
+<h6 id="适用性"><a href="#适用性" class="headerlink" title="适用性"></a><a href=""></a>适用性</h6><p>1.<code>focus()</code> <code>blur()</code>方法本身没有事件冒泡，无法使用事件委托<br>2.<code>mouseover</code> <code>mouseout</code>这两个事件的触发频率较高，经常需要计算，所以偶尔会出现卡顿，偏差<br>3.比较适用：<code>click</code> <code>mousedown</code> <code>mouseup</code> <code>keydown</code> <code>keyup</code> <code>keypress</code></p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200204135112261.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">显示效果：<br><img src="https://img-blog.csdnimg.cn/20200204135113382.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h4 id="对象的创建和使用"><a href="#对象的创建和使用" class="headerlink" title="对象的创建和使用"></a><a href=""></a>对象的创建和使用</h4><h6 id="创建"><a href="#创建" class="headerlink" title="创建"></a><a href=""></a>创建</h6><p><code>var obj={ };</code> 创建一个空对象</p>
+<h6 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a><a href=""></a>赋值</h6><blockquote>
+<p>创建时赋值<br><img src="https://img-blog.csdnimg.cn/20200204135510392.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>创建后赋值<br><code>obj.hobby=&quot;玩&quot;</code><br>如果该对象有这个属性，那么找到这个属性，并赋值；如果没有，</p>
+</blockquote>
+<h6 id="访问"><a href="#访问" class="headerlink" title="访问"></a><a href=""></a>访问</h6><blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200204140744788.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">显示效果：<br><img src="https://img-blog.csdnimg.cn/2020020414081355.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h4 id="插件封装"><a href="#插件封装" class="headerlink" title="插件封装"></a><a href=""></a>插件封装</h4><h5 id="释放-更改-的作用"><a href="#释放-更改-的作用" class="headerlink" title="释放/更改$的作用"></a><a href=""></a>释放/更改<code>$</code>的作用</h5><p><code>var $s=jQuery.noConflict()</code></p>
+<h5 id="给jq添加方法的方式"><a href="#给jq添加方法的方式" class="headerlink" title="给jq添加方法的方式"></a><a href=""></a>给jq添加方法的方式</h5><h6 id="对象级别的添加"><a href="#对象级别的添加" class="headerlink" title="对象级别的添加"></a><a href=""></a>对象级别的添加</h6><blockquote>
+<p>1.<code>$.fn.extend({</code><br>  <code>函数名:function(){</code></p>
+<p>  <code>},</code><br>  <code>函数名:function(){</code></p>
+<p>  <code>},</code><br><code>});</code><br>2.<code>$.fn.函数名=function(){}</code></p>
+</blockquote>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/2020020414224355.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">显示效果：<br><img src="https://img-blog.csdnimg.cn/20200204142309393.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h6 id="类级别的添加"><a href="#类级别的添加" class="headerlink" title="类级别的添加"></a><a href=""></a>类级别的添加</h6><blockquote>
+<p>1.<code>$.extend({</code><br>  <code>函数名:function(){</code></p>
+<p>  <code>},</code><br>  <code>函数名:function(){</code></p>
+<p>  <code>}</code><br><code>})</code><br>代码：<br><img src="https://img-blog.csdnimg.cn/20200204143952290.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">显示效果：<br><img src="https://img-blog.csdnimg.cn/20200204144007881.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>2.<code>$.函数名=function(){</code><br><code>}</code><br>代码：<br><img src="https://img-blog.csdnimg.cn/20200204144105123.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">显示效果：<br><img src="https://img-blog.csdnimg.cn/20200204144116219.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>直接通过<code>$</code>来调用，不再受到调用者的约束，如果<code>$</code>的所有权被修改了，使用修改后的，或者使用jQuery</strong></p>
+</blockquote>
+<h6 id="使用jquery的好处-为什么使用jquery"><a href="#使用jquery的好处-为什么使用jquery" class="headerlink" title="使用jquery的好处/为什么使用jquery"></a><a href=""></a>使用jquery的好处/为什么使用jquery</h6><blockquote>
+<p>1.因为它是轻量级别的框架，大小不超过30kb<br>2.它有强大的选择器，出色的DOM操作封装<br>3.有可靠的事件处理机制<br>4.完善的ajax<br>5.出色的浏览器兼容性<br>6.支持链式操作，隐式迭代<br>7.行为层(功能)和结构层(页面元素)的分离，还支持丰富的插件</p>
+</blockquote>
+<h6 id="JQuery库中的-是什么？"><a href="#JQuery库中的-是什么？" class="headerlink" title="JQuery库中的$()是什么？"></a><a href=""></a>JQuery库中的$()是什么？</h6><blockquote>
+<p><code>$()</code>是JQuery()的别称；<code>$()</code>函数用于将任何对象包裹成jquery对象，接着你就可以调用定义再jQuery对象上的多个不同方法<br>将一个选择器字符串传入<code>$()</code>函数,它会返回一个包含所有匹配的DOM元素数组的jQuery对象</p>
+</blockquote>
+<h6 id="document-ready-是个什么函数？为什么要用它？"><a href="#document-ready-是个什么函数？为什么要用它？" class="headerlink" title="$(document).ready()是个什么函数？为什么要用它？"></a><a href=""></a><code>$(document).ready()</code>是个什么函数？为什么要用它？</h6><blockquote>
+<p><code>ready()</code> 函数用于在文档进入ready状态时执行代码，当HTML被完全解析DOM树构建完成时，jQuery允许你执行代码<br>它适用于所有浏览器，解决了跨浏览器的难题</p>
+</blockquote>
+<h6 id="window-onload和-document-ready-的不同"><a href="#window-onload和-document-ready-的不同" class="headerlink" title="window.onload和$(document).ready()的不同"></a><a href=""></a><code>window.onload</code>和<code>$(document).ready()</code>的不同</h6><blockquote>
+<p>1.前者会等DOM创建和包括图片、视频、音频在内所有外部资源都加载完成，如果加载外部资源花费大量时间，用户就会感受到定义在<code>window.onload</code>事件上的代码执行时有明显延迟<br>后者只需等待DOM树的创建，执行更快<br>2.前者只能在单一函数里使用<br>后者可以在网页里多次使用，浏览器会按他们在HTML中出现的顺序执行它们</p>
+</blockquote>
+<h6 id="this-和this关键字在jQuery中有何不同？"><a href="#this-和this关键字在jQuery中有何不同？" class="headerlink" title="$(this)和this关键字在jQuery中有何不同？"></a><a href=""></a><code>$(this)</code>和<code>this</code>关键字在jQuery中有何不同？</h6><blockquote>
+<p><code>$(this)</code>返回一个jQuery对象，可以对它调用多个jQuery方法<br><code>this</code>代表当前元素，它是JavaScript关键词中的一个，表示上下文中的当前DOM元素，不能对它调用jQuery方法</p>
+</blockquote>
+<h6 id="jquery中detach-和remove-方法的区别"><a href="#jquery中detach-和remove-方法的区别" class="headerlink" title="jquery中detach()和remove()方法的区别"></a><a href=""></a>jquery中<code>detach()</code>和<code>remove()</code>方法的区别</h6><blockquote>
+<p>都用来移除一个DOM元素<br><code>detach()</code>会保持对过去被解除元素的跟踪，因此它可以被取消解除<br><code>remove()</code>则会保持对过去被移除对象的引用</p>
+</blockquote>
+<h6 id="attr-和prop-的区别"><a href="#attr-和prop-的区别" class="headerlink" title="attr()和prop()的区别"></a><a href=""></a><code>attr()</code>和<code>prop()</code>的区别</h6><blockquote>
+<p>相同点：都是获取或设置元素的属性值<br>不同点：1.<code>prop()</code>是处理元素自带的属性,<code>attr()</code>处理的是自定义的DOM的属性<br>2.操作固有属性时，<code>prop()</code>会返回正确的值，<code>attr()</code>则会返回<code>undefined</code></p>
+</blockquote>
+<h6 id="document-getElementById-quot-box-quot-相较于-quot-box-quot-更高效，因为它直接调用了JavaScript引擎"><a href="#document-getElementById-quot-box-quot-相较于-quot-box-quot-更高效，因为它直接调用了JavaScript引擎" class="headerlink" title="document.getElementById(&quot;#box&quot;)相较于$(&quot;#box&quot;)更高效，因为它直接调用了JavaScript引擎"></a><a href=""></a><code>document.getElementById(&quot;#box&quot;)</code>相较于<code>$(&quot;#box&quot;)</code>更高效，因为它直接调用了JavaScript引擎</h6><h6 id="在一个jQuery事件处理程序里返回false，通常用于阻止事件向上冒泡"><a href="#在一个jQuery事件处理程序里返回false，通常用于阻止事件向上冒泡" class="headerlink" title="在一个jQuery事件处理程序里返回false，通常用于阻止事件向上冒泡"></a><a href=""></a>在一个jQuery事件处理程序里返回false，通常用于阻止事件向上冒泡</h6><h6 id="jQuery方法链是对一个方法返回的结果调用另一个方法，使得代码简洁明了，同时由于只对DOM进行了一轮查找，性能方面更加出色"><a href="#jQuery方法链是对一个方法返回的结果调用另一个方法，使得代码简洁明了，同时由于只对DOM进行了一轮查找，性能方面更加出色" class="headerlink" title="jQuery方法链是对一个方法返回的结果调用另一个方法，使得代码简洁明了，同时由于只对DOM进行了一轮查找，性能方面更加出色"></a><a href=""></a>jQuery方法链是对一个方法返回的结果调用另一个方法，使得代码简洁明了，同时由于只对DOM进行了一轮查找，性能方面更加出色</h6><h6 id="jQuery设置onclick属性"><a href="#jQuery设置onclick属性" class="headerlink" title="jQuery设置onclick属性"></a><a href=""></a>jQuery设置onclick属性</h6><p>获取：<code>$().attr(&quot;onclick&quot;)</code><br>删除：<code>$().removeattr(&quot;onclick&quot;)</code><br>设置：<code>$().attr(&quot;onclick&quot;,&quot;test()&quot;)</code></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/jq%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C/" rel="prev" title="jq动画效果">
+      <i class="fa fa-chevron-left"></i> jq动画效果
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/if%E8%AF%AD%E5%8F%A5%E5%92%8C%E5%A4%9A%E5%88%86%E6%94%AF%E8%AF%AD%E5%8F%A5/" rel="next" title="if语句和多分支语句">
+      if语句和多分支语句 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件绑定"><span class="nav-number">1.</span> <span class="nav-text">事件绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接除事件绑定"><span class="nav-number">2.</span> <span class="nav-text">接除事件绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#区别"><span class="nav-number">2.0.1.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#读取和使用鼠标状态"><span class="nav-number">2.0.2.</span> <span class="nav-text">读取和使用鼠标状态</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#return"><span class="nav-number">2.0.3.</span> <span class="nav-text">return</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件委托"><span class="nav-number">3.</span> <span class="nav-text">事件委托</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#为什么要用事件委托"><span class="nav-number">3.0.1.</span> <span class="nav-text">为什么要用事件委托</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#事件委托的使用场景-作用"><span class="nav-number">3.0.2.</span> <span class="nav-text">事件委托的使用场景&#x2F;作用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#适用性"><span class="nav-number">3.0.3.</span> <span class="nav-text">适用性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象的创建和使用"><span class="nav-number">4.</span> <span class="nav-text">对象的创建和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#创建"><span class="nav-number">4.0.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#赋值"><span class="nav-number">4.0.2.</span> <span class="nav-text">赋值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#访问"><span class="nav-number">4.0.3.</span> <span class="nav-text">访问</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件封装"><span class="nav-number">5.</span> <span class="nav-text">插件封装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#释放-更改-的作用"><span class="nav-number">5.1.</span> <span class="nav-text">释放&#x2F;更改$的作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#给jq添加方法的方式"><span class="nav-number">5.2.</span> <span class="nav-text">给jq添加方法的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#对象级别的添加"><span class="nav-number">5.2.1.</span> <span class="nav-text">对象级别的添加</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#类级别的添加"><span class="nav-number">5.2.2.</span> <span class="nav-text">类级别的添加</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#使用jquery的好处-为什么使用jquery"><span class="nav-number">5.2.3.</span> <span class="nav-text">使用jquery的好处&#x2F;为什么使用jquery</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#JQuery库中的-是什么？"><span class="nav-number">5.2.4.</span> <span class="nav-text">JQuery库中的$()是什么？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#document-ready-是个什么函数？为什么要用它？"><span class="nav-number">5.2.5.</span> <span class="nav-text">$(document).ready()是个什么函数？为什么要用它？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#window-onload和-document-ready-的不同"><span class="nav-number">5.2.6.</span> <span class="nav-text">window.onload和$(document).ready()的不同</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#this-和this关键字在jQuery中有何不同？"><span class="nav-number">5.2.7.</span> <span class="nav-text">$(this)和this关键字在jQuery中有何不同？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#jquery中detach-和remove-方法的区别"><span class="nav-number">5.2.8.</span> <span class="nav-text">jquery中detach()和remove()方法的区别</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#attr-和prop-的区别"><span class="nav-number">5.2.9.</span> <span class="nav-text">attr()和prop()的区别</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#document-getElementById-quot-box-quot-相较于-quot-box-quot-更高效，因为它直接调用了JavaScript引擎"><span class="nav-number">5.2.10.</span> <span class="nav-text">document.getElementById(&quot;#box&quot;)相较于$(&quot;#box&quot;)更高效，因为它直接调用了JavaScript引擎</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#在一个jQuery事件处理程序里返回false，通常用于阻止事件向上冒泡"><span class="nav-number">5.2.11.</span> <span class="nav-text">在一个jQuery事件处理程序里返回false，通常用于阻止事件向上冒泡</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#jQuery方法链是对一个方法返回的结果调用另一个方法，使得代码简洁明了，同时由于只对DOM进行了一轮查找，性能方面更加出色"><span class="nav-number">5.2.12.</span> <span class="nav-text">jQuery方法链是对一个方法返回的结果调用另一个方法，使得代码简洁明了，同时由于只对DOM进行了一轮查找，性能方面更加出色</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#jQuery设置onclick属性"><span class="nav-number">5.2.13.</span> <span class="nav-text">jQuery设置onclick属性</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

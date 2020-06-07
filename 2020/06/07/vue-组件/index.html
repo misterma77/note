@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Vue.js[TOC] 组件的注册在 vue 中，我们可以通过 new Vue 来创建一个组件，不过通常它是作为整个应用的顶层根组件存在的，我们还可以通过另外的方式来注册一个更为通用的组件 Vue.component()1Vue.component(&#39;组件名称&#39;, &amp;#123;组件选项&amp;#125;)   组件名称遵循自定义组件命名规范：全小写、连字符（虽然驼峰式一般也没问题） 组件选项与 new">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-组件">
+<meta property="og:url" content="http://yoursite.com/2020/06/07/vue-%E7%BB%84%E4%BB%B6/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="Vue.js[TOC] 组件的注册在 vue 中，我们可以通过 new Vue 来创建一个组件，不过通常它是作为整个应用的顶层根组件存在的，我们还可以通过另外的方式来注册一个更为通用的组件 Vue.component()1Vue.component(&#39;组件名称&#39;, &amp;#123;组件选项&amp;#125;)   组件名称遵循自定义组件命名规范：全小写、连字符（虽然驼峰式一般也没问题） 组件选项与 new">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-07T02:59:05.196Z">
+<meta property="article:modified_time" content="2020-06-07T02:59:05.196Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/07/vue-%E7%BB%84%E4%BB%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>vue-组件 | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/vue-%E7%BB%84%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vue-组件
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Vue-js"><a href="#Vue-js" class="headerlink" title="Vue.js"></a>Vue.js</h1><p>[TOC]</p>
+<h2 id="组件的注册"><a href="#组件的注册" class="headerlink" title="组件的注册"></a>组件的注册</h2><p>在 <code>vue</code> 中，我们可以通过 <code>new Vue</code> 来创建一个组件，不过通常它是作为整个应用的顶层根组件存在的，我们还可以通过另外的方式来注册一个更为通用的组件</p>
+<h3 id="Vue-component"><a href="#Vue-component" class="headerlink" title="Vue.component()"></a>Vue.component()</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'组件名称'</span>, &#123;组件选项&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>组件名称遵循自定义组件命名规范：全小写、连字符（虽然驼峰式一般也没问题）</li>
+<li>组件选项与 <code>new Vue</code> 选项配置基本一致（也有一些细节的不同）</li>
+</ul>
+<h4 id="全局组件与局部组件"><a href="#全局组件与局部组件" class="headerlink" title="全局组件与局部组件"></a>全局组件与局部组件</h4><p>通过 <code>Vue.component</code> 注册的组件，我们称为全局组件，因为它可以在任意范围内使用，我们还可以定义局部组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  ...,</span><br><span class="line">  components: &#123;</span><br><span class="line">  	<span class="string">'组件名称'</span>: &#123;组件选项&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>在一个组件内部通过 <code>components</code> 选项注册的组件是局部组件，只能在当前 <code>components</code> 选项所在的组件内部使用</p>
+<blockquote>
+<p>注意：局部注册的组件只能中当前注册的组件中使用，不能在它的子组件中使用</p>
+</blockquote>
+<h3 id="data"><a href="#data" class="headerlink" title="data"></a>data</h3><p>在非 <code>new Vue</code> 的组件中，<code>data</code> 必须为函数，函数返回值必须是一个对象，作为组件的最终 <code>data</code></p>
+<h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><p>组件中内部私有数据存储中组件 <code>data</code> 中，通过外部传入的数据，则通过 <code>props&lt;</code> 选项接收</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">kkb-circle</span> <span class="attr">:r</span>=<span class="string">"n1"</span>&gt;</span><span class="tag">&lt;/<span class="name">kkb-circle</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">hr</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">kkb-circle</span> <span class="attr">:r</span>=<span class="string">"n2"</span>&gt;</span><span class="tag">&lt;/<span class="name">kkb-circle</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">        </span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line">                n1: 10,</span><br><span class="line">                n2: 100</span><br><span class="line">            &#125;,</span><br><span class="line">            components: &#123;</span><br><span class="line"><span class="actionscript">                <span class="string">'kkb-circle'</span>: &#123;</span></span><br><span class="line"><span class="actionscript">                    props: [<span class="string">'r'</span>],</span></span><br><span class="line">                    data() &#123;</span><br><span class="line"><span class="actionscript">                        <span class="keyword">return</span> &#123;pi: <span class="number">3.14</span>&#125;</span></span><br><span class="line">                    &#125;,</span><br><span class="line"><span class="handlebars"><span class="xml">                    template: `<span class="tag">&lt;<span class="name">div</span>&gt;</span>r: </span><span class="template-variable">&#123;&#123;r&#125;&#125;</span><span class="xml"> -&gt; </span><span class="template-variable">&#123;&#123;pi * r * r&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span>`</span></span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果传入的 <code>props</code> 值为一个表达式，则必须使用 <code>v-bind</code></li>
+<li>组件中的 <code>data</code> 和 <code>props</code> 数据都可以通过组件实例进行直接访问</li>
+<li><code>data</code> 中的 <code>key</code> 与 <code>props</code> 中的 <code>key</code> 不能冲突</li>
+</ul>
+<h3 id="组件通信"><a href="#组件通信" class="headerlink" title="组件通信"></a>组件通信</h3><blockquote>
+<p>注意：不要修改 <code>props</code> 传入的数据</p>
+</blockquote>
+<p>父组件通过 <code>props</code> 传入数据到子组件内部，但是子组件内部不要修改外部传入的 <code>props</code>，<code>vue</code> 提供了一种事件机制通知父级更新，父级中使用子组件的时候监听对应的事件绑定对应的处理函数即可</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>父组件：&#123;&#123;quantity&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">kkb-child</span> <span class="attr">:quantity</span>=<span class="string">"initQuantity"</span> @<span class="attr">increment</span>=<span class="string">"appIncrement"</span>&gt;</span><span class="tag">&lt;/<span class="name">kkb-child</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">kkb-child</span> <span class="attr">:quantity</span>=<span class="string">"initQuantity"</span> @<span class="attr">increment</span>=<span class="string">"appIncrement"</span>&gt;</span><span class="tag">&lt;/<span class="name">kkb-child</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> child = &#123;</span></span><br><span class="line"><span class="actionscript">            props: [<span class="string">'quantity'</span>],</span></span><br><span class="line">            data() &#123;</span><br><span class="line"><span class="actionscript">                <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">                    n: <span class="keyword">this</span>.quantity</span></span><br><span class="line">                &#125;;</span><br><span class="line">            &#125;,</span><br><span class="line">            template: `</span><br><span class="line"><span class="handlebars"><span class="xml">                <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                    <span class="tag">&lt;<span class="name">p</span>&gt;</span>子组件：</span><span class="template-variable">&#123;&#123;n&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"increment"</span>&gt;</span>按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line">            `,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                increment() &#123;</span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.n++;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.$emit(<span class="string">'increment'</span>, <span class="keyword">this</span>.n);</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">        <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line">                quantity: 0,</span><br><span class="line">                initQuantity: 0</span><br><span class="line">            &#125;,</span><br><span class="line">            components: &#123;</span><br><span class="line"><span class="actionscript">                <span class="string">'kkb-child'</span>: child</span></span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                appIncrement(v) &#123;</span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.quantity++;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="emit"><a href="#emit" class="headerlink" title="$emit()"></a>$emit()</h4><p><code>vue</code> 为每个组件对象提供了一个内置方法 <code>$emit</code> ，它等同于自定义事件中的 <code>new Event</code>,<code>trigger</code> 等</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$emit(<span class="string">'自定义事件名称'</span>, 事件数据)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>事件数据就是中触发事件的同时携带传递的数据 - <code>event</code></p>
+</li>
+<li><p>父级在使用该组件的过程中，可以通过 <code>@事件名称</code> 来注册绑定事件函数</p>
+</li>
+<li><p>事件函数的第一个参数就是事件数据</p>
+</li>
+</ul>
+<h3 id="组件双绑的实现"><a href="#组件双绑的实现" class="headerlink" title="组件双绑的实现"></a>组件双绑的实现</h3><p>虽然并不推荐在组件内部修改 <code>props</code> ，但是，有的时候确实希望组件内部状态变化的时候改变 <code>props</code> ，我们可以通过子组件触发事件，父级监听事件来达到这个目的，不过过程会比较繁琐，<code>vue</code> 提供了一些操作来简化这个过程</p>
+<h4 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h4><p><code>v-model</code> 是 <code>vue</code> 提供的一个用于实现数据双向绑定的指令，用来简化 <code>props 到 data</code>，<code>data 到 props</code> 的操作流程</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.kkb-radio</span> &#123;</span></span><br><span class="line">            width: 20px;</span><br><span class="line">            height: 20px;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span>: <span class="selector-id">#cccccc</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.kkb-radio</span><span class="selector-class">.checked</span> &#123;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span>: <span class="selector-id">#92beee</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.plane</span> &#123;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#000000</span>;</span></span><br><span class="line">            width: 300px;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.plane</span> <span class="selector-class">.header</span> &#123;</span></span><br><span class="line">            width: 100%;</span><br><span class="line">            height: 30px;</span><br><span class="line"><span class="css">            <span class="selector-tag">background</span>: <span class="selector-id">#cccccc</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.plane</span> <span class="selector-class">.content</span> &#123;</span></span><br><span class="line">            height: 100px;</span><br><span class="line">            width: 100%;</span><br><span class="line">            display: none;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.plane</span><span class="selector-class">.expanded</span> <span class="selector-class">.content</span> &#123;</span></span><br><span class="line">            display: block;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;kkb-radio :checked="val"&gt;&lt;/kkb-radio&gt; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">kkb-radio</span> <span class="attr">v-model</span>=<span class="string">"val"</span>&gt;</span><span class="tag">&lt;/<span class="name">kkb-radio</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">kkb-plane</span> <span class="attr">:expanded</span>=<span class="string">"val"</span>&gt;</span><span class="tag">&lt;/<span class="name">kkb-plane</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> kkbRadio = &#123;</span></span><br><span class="line">            model: &#123;</span><br><span class="line"><span class="actionscript">                prop: <span class="string">'checked'</span>,</span></span><br><span class="line"><span class="actionscript">                event: <span class="string">'check'</span></span></span><br><span class="line">            &#125;,</span><br><span class="line"><span class="actionscript">            props: [<span class="string">'checked'</span>],</span></span><br><span class="line">            data() &#123;</span><br><span class="line"><span class="actionscript">                <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">                    status: <span class="keyword">this</span>.checked</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            template: `</span><br><span class="line"><span class="javascript">                &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"kkb-radio"</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;'checked': status&#125;"</span> @click=<span class="string">"changeStatus"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span></span><br><span class="line">            `,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                changeStatus() &#123;</span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.status = !<span class="keyword">this</span>.status;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.$emit(<span class="string">'check'</span>, <span class="keyword">this</span>.status);</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> kkbPlane = &#123;</span></span><br><span class="line"><span class="actionscript">            props: [<span class="string">'expanded'</span>],</span></span><br><span class="line">            template: `</span><br><span class="line"><span class="javascript">                &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"plane"</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;'expanded': expanded&#125;"</span>&gt;</span></span><br><span class="line"><span class="javascript">                    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"header"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span></span><br><span class="line"><span class="javascript">                    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"content"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line">            `</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="actionscript">                val: <span class="literal">true</span></span></span><br><span class="line">            &#125;,</span><br><span class="line">            components: &#123;</span><br><span class="line"><span class="actionscript">                <span class="string">'kkb-radio'</span>: kkbRadio,</span></span><br><span class="line"><span class="actionscript">                <span class="string">'kkb-plane'</span>: kkbPlane</span></span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="model-选项"><a href="#model-选项" class="headerlink" title="model 选项"></a>model 选项</h5><p><code>prop</code> 指定要绑定的属性，默认是 <code>value</code></p>
+<p><code>event</code> 指定要绑定触发的事件，默认是 <code>input</code> 事件</p>
+<h4 id="sync"><a href="#sync" class="headerlink" title=".sync"></a>.sync</h4><p>通过 <code>v-model</code> 来进行双向绑定，会给状态维护带来一定的问题，因为修改比较隐蔽，同时只能处理一个 <code>prop</code> 的绑定，我们还可以通过另外一种方式来达到这个目的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.kkb-radio</span> &#123;</span></span><br><span class="line">            width: 50px;</span><br><span class="line">            height: 50px;</span><br><span class="line"><span class="css">            <span class="selector-tag">border</span>: 5<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#000000</span>;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span>: <span class="selector-id">#ffffff</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.kkb-radio</span><span class="selector-class">.checked</span> &#123;</span></span><br><span class="line">            border-color: green;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.kkb-radio</span><span class="selector-class">.disabled</span> &#123;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span>: <span class="selector-id">#cccccc</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>val1: &#123;&#123;val1&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>val2: &#123;&#123;val2&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">kkb-radio</span> <span class="attr">:checked.sync</span>=<span class="string">"val1"</span> <span class="attr">:disabled.sync</span>=<span class="string">"val2"</span>&gt;</span><span class="tag">&lt;/<span class="name">kkb-radio</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> kkbRadio = &#123;</span></span><br><span class="line"><span class="actionscript">            props: [<span class="string">'checked'</span>, <span class="string">'disabled'</span>],</span></span><br><span class="line">            data() &#123;</span><br><span class="line"><span class="actionscript">                <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">                    status: <span class="keyword">this</span>.checked,</span></span><br><span class="line"><span class="actionscript">                    dis: <span class="keyword">this</span>.disabled</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            template: `</span><br><span class="line"><span class="javascript">                &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"kkb-radio"</span> :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;'checked': status, 'disabled': dis&#125;"</span> @click=<span class="string">"changeDis"</span> @mouseover=<span class="string">"setChecked"</span> @mouseout=<span class="string">"removeChecked"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span></span><br><span class="line">            `,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                setChecked() &#123;</span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.status = <span class="literal">true</span>;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.$emit(<span class="string">'update:checked'</span>, <span class="keyword">this</span>.status);</span></span><br><span class="line">                &#125;,</span><br><span class="line">                removeChecked() &#123;</span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.status = <span class="literal">false</span>;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.$emit(<span class="string">'update:checked'</span>, <span class="keyword">this</span>.status);</span></span><br><span class="line">                &#125;,</span><br><span class="line">                changeDis() &#123;</span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.dis = !<span class="keyword">this</span>.dis;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.$emit(<span class="string">'update:disabled'</span>, <span class="keyword">this</span>.dis);</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="actionscript">                val1: <span class="literal">false</span>,</span></span><br><span class="line"><span class="actionscript">                val2: <span class="literal">false</span></span></span><br><span class="line">            &#125;,</span><br><span class="line">            components: &#123;</span><br><span class="line"><span class="actionscript">                <span class="string">'kkb-radio'</span>: kkbRadio</span></span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="update-prop"><a href="#update-prop" class="headerlink" title="update:[prop]"></a>update:[prop]</h5><p>这里事件名称要使用 <code>update</code> 加上 <code>prop</code> 名称 的格式</p>
+<h3 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h3><p>默认情况下，组件模板解析后会替换整个组件内容，如果我们想在组件引用被包含的内容，可以通过 <code>vue</code> 提供的内置组件 <code>slot</code> 来获取</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.dialog</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">30%</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-<span class="number">50%</span>) <span class="built_in">translateY</span>(-<span class="number">50%</span>) ;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">2px</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">1px</span> <span class="number">3px</span> <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">3</span>);</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">30%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.dialog_header</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">20px</span> <span class="number">20px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.dialog_title</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">font-weight</span>: <span class="number">700</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#1f2d3d</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.dialog_content</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">30px</span> <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#48576a</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.dialog_close_btn</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.dialog_close_btn</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">'x'</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#999</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">kkb-dialog</span> <span class="attr">title</span>=<span class="string">"标题"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是内容<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">kkb-dialog</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Dialog = &#123;</span><br><span class="line">  props: [<span class="string">'title'</span>],</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div class="dialog"&gt;</span></span><br><span class="line"><span class="string">    	&lt;i class="dialog_close_btn"&gt;&lt;/i&gt;</span></span><br><span class="line"><span class="string">    	&lt;div class="dialog_header"&gt;</span></span><br><span class="line"><span class="string">    		&lt;span class="dialog_title"&gt;&#123;&#123;title&#125;&#125;&lt;/span&gt;</span></span><br><span class="line"><span class="string">    	&lt;/div&gt;</span></span><br><span class="line"><span class="string">    	&lt;div class="dialog_content"&gt;</span></span><br><span class="line"><span class="string">    		&lt;slot&gt;&lt;/slot&gt;</span></span><br><span class="line"><span class="string">    	&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">	`</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  components: &#123;</span><br><span class="line">    <span class="string">'kkb-dialog'</span>: Dialog</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="具名插槽"><a href="#具名插槽" class="headerlink" title="具名插槽"></a>具名插槽</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">kkb-dialog</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:title</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>这是标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是内容<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">kkb-dialog</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Dialog = &#123;</span><br><span class="line">  props: [<span class="string">'title'</span>],</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div class="dialog"&gt;</span></span><br><span class="line"><span class="string">    	&lt;i class="dialog_close_btn"&gt;&lt;/i&gt;</span></span><br><span class="line"><span class="string">    	&lt;div class="dialog_header"&gt;</span></span><br><span class="line"><span class="string">    		&lt;slot name="title"&gt;&lt;/slot&gt;</span></span><br><span class="line"><span class="string">    	&lt;/div&gt;</span></span><br><span class="line"><span class="string">    	&lt;div class="dialog_content"&gt;</span></span><br><span class="line"><span class="string">    		&lt;slot&gt;&lt;/slot&gt;</span></span><br><span class="line"><span class="string">    	&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">	`</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  components: &#123;</span><br><span class="line">    <span class="string">'kkb-dialog'</span>: Dialog</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h5 id="v-slot"><a href="#v-slot" class="headerlink" title="v-slot"></a>v-slot</h5><p>使用内置组件 <code>template</code> 与 <code>v-slot</code> 指令进行配置，用来命名插槽，在组件模板中，通过 <code>&lt;slot name=&quot;插槽名字&quot;&gt;</code> 来使用</p>
+<h4 id="作用域插槽"><a href="#作用域插槽" class="headerlink" title="作用域插槽"></a>作用域插槽</h4><p>组件内部与组件包含的内容属于不同的作用域（被包含的内容是组件父级下的作用域）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">kkb-dialog</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:title</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>用户列表 - &#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:default</span>=<span class="string">"data"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>用户的姓名: &#123;&#123;data.user.username&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">kkb-dialog</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Dialog = &#123;</span><br><span class="line">  props: [<span class="string">'title'</span>],</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      users: [</span><br><span class="line">        &#123;<span class="attr">id</span>: <span class="number">1</span>, <span class="attr">username</span>: <span class="string">'baogege'</span>, <span class="attr">gender</span>: <span class="string">'男'</span>,<span class="attr">checked</span>:<span class="literal">false</span>&#125;,</span><br><span class="line">        &#123;<span class="attr">id</span>: <span class="number">2</span>, <span class="attr">username</span>: <span class="string">'mt'</span>, <span class="attr">gender</span>: <span class="string">'男'</span>,<span class="attr">checked</span>:<span class="literal">false</span>&#125;,</span><br><span class="line">        &#123;<span class="attr">id</span>: <span class="number">3</span>, <span class="attr">username</span>: <span class="string">'haigege'</span>, <span class="attr">gender</span>: <span class="string">'男'</span>,<span class="attr">checked</span>:<span class="literal">false</span>&#125;,</span><br><span class="line">        &#123;<span class="attr">id</span>: <span class="number">4</span>, <span class="attr">username</span>: <span class="string">'zMouse'</span>, <span class="attr">gender</span>: <span class="string">'男'</span>,<span class="attr">checked</span>:<span class="literal">false</span>&#125;,</span><br><span class="line">        &#123;<span class="attr">id</span>: <span class="number">5</span>, <span class="attr">username</span>: <span class="string">'reci'</span>, <span class="attr">gender</span>: <span class="string">'女'</span>,<span class="attr">checked</span>:<span class="literal">false</span>&#125;,</span><br><span class="line">        &#123;<span class="attr">id</span>: <span class="number">6</span>, <span class="attr">username</span>: <span class="string">'lisi'</span>, <span class="attr">gender</span>: <span class="string">'女'</span>,<span class="attr">checked</span>:<span class="literal">false</span>&#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div class="dialog"&gt;</span></span><br><span class="line"><span class="string">    	&lt;i class="dialog_close_btn"&gt;&lt;/i&gt;</span></span><br><span class="line"><span class="string">    	&lt;div class="dialog_header"&gt;</span></span><br><span class="line"><span class="string">    		&lt;slot name="title"&gt;&lt;/slot&gt;</span></span><br><span class="line"><span class="string">    	&lt;/div&gt;</span></span><br><span class="line"><span class="string">    	&lt;div class="dialog_content"&gt;</span></span><br><span class="line"><span class="string">    		&lt;slot v-for="user of users" :user="user"&gt;&lt;/slot&gt;</span></span><br><span class="line"><span class="string">    	&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">	`</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    title: <span class="string">'开课吧'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line">    <span class="string">'kkb-dialog'</span>: Dialog</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="props-验证"><a href="#props-验证" class="headerlink" title="props 验证"></a>props 验证</h3><p>组件的 <code>props</code> 就是组件的参数，为了确保传入的数据在可控的合理范围内，我们需要对传入的 <code>props</code> 的值类型进行必要的验证</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-component'</span>, &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    <span class="comment">// 基础的类型检查 (`null` 和 `undefined` 会通过任何类型验证)</span></span><br><span class="line">    propA: <span class="built_in">Number</span>,</span><br><span class="line">    <span class="comment">// 多个可能的类型</span></span><br><span class="line">    propB: [<span class="built_in">String</span>, <span class="built_in">Number</span>],</span><br><span class="line">    <span class="comment">// 必填的字符串</span></span><br><span class="line">    propC: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      required: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 带有默认值的数字</span></span><br><span class="line">    propD: &#123;</span><br><span class="line">      type: <span class="built_in">Number</span>,</span><br><span class="line">      <span class="keyword">default</span>: <span class="number">100</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 带有默认值的对象</span></span><br><span class="line">    propE: &#123;</span><br><span class="line">      type: <span class="built_in">Object</span>,</span><br><span class="line">      <span class="comment">// 对象或数组默认值必须从一个工厂函数获取</span></span><br><span class="line">      <span class="keyword">default</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123; <span class="attr">message</span>: <span class="string">'hello'</span> &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 自定义验证函数</span></span><br><span class="line">    propF: &#123;</span><br><span class="line">      validator: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 这个值必须匹配下列字符串中的一个</span></span><br><span class="line">        <span class="keyword">return</span> [<span class="string">'success'</span>, <span class="string">'warning'</span>, <span class="string">'danger'</span>].indexOf(value) !== <span class="number">-1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="非-prop-特性"><a href="#非-prop-特性" class="headerlink" title="非 prop 特性"></a>非 prop 特性</h3><p>一个非 <code>prop</code> 特性是指传向一个组件，但是该组件并没有相应 <code>prop</code> 定义的特性，这些 <code>props</code> 会被自动添加到组件的根元素上</p>
+<h3 id="替换-合并已有的特性"><a href="#替换-合并已有的特性" class="headerlink" title="替换/合并已有的特性"></a>替换/合并已有的特性</h3><p>默认情况下，非<code>prop</code> 特性的属性会覆盖组件根元素上同名的内容，但是针对 <code>style</code> 和 <code>class</code> 有特殊的处理，它们会合并（同名样式还是会覆盖）</p>
+<h3 id="禁用特性继承"><a href="#禁用特性继承" class="headerlink" title="禁用特性继承"></a>禁用特性继承</h3><p>如果你不希望组件的根元素继承特性，你可以在组件的选项中设置 <code>inheritAttrs: false</code>，我们可以通过组件的 <code>this.$attrs</code> 来获取这些属性</p>
+<blockquote>
+<p>注意 <code>inheritAttrs: false</code> 选项<strong>不会</strong>影响 <code>style</code> 和 <code>class</code> 的绑定</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/vue-%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="prev" title="vue-组件生命周期">
+      <i class="fa fa-chevron-left"></i> vue-组件生命周期
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/vue-%E6%8C%87%E4%BB%A4/" rel="next" title="vue-指令">
+      vue-指令 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue-js"><span class="nav-number">1.</span> <span class="nav-text">Vue.js</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件的注册"><span class="nav-number">1.1.</span> <span class="nav-text">组件的注册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-component"><span class="nav-number">1.1.1.</span> <span class="nav-text">Vue.component()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全局组件与局部组件"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">全局组件与局部组件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#data"><span class="nav-number">1.1.2.</span> <span class="nav-text">data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#props"><span class="nav-number">1.1.3.</span> <span class="nav-text">props</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件通信"><span class="nav-number">1.1.4.</span> <span class="nav-text">组件通信</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#emit"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">$emit()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件双绑的实现"><span class="nav-number">1.1.5.</span> <span class="nav-text">组件双绑的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#v-model"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">v-model</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#model-选项"><span class="nav-number">1.1.5.1.1.</span> <span class="nav-text">model 选项</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sync"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">.sync</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#update-prop"><span class="nav-number">1.1.5.2.1.</span> <span class="nav-text">update:[prop]</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插槽"><span class="nav-number">1.1.6.</span> <span class="nav-text">插槽</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#具名插槽"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">具名插槽</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#v-slot"><span class="nav-number">1.1.6.1.1.</span> <span class="nav-text">v-slot</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用域插槽"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">作用域插槽</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#props-验证"><span class="nav-number">1.1.7.</span> <span class="nav-text">props 验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非-prop-特性"><span class="nav-number">1.1.8.</span> <span class="nav-text">非 prop 特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换-合并已有的特性"><span class="nav-number">1.1.9.</span> <span class="nav-text">替换&#x2F;合并已有的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁用特性继承"><span class="nav-number">1.1.10.</span> <span class="nav-text">禁用特性继承</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

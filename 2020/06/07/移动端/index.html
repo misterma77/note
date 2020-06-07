@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="为什么使用移动端适配？ 1.随着时代的发展，在移动端上访问pc端的页面，逐渐常态化2.手机的设备尺寸，碎片化(种类繁多，五花八门)越来越严重  视口三种视口：布局视口，视觉视口和理想视口布局视口  布局视口一般都是浏览器厂商给的一个固定值，布局视口是看不见的，浏览器厂商设置的一个固定值，如980px，并将980px的内容缩放到手机屏内。  视觉视口  浏览器可视区域的大小，也就是用户可以通过设备宽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端">
+<meta property="og:url" content="http://yoursite.com/2020/06/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="为什么使用移动端适配？ 1.随着时代的发展，在移动端上访问pc端的页面，逐渐常态化2.手机的设备尺寸，碎片化(种类繁多，五花八门)越来越严重  视口三种视口：布局视口，视觉视口和理想视口布局视口  布局视口一般都是浏览器厂商给的一个固定值，布局视口是看不见的，浏览器厂商设置的一个固定值，如980px，并将980px的内容缩放到手机屏内。  视觉视口  浏览器可视区域的大小，也就是用户可以通过设备宽">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200206131949659.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200206142323871.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200206143918567.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-06-07T02:59:05.200Z">
+<meta property="article:modified_time" content="2020-06-07T02:59:05.200Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200206131949659.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>移动端 | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          移动端
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="为什么使用移动端适配？"><a href="#为什么使用移动端适配？" class="headerlink" title="为什么使用移动端适配？"></a><a href=""></a>为什么使用移动端适配？</h4><blockquote>
+<p>1.随着时代的发展，在移动端上访问pc端的页面，逐渐常态化<br>2.手机的设备尺寸，碎片化(种类繁多，五花八门)越来越严重</p>
+</blockquote>
+<h4 id="视口"><a href="#视口" class="headerlink" title="视口"></a><a href=""></a>视口</h4><p>三种视口：布局视口，视觉视口和理想视口<br><strong>布局视口</strong></p>
+<blockquote>
+<p>布局视口一般都是浏览器厂商给的一个固定值，布局视口是看不见的，浏览器厂商设置的一个固定值，如980px，并将980px的内容缩放到手机屏内。</p>
+</blockquote>
+<p><strong>视觉视口</strong></p>
+<blockquote>
+<p>浏览器可视区域的大小，也就是用户可以通过设备宽度看到的内容</p>
+</blockquote>
+<p><strong>理想视口</strong></p>
+<blockquote>
+<p>布局视口虽然解决了移动端查看pc端网页的问题，但是完全忽略了手机本身的尺寸。<br>所以苹果引入了理想视口，它对设备来说是最理想的布局视口，<br>用户不需要对页面进行缩放就能完美的显示整个页面。<br>最简单的做法就是使布局视口宽度改成屏幕的宽度。</p>
+</blockquote>
+<h4 id="两个像素和一个像素比"><a href="#两个像素和一个像素比" class="headerlink" title="两个像素和一个像素比"></a><a href=""></a>两个像素和一个像素比</h4><p>1)<strong>css像素</strong>(<strong>独立像素,逻辑像素</strong>) : 在CSS、JS中使用的一个长度单位。单位px<br>注：在pc端1物理像素等于1px，但是移动端1物理像素不一定等于1px<br>2)<strong>物理像素</strong>：屏幕的物理像素，又被称为设备像素，他是显示设备中一个最微小的物理部件。<br>任何设备屏幕的物理像素出厂时就确定了，且固定不变的<br><strong>设备像素比</strong>： 简称为dpr， 它是<strong>物理像素</strong>和<strong>独立像素</strong>的对应关系(也就是比例)<br>备注：判断是否为高清时， 看一下dpr的值是否大于1。 一般情况下dpr为整数，</p>
+<h4 id="meta标签"><a href="#meta标签" class="headerlink" title="meta标签"></a><a href=""></a>meta标签</h4><p>告诉浏览器一些设置信息，是设置理想视口的重要元素，主要用于将布局视口的尺寸和理想视口的尺寸相匹配<br>五个指令:1.<code>width</code> 设置布局视口的宽度，一般为device-width<br>2.<code>initial-scale</code> 初始缩放比例<br>3.<code>maximum-scale</code> 最大缩放比例<br>4.<code>minimum-scale</code> 最小缩放比例<br>5.<code>user-scalable</code> 是否允许用户缩放</p>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200206131949659.png" alt="在这里插入图片描述"></p>
+<h4 id="移动端测试方式"><a href="#移动端测试方式" class="headerlink" title="移动端测试方式"></a><a href=""></a>移动端测试方式</h4><blockquote>
+<p>1.谷歌浏览器提供的虚拟机<br>2.电脑和手机再同一局域网内，扫描编译器提供的二维码，即可在手机查看<br>3.搭建本地服务器，来建立访问</p>
+</blockquote>
+<h4 id="移动端开发"><a href="#移动端开发" class="headerlink" title="移动端开发"></a><a href=""></a>移动端开发</h4><h6 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a><a href=""></a>响应式布局</h6><blockquote>
+<p>用于解决不同浏览器，不同分辨率以及不同设备不同效果<br>1.内容没有受到明显影响时，自适应宽高即可<br>2.内容受到明显影响时，改变布局，来保证内容的清晰<br>优点：1.面对不同分辨率的设备灵活性很强<br>   2.能够快捷的解决多设备显示适应的问题<br>缺点：1.兼容各种设备，工作量大，效率低，页面加载时间长<br>   2.一定程度上，会改变网站原有的布局结构，可能会出现用户混淆问题</p>
+</blockquote>
+<h6 id="单独制作移动端的页面"><a href="#单独制作移动端的页面" class="headerlink" title="单独制作移动端的页面"></a><a href=""></a>单独制作移动端的页面</h6><p>@media 声明关键字<br>screen 设备类型<br>and 关键字(连接,指定)<br>() 媒体特性(屏幕尺寸)<br>{} 指定的样式<br>当screen的屏幕尺寸符合指定尺寸时，执行指定的样式<br>max-width:屏幕小于等于指定尺寸时触发(最多)<br>min-width:屏幕大于等于指定尺寸时触发(最小)<br><img src="https://img-blog.csdnimg.cn/20200206142323871.png" alt="在这里插入图片描述"></p>
+<h4 id="rem和em"><a href="#rem和em" class="headerlink" title="rem和em"></a><a href=""></a>rem和em</h4><h6 id="em"><a href="#em" class="headerlink" title="em"></a><a href=""></a>em</h6><p>是一个相对的距离单位<br><code>1em == 父级1*font-size</code> em会通过自身父级的大小，转换为px<br>优点：方便我们设置段落间隙<br>缺点：当嵌套多层时，需要自己计算</p>
+<h6 id="rem"><a href="#rem" class="headerlink" title="rem"></a><a href=""></a>rem</h6><p>rem与em基本类似<br>区别点在于em相对的是自身父级的字体大小，rem相对的是html的字体大小<br>rem:root-em根元素的em值，html的字体大小<br>rem计算公式：<br>屏幕宽度/份数=html字体大小(1rem的大小)<br><code>onresize</code> 屏幕尺寸发生变化时触发<br>获取屏幕宽度：<code>document.documentElement.clientWidth/document.body.clientWidth</code><br>一些浏览器无法获取documentElement，所以去获取body<br><img src="https://img-blog.csdnimg.cn/20200206143918567.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/%E8%A1%A8%E5%8D%95/" rel="prev" title="表单">
+      <i class="fa fa-chevron-left"></i> 表单
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/%E6%B5%AE%E5%8A%A8%E5%92%8C%E5%AE%9A%E4%BD%8D/" rel="next" title="浮动和定位">
+      浮动和定位 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么使用移动端适配？"><span class="nav-number">1.</span> <span class="nav-text">为什么使用移动端适配？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视口"><span class="nav-number">2.</span> <span class="nav-text">视口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两个像素和一个像素比"><span class="nav-number">3.</span> <span class="nav-text">两个像素和一个像素比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#meta标签"><span class="nav-number">4.</span> <span class="nav-text">meta标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移动端测试方式"><span class="nav-number">5.</span> <span class="nav-text">移动端测试方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移动端开发"><span class="nav-number">6.</span> <span class="nav-text">移动端开发</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#响应式布局"><span class="nav-number">6.0.1.</span> <span class="nav-text">响应式布局</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#单独制作移动端的页面"><span class="nav-number">6.0.2.</span> <span class="nav-text">单独制作移动端的页面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rem和em"><span class="nav-number">7.</span> <span class="nav-text">rem和em</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#em"><span class="nav-number">7.0.1.</span> <span class="nav-text">em</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#rem"><span class="nav-number">7.0.2.</span> <span class="nav-text">rem</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

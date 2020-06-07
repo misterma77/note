@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="表单表单是Web浏览器和Web服务器进行通信的最常用的手段，用过表单，浏览器不仅能从Web服务器中获得信息，还能向Web服务器反馈信息&lt;form&gt;&lt;&#x2F;form&gt;  属性：method 设置传输方法传输方法：GET  POSTGET：速度快，安全性低，以明文的方式提交，传输数据上限为1MPOST：速度慢，安全性高，数据上传在媒体文件中，默认上限5M  输入框&lt;input">
+<meta property="og:type" content="article">
+<meta property="og:title" content="表单">
+<meta property="og:url" content="http://yoursite.com/2020/06/07/%E8%A1%A8%E5%8D%95/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="表单表单是Web浏览器和Web服务器进行通信的最常用的手段，用过表单，浏览器不仅能从Web服务器中获得信息，还能向Web服务器反馈信息&lt;form&gt;&lt;&#x2F;form&gt;  属性：method 设置传输方法传输方法：GET  POSTGET：速度快，安全性低，以明文的方式提交，传输数据上限为1MPOST：速度慢，安全性高，数据上传在媒体文件中，默认上限5M  输入框&lt;input">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120132510868.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120132527994.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120132642611.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120132702638.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120132917358.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120132930555.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120133055822.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120133115225.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120120514943.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120120536197.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020012012071126.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120120734958.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120120929257.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120120940708.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120121338544.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120121343676.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120121426446.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120121447927.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020012012502589.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020012012503683.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120125152470.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120125155476.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120125446964.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120125508592.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020012012573297.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120125755316.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020012012585614.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120125905728.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020012013540348.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120135417514.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120141511771.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120141525113.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120141732997.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200120141745279.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-06-07T02:59:05.200Z">
+<meta property="article:modified_time" content="2020-06-07T02:59:05.201Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200120132510868.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/07/%E8%A1%A8%E5%8D%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>表单 | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E8%A1%A8%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          表单
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="表单"><a href="#表单" class="headerlink" title="表单"></a><a href=""></a>表单</h1><p>表单是Web浏览器和Web服务器进行通信的最常用的手段，用过表单，浏览器不仅能从Web服务器中获得信息，还能向Web服务器反馈信息<br><code>&lt;form&gt;&lt;/form&gt;</code></p>
+<blockquote>
+<p>属性：method 设置传输方法<br>传输方法：GET  POST<br>GET：速度快，安全性低，以明文的方式提交，传输数据上限为1M<br>POST：速度慢，安全性高，数据上传在媒体文件中，默认上限5M</p>
+</blockquote>
+<h2 id="输入框"><a href="#输入框" class="headerlink" title="输入框"></a><a href=""></a>输入框</h2><p><code>&lt;input&gt;</code>是单标签</p>
+<blockquote>
+<p><strong>1.type：控件的类型<br>2.value：指定的默认值<br>3.size：文本框显示的长度<br>4.maxlength：用户可舒服的最大字符<br>5.name：用于服务器获取数据<br>6.placeholder：用户提示用语（虚字，当选中输入框时，提示语消失）<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120132510868.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120132527994.png" alt="在这里插入图片描述"><br>7.disabled：获取或设置表单空间是否禁用，背景有阴影<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120132642611.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120132702638.png" alt="在这里插入图片描述"><br>8.readOnly：控件只读属性，不能更改只能复制和读取<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120132917358.png" alt="在这里插入图片描述"><br>显示效果：只读属性，无法选中<br><img src="https://img-blog.csdnimg.cn/20200120132930555.png" alt="在这里插入图片描述"><br>9.required：必填，如果不填，无法提交（一定要写提交方式）</strong><br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120133055822.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120133115225.png" alt="在这里插入图片描述"><br>10.formaction属性规定当表单提交时处理输入控件的文件的 URL<br>11.formmethod 属性定义发送表单数据到 action URL 的 HTTP 方法get/post</p>
+</blockquote>
+<h2 id="表单控件（type的属性值）"><a href="#表单控件（type的属性值）" class="headerlink" title="表单控件（type的属性值）"></a><a href=""></a>表单控件（type的属性值）</h2><blockquote>
+<p>text：单行文本输入框<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120120514943.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120120536197.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>password：密码框<br>代码：<br><img src="https://img-blog.csdnimg.cn/2020012012071126.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120120734958.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>radio：单选按钮<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120120929257.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120120940708.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>checkbox：复选框<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120121338544.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120121343676.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>file：上传文件<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120121426446.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120121447927.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>select：下拉列表<br><code>&lt;select&gt;&lt;/select&gt;</code>成对出现<br>代码：<br><img src="https://img-blog.csdnimg.cn/2020012012502589.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/2020012012503683.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>textarea：多行文本框<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120125152470.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120125155476.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>button：点击按钮<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120125446964.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120125508592.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>submit：提交按钮<br>代码：<br><img src="https://img-blog.csdnimg.cn/2020012012573297.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120125755316.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>reset：重置按钮<br>代码：<br><img src="https://img-blog.csdnimg.cn/2020012012585614.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120125905728.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<h2 id="单选和多选"><a href="#单选和多选" class="headerlink" title="单选和多选"></a><a href=""></a>单选和多选</h2><blockquote>
+<p>属性<br>value 该选项被选中后提交到服务器的值<br>checked 默认的选中值<br>name单选此值自定义且相同<br><code>&lt;label&gt;</code>标签<br>用于单选、多选<br>点击label中的文本时，触发指定控件<br>将label与控件绑定的方法：label的for属性与input的id属性相同<br>代码：<img src="https://img-blog.csdnimg.cn/2020012013540348.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120135417514.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<h2 id="下拉列表"><a href="#下拉列表" class="headerlink" title="下拉列表"></a><a href=""></a>下拉列表</h2><blockquote>
+<p>属性：<br>name 名字<br>size列表框长度<br>multiple标识可多选，不设置则只能单选</p>
+</blockquote>
+<blockquote>
+<p>option属性：<br>value该选项被选中并提交后，Web浏览器传送给服务器的数据。缺省时，将传送选项内容<br>selected指定选项的初始状态，表示该选项在初始时是被选中的<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120141511771.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120141525113.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<h2 id="多行文本框"><a href="#多行文本框" class="headerlink" title="多行文本框"></a><a href=""></a>多行文本框</h2><blockquote>
+<p>属性：<br>name指定文本输入框的名字<br>cols文本输入框的宽度<br>rows文本输入框的高度<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120141732997.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120141745279.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" rel="prev" title="常用标签">
+      <i class="fa fa-chevron-left"></i> 常用标签
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF/" rel="next" title="移动端">
+      移动端 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#表单"><span class="nav-number">1.</span> <span class="nav-text">表单</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入框"><span class="nav-number">1.1.</span> <span class="nav-text">输入框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单控件（type的属性值）"><span class="nav-number">1.2.</span> <span class="nav-text">表单控件（type的属性值）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单选和多选"><span class="nav-number">1.3.</span> <span class="nav-text">单选和多选</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下拉列表"><span class="nav-number">1.4.</span> <span class="nav-text">下拉列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多行文本框"><span class="nav-number">1.5.</span> <span class="nav-text">多行文本框</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

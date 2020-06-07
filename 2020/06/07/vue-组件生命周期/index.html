@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Vue.js[TOC]  组件生命周期组件生命周期指的是组件从创建到销毁的过程，在这个过程中的一些不同的阶段，vue 会调用指定的一些组件方法 基本生命周期函数有下面几个阶段：  创建阶段 挂载阶段 更新阶段 卸载阶段  每一个阶段都对应着 之前 和 之后 两个函数 123456789101112131415161718192021222324252627282930313233343536373">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-组件生命周期">
+<meta property="og:url" content="http://yoursite.com/2020/06/07/vue-%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="Vue.js[TOC]  组件生命周期组件生命周期指的是组件从创建到销毁的过程，在这个过程中的一些不同的阶段，vue 会调用指定的一些组件方法 基本生命周期函数有下面几个阶段：  创建阶段 挂载阶段 更新阶段 卸载阶段  每一个阶段都对应着 之前 和 之后 两个函数 123456789101112131415161718192021222324252627282930313233343536373">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/06/07/vue-%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/assets/lifecycle.png">
+<meta property="article:published_time" content="2020-06-07T02:59:05.196Z">
+<meta property="article:modified_time" content="2020-06-07T02:59:05.196Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/06/07/vue-%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/assets/lifecycle.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/07/vue-%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>vue-组件生命周期 | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/vue-%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vue-组件生命周期
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Vue-js"><a href="#Vue-js" class="headerlink" title="Vue.js"></a>Vue.js</h1><p>[TOC]</p>
+<p><img src="assets/lifecycle.png" alt="Vue 生命周期"></p>
+<h2 id="组件生命周期"><a href="#组件生命周期" class="headerlink" title="组件生命周期"></a>组件生命周期</h2><p>组件生命周期指的是组件从创建到销毁的过程，在这个过程中的一些不同的阶段，<code>vue</code> 会调用指定的一些组件方法</p>
+<p>基本生命周期函数有下面几个阶段：</p>
+<ul>
+<li>创建阶段</li>
+<li>挂载阶段</li>
+<li>更新阶段</li>
+<li>卸载阶段</li>
+</ul>
+<p>每一个阶段都对应着 <u>之前</u> 和 <u>之后</u> 两个函数</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"show=!show"</span>&gt;</span>隐藏<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"hasError"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h4</span>&gt;</span>有错误发生了<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">kkb-component</span> <span class="attr">v-if</span>=<span class="string">"show"</span> <span class="attr">:t</span>=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;/<span class="name">kkb-component</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> kkbComponent = &#123;</span></span><br><span class="line"><span class="actionscript">            props: [<span class="string">'t'</span>],</span></span><br><span class="line">            template: `</span><br><span class="line"><span class="handlebars"><span class="xml">                <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>kkbComponent - </span><span class="template-variable">&#123;&#123;t.a.b&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line">            `,</span><br><span class="line">            beforeCreate() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'kkbComponent:beforeCreate'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            created() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'kkbComponent:created'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            beforeMount() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'kkbComponent:beforeMount'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            mounted() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'kkbComponent:mounted'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            beforeUpdate() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'kkbComponent:beforeUpdate'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'props'</span>, <span class="keyword">this</span>.$props);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            updated() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'kkbComponent:updated'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            beforeDestroy() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'kkbComponent:beforeDestroy'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'this'</span>, <span class="keyword">this</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            destroyed() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'kkbComponent:destroyed'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'this'</span>, <span class="keyword">this</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="actionscript">                title: <span class="string">'渴了吧'</span>,</span></span><br><span class="line"><span class="actionscript">                show: <span class="literal">true</span>,</span></span><br><span class="line"><span class="actionscript">                hasError: <span class="literal">false</span></span></span><br><span class="line">            &#125;,</span><br><span class="line">            components: &#123;</span><br><span class="line"><span class="actionscript">                <span class="string">'kkb-component'</span>: kkbComponent</span></span><br><span class="line">            &#125;,</span><br><span class="line"></span><br><span class="line">            beforeCreate() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'beforeCreate'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            created() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'created'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            beforeMount() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'beforeMount'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            mounted() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'mounted'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'data'</span>, <span class="keyword">this</span>.$data);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'el'</span>, <span class="keyword">this</span>.$el);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            beforeUpdate() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'beforeUpdate'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'props'</span>, <span class="keyword">this</span>.$props);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            updated() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'updated'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            beforeDestroy() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'beforeDestroy'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'this'</span>, <span class="keyword">this</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            destroyed() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'destroyed'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'this'</span>, <span class="keyword">this</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line">            &#125;,</span><br><span class="line">            errorCaptured(err, vm, info) &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'errorCaptured'</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(err, vm, info);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'='</span>.repeat(<span class="number">100</span>));</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">this</span>.hasError = <span class="literal">true</span>;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">return</span> <span class="literal">false</span>;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建阶段"><a href="#创建阶段" class="headerlink" title="创建阶段"></a>创建阶段</h3><h4 id="beforeCreate"><a href="#beforeCreate" class="headerlink" title="beforeCreate()"></a>beforeCreate()</h4><p>初始化阶段，应用不多</p>
+<h4 id="created"><a href="#created" class="headerlink" title="created()"></a>created()</h4><p>在实例创建完成后被立即调用，该阶段完成了对 <code>data</code> 中的数据的 <code>observer</code>，该阶段可以处理一些异步任务</p>
+<h3 id="挂载阶段"><a href="#挂载阶段" class="headerlink" title="挂载阶段"></a>挂载阶段</h3><h4 id="beforeMount"><a href="#beforeMount" class="headerlink" title="beforeMount()"></a>beforeMount()</h4><p>在挂载开始之前被调用，应用不多</p>
+<h4 id="mounted"><a href="#mounted" class="headerlink" title="mounted()"></a>mounted()</h4><p>该阶段执行完了模板解析，以及挂载。同时组件根组件元素被赋给了 <code>$el</code> 属性，该阶段可以通过 <u>DOM</u> 操作来对组件内部元素进行处理了</p>
+<h3 id="更新阶段"><a href="#更新阶段" class="headerlink" title="更新阶段"></a>更新阶段</h3><h4 id="beforeUpdate"><a href="#beforeUpdate" class="headerlink" title="beforeUpdate()"></a>beforeUpdate()</h4><p>数据更新时调用，但是还没有对视图进行重新渲染，这个时候，可以获取视图更新之前的状态</p>
+<h4 id="updated"><a href="#updated" class="headerlink" title="updated()"></a>updated()</h4><p>由于数据的变更导致的视图重新渲染，可以通过 <u>DOM</u> 操作来获取视图的最新状态</p>
+<h3 id="卸载阶段"><a href="#卸载阶段" class="headerlink" title="卸载阶段"></a>卸载阶段</h3><h4 id="beforeDestroy"><a href="#beforeDestroy" class="headerlink" title="beforeDestroy()"></a>beforeDestroy()</h4><p>实例销毁之前调用，移除一些不必要的冗余数据，比如定时器</p>
+<h4 id="destroyed"><a href="#destroyed" class="headerlink" title="destroyed()"></a>destroyed()</h4><p>Vue 实例销毁后调用</p>
+<h4 id="errorCaptured"><a href="#errorCaptured" class="headerlink" title="errorCaptured()"></a>errorCaptured()</h4><p>当捕获一个来自子孙组件的错误时被调用，此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 <code>false</code> 以阻止该错误继续向上传播。</p>
+<h2 id="ref-与-refs"><a href="#ref-与-refs" class="headerlink" title="ref 与 $refs"></a>ref 与 $refs</h2><p>如果我们希望获取组件节点，进行 <u>DOM</u> 相关操作，可以通过 <code>ref</code> 和 <code>$refs</code> 来完成</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"getBoxHeight"</span>&gt;</span>获取 box 的高度<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"getKKBComponent"</span>&gt;</span>获取自定义组件实例及内部方法<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">            这是内容<span class="tag">&lt;<span class="name">br</span>&gt;</span>这是内容<span class="tag">&lt;<span class="name">br</span>&gt;</span>这是内容<span class="tag">&lt;<span class="name">br</span>&gt;</span>这是内容<span class="tag">&lt;<span class="name">br</span>&gt;</span>这是内容<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">kkb-component</span> <span class="attr">ref</span>=<span class="string">"kkb"</span> <span class="attr">:t</span>=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;/<span class="name">kkb-component</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">        <span class="keyword">const</span> kkbComponent = &#123;</span></span><br><span class="line"><span class="actionscript">            props: [<span class="string">'t'</span>],</span></span><br><span class="line">            data() &#123;</span><br><span class="line"><span class="actionscript">                <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">                    isShow: <span class="literal">true</span></span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            template: `</span><br><span class="line"><span class="handlebars"><span class="xml">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"isShow"</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>kkbComponent - </span><span class="template-variable">&#123;&#123;t&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line">            `,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                hide() &#123;</span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.isShow = <span class="literal">false</span>;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="actionscript">                title: <span class="string">'饿了吧'</span></span></span><br><span class="line">            &#125;,</span><br><span class="line">            components: &#123;</span><br><span class="line"><span class="actionscript">                <span class="string">'kkb-component'</span>: kkbComponent</span></span><br><span class="line">            &#125;,</span><br><span class="line">            mounted() &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="keyword">this</span>.$refs.kkb);</span></span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                getBoxHeight() &#123;</span><br><span class="line"><span class="javascript">                    <span class="built_in">console</span>.log( <span class="keyword">this</span>.$refs.box.clientHeight );</span></span><br><span class="line">                &#125;,</span><br><span class="line">                getKKBComponent() &#123;</span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.$refs.kkb.hide();</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h3><p>给元素或组件添加 <code>ref</code> 属性，则该元素或组件实例对象将被添加到当前组件实例对象的 <code>$refs</code> 属性下面</p>
+<h3 id="refs"><a href="#refs" class="headerlink" title="$refs"></a>$refs</h3><p>该属性的是一个对象，存储了通过 <code>ref</code> 绑定的元素对象或者组件实例对象</p>
+<h2 id="nextTick"><a href="#nextTick" class="headerlink" title="nextTick"></a>nextTick</h2><p>当数据更新的时候，视图并不会立即渲染，这个时候我们期望获取到视图更新后的数据，可以通过 <code>nextTick</code> 来进行操作</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"setBoxContent"</span>&gt;</span>设置新的内容<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">ref</span>=<span class="string">"box"</span> <span class="attr">style</span>=<span class="string">"background: red"</span> <span class="attr">v-html</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">        </span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="actionscript">                title: <span class="string">'馋了吧'</span>,</span></span><br><span class="line">                n: 1</span><br><span class="line">            &#125;,</span><br><span class="line">            computed: &#123;</span><br><span class="line">                content() &#123;</span><br><span class="line"><span class="javascript">                    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="keyword">this</span>.n).fill(<span class="keyword">this</span>.title).join(<span class="string">'&lt;br&gt;'</span>);</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                setBoxContent() &#123;</span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.n++;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">_</span>=&gt;</span>&#123;</span></span><br><span class="line"><span class="javascript">                        <span class="built_in">console</span>.log( <span class="keyword">this</span>.$refs.box.clientHeight );</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>nextTick</code> 方法将在更新队列循环结束之后立即调用</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/vue-%E8%BF%87%E6%BB%A4%E5%99%A8/" rel="prev" title="vue-过滤器">
+      <i class="fa fa-chevron-left"></i> vue-过滤器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/vue-%E7%BB%84%E4%BB%B6/" rel="next" title="vue-组件">
+      vue-组件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue-js"><span class="nav-number">1.</span> <span class="nav-text">Vue.js</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件生命周期"><span class="nav-number">1.1.</span> <span class="nav-text">组件生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建阶段"><span class="nav-number">1.1.1.</span> <span class="nav-text">创建阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#beforeCreate"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">beforeCreate()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#created"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">created()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载阶段"><span class="nav-number">1.1.2.</span> <span class="nav-text">挂载阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#beforeMount"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">beforeMount()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mounted"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">mounted()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新阶段"><span class="nav-number">1.1.3.</span> <span class="nav-text">更新阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#beforeUpdate"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">beforeUpdate()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#updated"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">updated()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载阶段"><span class="nav-number">1.1.4.</span> <span class="nav-text">卸载阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#beforeDestroy"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">beforeDestroy()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#destroyed"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">destroyed()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#errorCaptured"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">errorCaptured()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ref-与-refs"><span class="nav-number">1.2.</span> <span class="nav-text">ref 与 $refs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ref"><span class="nav-number">1.2.1.</span> <span class="nav-text">ref</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#refs"><span class="nav-number">1.2.2.</span> <span class="nav-text">$refs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nextTick"><span class="nav-number">1.3.</span> <span class="nav-text">nextTick</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="事件对象事件有DOM0和DOM2的区别DOM0就是直接通过事件写到html中的事件DOM2就是通过addEventListener绑定&#x2F;监听事件 事件冒泡和捕获事件流：从页面中接受事件的顺序(事件冒泡和事件捕获)DOM2级包含3个事件：事件捕获阶段、处于目标阶段和事件冒泡阶段事件的目标在捕获阶段不会接收到事件，下一阶段处于目标阶段，事件在目标上发生，在事件处理中被看成冒泡阶段的一部分 事件捕获 不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件对象">
+<meta property="og:url" content="http://yoursite.com/2020/06/07/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="事件对象事件有DOM0和DOM2的区别DOM0就是直接通过事件写到html中的事件DOM2就是通过addEventListener绑定&#x2F;监听事件 事件冒泡和捕获事件流：从页面中接受事件的顺序(事件冒泡和事件捕获)DOM2级包含3个事件：事件捕获阶段、处于目标阶段和事件冒泡阶段事件的目标在捕获阶段不会接收到事件，下一阶段处于目标阶段，事件在目标上发生，在事件处理中被看成冒泡阶段的一部分 事件捕获 不">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200201105814469.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200201213753655.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200201213803455.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200201213844159.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020020120525478.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200201205256388.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020020120563275.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020020120563935.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-06-07T02:59:05.196Z">
+<meta property="article:modified_time" content="2020-06-07T02:59:05.197Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200201105814469.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/07/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>事件对象 | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          事件对象
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a><a href=""></a>事件对象</h2><p>事件有<code>DOM0</code>和<code>DOM2</code>的区别<br>DOM0就是直接通过事件写到html中的事件<br>DOM2就是通过addEventListener绑定/监听事件</p>
+<h2 id="事件冒泡和捕获"><a href="#事件冒泡和捕获" class="headerlink" title="事件冒泡和捕获"></a><a href=""></a>事件冒泡和捕获</h2><p>事件流：从页面中接受事件的顺序(事件冒泡和事件捕获)<br>DOM2级包含3个事件：事件捕获阶段、处于目标阶段和事件冒泡阶段<br>事件的目标在捕获阶段不会接收到事件，下一阶段处于目标阶段，事件在目标上发生，在事件处理中被看成冒泡阶段的一部分</p>
+<h6 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a><a href=""></a>事件捕获</h6><blockquote>
+<p>不太具体的Dom节点应该更早接收到事件，而最具体的节点应该最后接收到事件<br>从上到下，由不具体到具体</p>
+</blockquote>
+<h6 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a><a href=""></a>事件冒泡</h6><blockquote>
+<p>IE的事件流叫做事件冒泡，即事件开始时，由最具体的元素接受，然后逐级向上传播到较为不具体的节点<br>从下到上，由具体到不具体</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200201105814469.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a><a href=""></a>事件监听</h1><h6 id="添加事件监听"><a href="#添加事件监听" class="headerlink" title="添加事件监听"></a><a href=""></a>添加事件监听</h6><p><code>addEventListener(参数1,参数2,参数3)</code></p>
+<blockquote>
+<p>参数1：事件类型<br>参数2：触发事件后执行的函数<br>参数3：布尔值，是否按照事件冒泡顺序。默认为false 冒泡<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200201213753655.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200201213803455.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击前两个之后：<br><img src="https://img-blog.csdnimg.cn/20200201213844159.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h6 id="删除事件监听"><a href="#删除事件监听" class="headerlink" title="删除事件监听"></a><a href=""></a>删除事件监听</h6><p><code>removeEventListener(参数1,参数2,参数3)</code><br>删除时的三个参数要和添加时的三个参数相同</p>
+<blockquote>
+<p>注意事项：<br>1.相同元素调用<br>2.相同事件名称<br>3.相同函数名（匿名函数不行，需要全局函数）<br>4.相同的执行阶段</p>
+</blockquote>
+<h6 id="普通事件绑定和事件监听的区别"><a href="#普通事件绑定和事件监听的区别" class="headerlink" title="普通事件绑定和事件监听的区别"></a><a href=""></a>普通事件绑定和事件监听的区别</h6><blockquote>
+<p>1.普通事件绑定只能给元素相同类型的事件绑定一个，如果绑定第二个，将会覆盖上一个<br>事件监听可以给同一个元素的相同类型事件绑定多个<br>2.事件监听可以控制事件的传播方式(事件冒泡或事件捕获)<br>3.普通事件绑定只能通过null来取消<br>事件监听则可以通过删除的方法来取消事件<br>4.事件监听可以对动态生成的元素(未来元素)生效<br>普通事件绑定不可以</p>
+</blockquote>
+<h6 id="oncontextmenu-事件"><a href="#oncontextmenu-事件" class="headerlink" title="oncontextmenu 事件"></a><a href=""></a>oncontextmenu 事件</h6><blockquote>
+<p>事件在元素中用户右击鼠标时触发并打开上下文菜单。</p>
+</blockquote>
+<h1 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a><a href=""></a>事件委托</h1><p>利用事件冒泡机制指定一个事件处理程序，来管理某一类型的所有事件<br>即利用事件冒泡的原理，把事件加到父级上，触发执行效果<br>优点：1.只在内存中开辟了一块空间，节省资源的同时，减少了DOM操作，提高性能<br>   2.对于新添加的元素也会有之前的事件</p>
+<h1 id="event对象"><a href="#event对象" class="headerlink" title="event对象"></a><a href=""></a>event对象</h1><p>Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。事件通常与函数结合使用，函数不会在事件发生前被执行<br>在事件发生时，负责处理事件的函数，会接收一个event对象<br>浏览器负责处理事件，js负责告诉浏览器如何处理<br>作用：用来储存事件源的信息(鼠标位置，键盘编码)<br>属性：兼容写法     <code>var ev = ev || window.event</code></p>
+<blockquote>
+<p>1.<code>ev.target</code> 返回事件源<br>2.<code>ev.button</code> 返回被鼠标按下的那个键(0为左，1为中，2为右)<br>3.<code>ev.offsetX</code> 返回鼠标在元素上x轴上的位置<br>4.<code>ev.clientX</code> 鼠标在浏览器可视区域X轴上的位置(据左距离)<br>5.<code>ev.keyCode</code> 返回键盘的编码，以次来确定是哪个键位<br>6.<code>ev.scrollX</code> 文档水平滚动的值<br>7.<code>ev.stopPropagation()</code> 阻止事件冒泡<br>8.<code>ev.preventDefault()</code> 阻止默认事件</p>
+</blockquote>
+<h2 id="this指针的指向问题"><a href="#this指针的指向问题" class="headerlink" title="this指针的指向问题"></a><a href=""></a>this指针的指向问题</h2><p>1.在普通函数外部调用的时候</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/2020020120525478.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200201205256388.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>2.在普通函数内部调用的时候</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/2020020120563275.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/2020020120563935.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">3.对于自执行的匿名函数而言，this指向window</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/vue-cli/" rel="prev" title="vue-cli">
+      <i class="fa fa-chevron-left"></i> vue-cli
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/vue-%E8%BF%87%E6%BB%A4%E5%99%A8/" rel="next" title="vue-过滤器">
+      vue-过滤器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件对象"><span class="nav-number">1.</span> <span class="nav-text">事件对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件冒泡和捕获"><span class="nav-number">2.</span> <span class="nav-text">事件冒泡和捕获</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#事件捕获"><span class="nav-number">2.0.0.0.1.</span> <span class="nav-text">事件捕获</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#事件冒泡"><span class="nav-number">2.0.0.0.2.</span> <span class="nav-text">事件冒泡</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件监听"><span class="nav-number"></span> <span class="nav-text">事件监听</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#添加事件监听"><span class="nav-number">0.0.0.0.1.</span> <span class="nav-text">添加事件监听</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#删除事件监听"><span class="nav-number">0.0.0.0.2.</span> <span class="nav-text">删除事件监听</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#普通事件绑定和事件监听的区别"><span class="nav-number">0.0.0.0.3.</span> <span class="nav-text">普通事件绑定和事件监听的区别</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#oncontextmenu-事件"><span class="nav-number">0.0.0.0.4.</span> <span class="nav-text">oncontextmenu 事件</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件委托"><span class="nav-number"></span> <span class="nav-text">事件委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#event对象"><span class="nav-number"></span> <span class="nav-text">event对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#this指针的指向问题"><span class="nav-number">1.</span> <span class="nav-text">this指针的指向问题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

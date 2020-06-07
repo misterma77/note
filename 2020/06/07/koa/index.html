@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="koakoa介绍  koa是express原班⼈⻢打造的轻量、健壮、富有表现⼒的nodejs框架。⽬前koa有koa1和koa2两个版本；koa2依赖Node.js 7.6.0或者更⾼版本；koa不在内核⽅法中绑定任何中间件，它仅仅是⼀个轻量级的函数库，⼏乎所有功能都必须通过第三⽅插件来实现 koa使用安装：npm install koa简单的搭建一个koa服务器 Application对象  -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="koa">
+<meta property="og:url" content="http://yoursite.com/2020/06/07/koa/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="koakoa介绍  koa是express原班⼈⻢打造的轻量、健壮、富有表现⼒的nodejs框架。⽬前koa有koa1和koa2两个版本；koa2依赖Node.js 7.6.0或者更⾼版本；koa不在内核⽅法中绑定任何中间件，它仅仅是⼀个轻量级的函数库，⼏乎所有功能都必须通过第三⽅插件来实现 koa使用安装：npm install koa简单的搭建一个koa服务器 Application对象  -">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327141716166.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327143753419.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/202003271439414.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327144045248.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327144446866.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327144530438.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327150022765.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327150321665.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327150330659.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327153910767.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200327162012593.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-06-07T02:59:05.194Z">
+<meta property="article:modified_time" content="2020-06-07T02:59:05.194Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200327141716166.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/07/koa/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>koa | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/koa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          koa
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="koa"><a href="#koa" class="headerlink" title="koa"></a><a href=""></a>koa</h1><h4 id="koa介绍"><a href="#koa介绍" class="headerlink" title="koa介绍"></a><a href=""></a>koa介绍</h4><p>  koa是express原班⼈⻢打造的轻量、健壮、富有表现⼒的nodejs框架。⽬前koa有koa1和koa2两个版本；koa2依赖Node.js 7.6.0或者更⾼版本；koa不在内核⽅法中绑定任何中间件，它仅仅是⼀个轻量级的函数库，⼏乎所有功能都必须通过第三⽅插件来实现</p>
+<h4 id="koa使用"><a href="#koa使用" class="headerlink" title="koa使用"></a><a href=""></a>koa使用</h4><p>安装：<code>npm install koa</code><br>简单的搭建一个koa服务器<br><img src="https://img-blog.csdnimg.cn/20200327141716166.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="Application对象"><a href="#Application对象" class="headerlink" title="Application对象"></a><a href=""></a>Application对象</h5><blockquote>
+<p> -application是koa的实例化对象，简称为app<br> -app.use()将给定的中间件方法添加到此应用程序，分为异步和同步  异步通过es7中的<code>async</code>和<code>await</code>来处理<br> -app.listen() 来设置服务器端口<br> -app.on()  错误处理</p>
+</blockquote>
+<h5 id="上下⽂context对象常⽤属性及⽅法"><a href="#上下⽂context对象常⽤属性及⽅法" class="headerlink" title="上下⽂context对象常⽤属性及⽅法"></a><a href=""></a>上下⽂context对象常⽤属性及⽅法</h5><blockquote>
+<p> context 将node中的request和response 封装到⼀个对象中，并提供⼀些新的api提供给⽤户进⾏<br>操作；<br>  ctx.app:应⽤程序实例引⽤,等同于app;<br>  ctx.req:Node 的 request 对象.<br>  ctx.res:Node 的 response 对象.<br>  ctx.request:koa中的Request对象；<br>  ctx.response:koa中的response对象；<br>  ctx.state：对象命名空间，通过中间件传递信息；<br>  ctx.throw:抛出错误；<br>  ctx.redirect()重定向<br> ctx.status 获取响应状态<br>  默认情况下， response.status 设置为 404 ⽽不是像 node 的res.statusCode 那样默认为 200 。<br> http状态码：1xx(消息)、2xx(成功)、3xx(重定向)、4xx(请求错误)、5xx和6xx(服务器错误)<br> 常用状态码：<br><img src="https://img-blog.csdnimg.cn/20200327143753419.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<h5 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a><a href=""></a>中间件</h5><blockquote>
+<p>Koa 利⽤中间件 控制”上游”，调⽤”下游“<br>koa是包含⼀组中间件函数的对象；可以将app.use⾥的函数理解成中间件<br><img src="https://img-blog.csdnimg.cn/202003271439414.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">)通过next()将控制转交给另⼀个中间件<br>上述过程也可以通过”洋葱模型“来解释中间件执⾏顺序<br><img src="https://img-blog.csdnimg.cn/20200327144045248.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">代码：<br><img src="https://img-blog.csdnimg.cn/20200327144446866.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>输出显示：<br><img src="https://img-blog.csdnimg.cn/20200327144530438.png#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<h5 id="koa常用中间件"><a href="#koa常用中间件" class="headerlink" title="koa常用中间件"></a><a href=""></a>koa常用中间件</h5><p>中间件在实际使用中，全都是模块</p>
+<blockquote>
+<h5 id="koa-router"><a href="#koa-router" class="headerlink" title="koa-router"></a><a href=""></a>koa-router</h5><p>-路由是引导匹配之意，是匹配url到相应处理程序的活动<br>-安装：<code>npm install koa-router -S</code><br>-引入：<code>const Router = require(&quot;koa-router&quot;)</code><br>-实例化：<code>let router = new Router()</code><br><img src="https://img-blog.csdnimg.cn/20200327150022765.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200327150321665.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200327150330659.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<h6 id="koa-static"><a href="#koa-static" class="headerlink" title="koa-static"></a><a href=""></a>koa-static</h6><p>koa-static 是⽤于加载静态资源的中间件，通过它可以加载css、js等静态资源<br>安装：<code>npm install koa-static</code><br>引入：<code>const static = require(&quot;koa-static&quot;)</code><br>使用：<br><img src="https://img-blog.csdnimg.cn/20200327153910767.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<h6 id="koa-views"><a href="#koa-views" class="headerlink" title="koa-views"></a><a href=""></a>koa-views</h6><p>Koa-views⽤于加载html模板⽂件；<br>安装：<code>npm install koa-views -S</code><br>引入：<code>const views = require(&quot;koa-views&quot;)</code><br>使用：<br><img src="https://img-blog.csdnimg.cn/20200327162012593.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/mysql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="prev" title="mysql数据库">
+      <i class="fa fa-chevron-left"></i> mysql数据库
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/vue-%E5%9F%BA%E7%A1%80/" rel="next" title="vue-基础">
+      vue-基础 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#koa"><span class="nav-number">1.</span> <span class="nav-text">koa</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#koa介绍"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">koa介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#koa使用"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">koa使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Application对象"><span class="nav-number">1.0.0.2.1.</span> <span class="nav-text">Application对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上下⽂context对象常⽤属性及⽅法"><span class="nav-number">1.0.0.2.2.</span> <span class="nav-text">上下⽂context对象常⽤属性及⽅法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#中间件"><span class="nav-number">1.0.0.2.3.</span> <span class="nav-text">中间件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#koa常用中间件"><span class="nav-number">1.0.0.2.4.</span> <span class="nav-text">koa常用中间件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#koa-router"><span class="nav-number">1.0.0.2.5.</span> <span class="nav-text">koa-router</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#koa-static"><span class="nav-number">1.0.0.2.5.1.</span> <span class="nav-text">koa-static</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#koa-views"><span class="nav-number">1.0.0.2.5.2.</span> <span class="nav-text">koa-views</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="vue 单文件组件[TOC] 单文件组件vue 的单文件组件是官方提供的一种用来组织组件代码的形式，该文件以 .vue 为后缀，该文件会被 vue-cli 内置的 webpack 解析生成对应的 javascript、html、css 文件 https:&#x2F;&#x2F;vue-loader-v14.vuejs.org&#x2F;zh-cn&#x2F;start&#x2F;spec.html 组成1234567891011121314151">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-单文件组件">
+<meta property="og:url" content="http://yoursite.com/2020/06/07/vue-%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="vue 单文件组件[TOC] 单文件组件vue 的单文件组件是官方提供的一种用来组织组件代码的形式，该文件以 .vue 为后缀，该文件会被 vue-cli 内置的 webpack 解析生成对应的 javascript、html、css 文件 https:&#x2F;&#x2F;vue-loader-v14.vuejs.org&#x2F;zh-cn&#x2F;start&#x2F;spec.html 组成1234567891011121314151">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-07T02:59:05.195Z">
+<meta property="article:modified_time" content="2020-06-07T02:59:05.195Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/07/vue-%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>vue-单文件组件 | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/vue-%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vue-单文件组件
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="vue-单文件组件"><a href="#vue-单文件组件" class="headerlink" title="vue 单文件组件"></a>vue 单文件组件</h1><p>[TOC]</p>
+<h2 id="单文件组件"><a href="#单文件组件" class="headerlink" title="单文件组件"></a>单文件组件</h2><p><u>vue</u> 的单文件组件是官方提供的一种用来组织组件代码的形式，该文件以 <code>.vue</code> 为后缀，该文件会被 <u>vue-cli</u> 内置的 <u>webpack</u> 解析生成对应的 <u>javascript</u>、<u>html</u>、<u>css</u> 文件</p>
+<p><a href="https://vue-loader-v14.vuejs.org/zh-cn/start/spec.html" target="_blank" rel="noopener">https://vue-loader-v14.vuejs.org/zh-cn/start/spec.html</a></p>
+<h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;example&quot;&gt;&#123;&#123; msg &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      msg: &#39;Hello world!&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.example &#123;</span><br><span class="line">  color: red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>单文件组件把一个组件所包含的 <u>结构</u>、<u>样式</u>、<u>行为</u> 分别通过 <u>template</u>、<u>style</u>、<u>script</u> 进行分离包含，然后统一组织在一个文件中</p>
+<p>一个单文件组件最少必须包含 <u>template</u>，可以不需要 <u>script</u> 和 <u>style</u></p>
+<h3 id="lang-属性"><a href="#lang-属性" class="headerlink" title="lang 属性"></a><u>lang</u> 属性</h3><p>无论是 <u>template</u>、<u>script</u> 还是 <u>style</u>，都可以通过 <u>lang</u> 属性来指定它们所使用的语言</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template lang&#x3D;&quot;jade&quot;&gt;</span><br><span class="line">  div.example</span><br><span class="line">		p &#123;&#123; msg &#125;&#125;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang&#x3D;&quot;ts&quot;&gt;</span><br><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">export default Vue.extend(&#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      msg: &#39;Hello world&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang&#x3D;&quot;stylus&quot;&gt;</span><br><span class="line">.example</span><br><span class="line">  color red</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="src-属性"><a href="#src-属性" class="headerlink" title="src 属性"></a><u>src</u> 属性</h3><p>我们还可以通过 <u>src</u> 属性把文件分离到单独的文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template src&#x3D;&quot;.&#x2F;template.html&quot;&gt;&lt;&#x2F;template&gt;</span><br><span class="line">&lt;style src&#x3D;&quot;.&#x2F;style.css&quot;&gt;&lt;&#x2F;style&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;.&#x2F;script.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里的 <u>src</u> 同样遵循模块化的导入规则，<code>./</code> 开头的表示相对路径，<code>/</code> 开头表示 <u>NPM</u> 包中的资源</p>
+</blockquote>
+<h3 id="有作用域的-CSS"><a href="#有作用域的-CSS" class="headerlink" title="有作用域的 CSS"></a>有作用域的 CSS</h3><p>当 <code>style</code> 标签有 <code>scoped</code> 属性时，它的 <u>CSS</u> 只作用于当前组件中的元素。这类似于 <u>Shadow DOM</u> 中的样式封装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">.example &#123;</span><br><span class="line">  color: red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;example&quot;&gt;hi&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>解析后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">.example[data-v-f3f3eg9] &#123;</span><br><span class="line">  color: red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;example&quot; data-v-f3f3eg9&gt;hi&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="混用本地和全局样式"><a href="#混用本地和全局样式" class="headerlink" title="混用本地和全局样式"></a>混用本地和全局样式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">&#x2F;* 全局样式 *&#x2F;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">&#x2F;* 本地样式 *&#x2F;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="资源路径处理"><a href="#资源路径处理" class="headerlink" title="资源路径处理"></a>资源路径处理</h3><p>在项目开发中，我们经常会碰到要引入外部资源的需求，<u>vue</u> 单文件系统中，对资源引入路径有一定的特殊处理</p>
+<ul>
+<li>绝对路径前缀</li>
+<li>相对路径前缀</li>
+<li>特殊前缀</li>
+</ul>
+<h4 id="绝对路径前缀"><a href="#绝对路径前缀" class="headerlink" title="绝对路径前缀"></a>绝对路径前缀</h4><p>就是以 <code>/</code>、<code>https://kaikeba.com/</code> 等这样的绝对路径开头的，不做任何处理，直到被浏览器解析</p>
+<h4 id="相对路径前缀"><a href="#相对路径前缀" class="headerlink" title="相对路径前缀"></a>相对路径前缀</h4><p>就是以 <code>./</code>、<code>../</code> 这样的相对路径开头的，将会被看作相对的模块依赖，并按照你的本地文件系统上的目录结构进行解析，如：<code>&lt;img src=&quot;../a.png&quot;&gt;</code> 解析后：<code>&lt;img src=&quot;require(&#39;../a.png&#39;)&quot;&gt;</code>，类似的还包括 <code>background: url(...)</code> 和 <code>@import</code></p>
+<h4 id="特殊前缀"><a href="#特殊前缀" class="headerlink" title="特殊前缀"></a>特殊前缀</h4><ul>
+<li>如果路径以 <code>@</code> 开头，也会被看作模块依赖。如果你的 webpack 配置中给 <code>@</code> 配置了 alias，这就很有用了。所有 <code>vue-cli</code> 创建的项目都默认配置了将 <code>@</code> 指向 <code>/src</code></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/vue-%E5%9F%BA%E7%A1%80/" rel="prev" title="vue-基础">
+      <i class="fa fa-chevron-left"></i> vue-基础
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/vue-%E4%BA%8B%E4%BB%B6/" rel="next" title="vue-事件">
+      vue-事件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-单文件组件"><span class="nav-number">1.</span> <span class="nav-text">vue 单文件组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单文件组件"><span class="nav-number">1.1.</span> <span class="nav-text">单文件组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组成"><span class="nav-number">1.1.1.</span> <span class="nav-text">组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lang-属性"><span class="nav-number">1.1.2.</span> <span class="nav-text">lang 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#src-属性"><span class="nav-number">1.1.3.</span> <span class="nav-text">src 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有作用域的-CSS"><span class="nav-number">1.1.4.</span> <span class="nav-text">有作用域的 CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#混用本地和全局样式"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">混用本地和全局样式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资源路径处理"><span class="nav-number">1.1.5.</span> <span class="nav-text">资源路径处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#绝对路径前缀"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">绝对路径前缀</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相对路径前缀"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">相对路径前缀</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊前缀"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">特殊前缀</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="块元素和行元素大多数HTML元素被分为块级元素和行级元素(内联元素)  块级元素：块级元素在浏览器显示时，通常会以新行来开始（和结束）独占一行，可以设置宽、高、内外间距，具备盒模型   行级元素：内联元素在显示时通常不会以新行开始只占内容大小的区域，不可以设置宽、高、内外间距，不具备盒模型  display属性display元素的显示方式  属性值：none无（隐藏）不单单是视觉上的，在页面布局中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML区块">
+<meta property="og:url" content="http://yoursite.com/2020/06/07/HTML%E5%8C%BA%E5%9D%97/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="块元素和行元素大多数HTML元素被分为块级元素和行级元素(内联元素)  块级元素：块级元素在浏览器显示时，通常会以新行来开始（和结束）独占一行，可以设置宽、高、内外间距，具备盒模型   行级元素：内联元素在显示时通常不会以新行开始只占内容大小的区域，不可以设置宽、高、内外间距，不具备盒模型  display属性display元素的显示方式  属性值：none无（隐藏）不单单是视觉上的，在页面布局中">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121111807819.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121111822248.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121111940122.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121111958841.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121112542530.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121112600490.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121114210758.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121114223403.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121114459495.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121114503123.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121114756230.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121114735438.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020012111500024.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121120939933.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121121157326.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121121205876.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121121220866.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121121226985.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121230655857.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121230709664.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121231635325.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200121231649160.png">
+<meta property="article:published_time" content="2020-06-07T02:59:05.190Z">
+<meta property="article:modified_time" content="2020-06-07T02:59:05.191Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200121111807819.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/07/HTML%E5%8C%BA%E5%9D%97/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>HTML区块 | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/HTML%E5%8C%BA%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTML区块
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="块元素和行元素"><a href="#块元素和行元素" class="headerlink" title="块元素和行元素"></a><a href=""></a>块元素和行元素</h2><p>大多数HTML元素被分为块级元素和行级元素(内联元素)</p>
+<blockquote>
+<p><strong>块级元素</strong>：块级元素在浏览器显示时，通常会以新行来开始（和结束）<br>独占一行，可以设置宽、高、内外间距，具备盒模型</p>
+</blockquote>
+<blockquote>
+<p><strong>行级元素</strong>：内联元素在显示时通常不会以新行开始<br>只占内容大小的区域，不可以设置宽、高、内外间距，不具备盒模型</p>
+</blockquote>
+<h2 id="display属性"><a href="#display属性" class="headerlink" title="display属性"></a><a href=""></a>display属性</h2><p>display元素的显示方式</p>
+<blockquote>
+<p>属性值：<br>none无（隐藏）不单单是视觉上的，在页面布局中也彻底消失，不占位置<br>block块元素<br>inline行元素<br>inline-block行内块元素（内联块元素）</p>
+</blockquote>
+<blockquote>
+<p>display:inline-block会导致元素之间产生间隔<br>代码：<img src="https://img-blog.csdnimg.cn/20200121111807819.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200121111822248.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>消除inlne-block导致的元素间隔的方法<br>1.删除标签之间的空格和换行<br>问题：导致代码的可读性比较差</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200121111940122.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200121111958841.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>2.将父元素的字体设置为0px<br>问题：通过继承性，会影响自身字体的大小<br>同时会导致布局混乱（em之类参考父元素字体的值则无法使用）</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200121112542530.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200121112600490.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>3.给父级和自身设置字间距或词间距<br>问题：较小</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200121114210758.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200121114223403.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>4.删除掉闭合标签（结束标签）<br>不建议使用</p>
+<p>5.修改外间距</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200121114459495.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200121114503123.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>6.使用浮动</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200121114756230.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200121114735438.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a><a href=""></a>盒模型</h2><p>盒模型是由margin(外间距)border(边框)padding(内间距)组成</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/2020012111500024.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h3 id="外间距"><a href="#外间距" class="headerlink" title="外间距"></a><a href=""></a>外间距</h3><blockquote>
+<p>margin外间距，设置元素之间的距离<br>外间距单属性：margin-top(上)/margin-left(左)/margin-right(右)/margin-bottom(下)<br>复合属性：<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200121120939933.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>只有一个值时，<code>margin:1px;</code>设置上下左右的外间距<br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200121121157326.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>两个值时，<code>margin:10px 20px;</code>第一个为上下的外间距，第二个为左右的外间距<br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200121121205876.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>三个值时，<code>margin:1px 2px 3px;</code>第一个上间距，第二个左右间距，第三个下间距<br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200121121220866.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>四个值，<code>margin:1px 2px 3px 4px;</code>第一个上，第二个右，第三个下，第四个左<br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200121121226985.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h3 id="内间距"><a href="#内间距" class="headerlink" title="内间距"></a><a href=""></a>内间距</h3><p>padding 用于控制内容与边框的距离<br>padding-top(上)/padding-bottom(下)/padding-left(左)/padding-right(右)<br>复合属性：<br>一个值：上下左右内间距<br>两个值：上下，左右<br>三个值：上，左右，下<br>四个值：上，右，下，左</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200121230655857.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200121230709664.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<h2 id="边框切圆"><a href="#边框切圆" class="headerlink" title="边框切圆"></a><a href=""></a>边框切圆</h2><p>border-radius 复合属性<br>一个值：四个角<br>两个值：左上右下，坐下右上<br>三个值：左上，右上左下，右下<br>四个值：左上，右上，右下，左下</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200121231635325.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200121231649160.png" alt="在这里插入图片描述"></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/Buffer/" rel="prev" title="Buffer">
+      <i class="fa fa-chevron-left"></i> Buffer
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/06/07/HTML5/" rel="next" title="HTML5">
+      HTML5 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#块元素和行元素"><span class="nav-number">1.</span> <span class="nav-text">块元素和行元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display属性"><span class="nav-number">2.</span> <span class="nav-text">display属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#盒模型"><span class="nav-number">3.</span> <span class="nav-text">盒模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外间距"><span class="nav-number">3.1.</span> <span class="nav-text">外间距</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内间距"><span class="nav-number">3.2.</span> <span class="nav-text">内间距</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#边框切圆"><span class="nav-number">4.</span> <span class="nav-text">边框切圆</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
