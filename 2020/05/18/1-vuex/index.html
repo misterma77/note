@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="vuex[TOC] 1、为什么要用 vuex ？组件通信的类型  父子通信 跨级通信 兄弟通信 路由视图级别通信   2、通信解决方案 props&#x2F;$emit（父子通信） $refs&#x2F;ref（父子通信） $children&#x2F;$parent（父子通信） $attrs&#x2F;$listeners（父子通信、跨级通信） provide&#x2F;inject（父子通信、跨级通信） eventBus（父子通信、跨级通信、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1-vuex">
+<meta property="og:url" content="http://yoursite.com/2020/05/18/1-vuex/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="vuex[TOC] 1、为什么要用 vuex ？组件通信的类型  父子通信 跨级通信 兄弟通信 路由视图级别通信   2、通信解决方案 props&#x2F;$emit（父子通信） $refs&#x2F;ref（父子通信） $children&#x2F;$parent（父子通信） $attrs&#x2F;$listeners（父子通信、跨级通信） provide&#x2F;inject（父子通信、跨级通信） eventBus（父子通信、跨级通信、">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/05/18/1-vuex/assets/vue-components.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/18/1-vuex/assets/flow.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/18/1-vuex/assets/vuex.png">
+<meta property="article:published_time" content="2020-05-18T07:56:15.000Z">
+<meta property="article:modified_time" content="2020-05-18T07:56:15.240Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/18/1-vuex/assets/vue-components.jpg">
+
+<link rel="canonical" href="http://yoursite.com/2020/05/18/1-vuex/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>1-vuex | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/18/1-vuex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          1-vuex
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-18 15:56:15" itemprop="dateCreated datePublished" datetime="2020-05-18T15:56:15+08:00">2020-05-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h1><p>[TOC]</p>
+<h2 id="1、为什么要用-vuex-？"><a href="#1、为什么要用-vuex-？" class="headerlink" title="1、为什么要用 vuex ？"></a>1、为什么要用 vuex ？</h2><p>组件通信的类型</p>
+<ul>
+<li>父子通信</li>
+<li>跨级通信</li>
+<li>兄弟通信</li>
+<li>路由视图级别通信</li>
+</ul>
+<p><img src="./assets/vue-components.jpg" alt="vue-components"></p>
+<h2 id="2、通信解决方案"><a href="#2、通信解决方案" class="headerlink" title="2、通信解决方案"></a>2、通信解决方案</h2><ul>
+<li>props/$emit（父子通信）</li>
+<li>$refs/ref（父子通信）</li>
+<li>$children/$parent（父子通信）</li>
+<li>$attrs/$listeners（父子通信、跨级通信）</li>
+<li>provide/inject（父子通信、跨级通信）</li>
+<li>eventBus（父子通信、跨级通信、兄弟通信）</li>
+<li>vuex（父子通信、跨级通信、兄弟通信、路由视图级别通信）</li>
+<li>localStorage/sessionStorage等基于浏览器客户端的存储（父子通信、跨级通信、兄弟通信、路由视图级别通信）</li>
+</ul>
+<h2 id="3、vuex-是什么？"><a href="#3、vuex-是什么？" class="headerlink" title="3、vuex 是什么？"></a>3、vuex 是什么？</h2><p>Vuex 是一个专为 Vue.js 应用程序开发的 <strong>状态管理模式</strong>，类似 <u>redux</u></p>
+<p><img src="./assets/flow.png" alt="flow"></p>
+<p>这种状态管理模式包含：</p>
+<ul>
+<li><strong>State</strong> : 状态数据源</li>
+<li><strong>View</strong> : 使用状态数据源的视图</li>
+<li><strong>Actions</strong> : 修改更新数据源的操作</li>
+</ul>
+<p>这种模式遵循的是 <u>单向数据流</u> 模式</p>
+<h2 id="4、vuex-的工作流"><a href="#4、vuex-的工作流" class="headerlink" title="4、vuex 的工作流"></a>4、vuex 的工作流</h2><p><img src="assets/vuex.png" alt="vuex"></p>
+<ul>
+<li><strong>State</strong> : 存储应用状态数据（React 中的 State）</li>
+<li><strong>Vue Component</strong> : 消费 <u>State</u></li>
+<li><strong>Actions</strong> : 提交修改 <u>State</u> 的动作（包括异步行为）（React 中的 action）</li>
+<li><strong>Mutations</strong> : 唯一更改 <u>State</u> 的位置（React 中的 Reducer）</li>
+</ul>
+<h2 id="5、安装-vuex"><a href="#5、安装-vuex" class="headerlink" title="5、安装 vuex"></a>5、安装 vuex</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i vuex</span><br><span class="line">// or</span><br><span class="line">yarn add vuex</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6、引入-vuex"><a href="#6、引入-vuex" class="headerlink" title="6、引入 vuex"></a>6、引入 vuex</h2><p><strong>通过 &lt;script&gt; 引入</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"vuex.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过 &lt;script&gt; 方式引入，<u>vuex</u> 会自动安装（也就是主动调用 <code>Vue.use(Vuex)</code>）</p>
+<p><strong>通过 <code>import</code> 引入</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br></pre></td></tr></table></figure>
+
+<p>通过 <code>import</code> 方式引入，需要手动安装（手动调用 <code>Vue.use(Vuex)</code>）</p>
+<h2 id="7、从-Store-开始"><a href="#7、从-Store-开始" class="headerlink" title="7、从 Store 开始"></a>7、从 Store 开始</h2><p>*<em><code>Store</code>  *</em> 就是仓库，我们前面提到的 <code>state</code> 就存储在 <code>store</code> 中，同时提交动作、修改状态的方法也都由 <code>store</code> 提供和管理</p>
+<h3 id="7-1、创建一个-Store"><a href="#7-1、创建一个-Store" class="headerlink" title="7-1、创建一个 Store"></a>7-1、创建一个 Store</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    state: &#123;&#125;,</span><br><span class="line">    getters: &#123;&#125;,</span><br><span class="line">    mutations: &#123;&#125;,</span><br><span class="line">    actions: &#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  必须在 <code>Vue.use(Vuex)</code> 之后创建 <code>store</code></p>
+</blockquote>
+<h2 id="8、核心概念"><a href="#8、核心概念" class="headerlink" title="8、核心概念"></a>8、核心概念</h2><ul>
+<li>state</li>
+<li>getters</li>
+<li>mutations</li>
+<li>actions</li>
+</ul>
+<h3 id="8-1、state"><a href="#8-1、state" class="headerlink" title="8-1、state"></a>8-1、state</h3><h4 id="8-1-1、state-的创建"><a href="#8-1-1、state-的创建" class="headerlink" title="8-1-1、state 的创建"></a>8-1-1、state 的创建</h4><p>存储应用状态数据的对象，<code>state</code> 的值可以是一个对象，也可以是一个返回对象的函数，类似 <u>vue</u> 中组件的 <code>data</code> ，使用函数的方式返回对象可以避免对象引用导致的副作用问题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// let state = &#123;</span></span><br><span class="line"><span class="comment">//   a: 1</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="keyword">let</span> state = <span class="function"><span class="params">_</span>=&gt;</span>(&#123;<span class="attr">a</span>:<span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  	state</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> store2 = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    state</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(store.state == store2.state)</span><br><span class="line">store.state.a = <span class="number">100</span>;</span><br><span class="line"><span class="built_in">console</span>.log(store.state.a, store2.state.a);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>通过 <code>store.state</code> 访问状态数据</li>
+<li><code>state</code> 数据与组件 <code>data</code> 一样是被追踪的</li>
+</ul>
+<h4 id="8-1-2、在组件中使用-store"><a href="#8-1-2、在组件中使用-store" class="headerlink" title="8-1-2、在组件中使用 store"></a>8-1-2、在组件中使用 store</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// stores/index.js</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">import</span> state <span class="keyword">from</span> <span class="string">'./state'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    state</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// stores/state.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; (&#123;</span><br><span class="line">    title: <span class="string">'开课吧'</span>,</span><br><span class="line">    content: <span class="string">'javascript 高级工程师'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;home&quot;&gt;</span><br><span class="line">    &lt;h2&gt;&#123;&#123;title&#125;&#125;&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123;content&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import store from &#39;@&#x2F;stores&#39;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &#39;home&#39;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      title: store.state.title,</span><br><span class="line">      content: store.state.content</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  问题：</p>
+<p>  <code>state</code> 的更新并不会更新视图</p>
+</blockquote>
+<p><strong>解决</strong></p>
+<p>使用 <u>computed</u></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;home&quot;&gt;</span><br><span class="line">    &lt;h2&gt;&#123;&#123;title&#125;&#125;&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123;content&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import store from &#39;@&#x2F;stores&#39;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &#39;home&#39;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    title() &#123;</span><br><span class="line">      return store.state.title</span><br><span class="line">    &#125;,</span><br><span class="line">    content() &#123;</span><br><span class="line">      return store.state.content</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-1-3、store-配置"><a href="#8-1-3、store-配置" class="headerlink" title="8-1-3、store 配置"></a>8-1-3、store 配置</h4><p>如果每个组件在使用 <code>store</code> 的时候都 <code>import</code> 会比较繁琐，这个时候，我们通过 <u>vuex</u> 提供的 <code>store</code> 选项把 <code>store</code> 对象注入到 <u>vue</u> 的原型上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'@/stores'</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  router,</span><br><span class="line">  store,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;).$mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>配置注入后，我们就可以在组件实例中使用 <code>this.$store</code> 来访问 <code>store</code> 对象了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;home&quot;&gt;</span><br><span class="line">    &lt;h2&gt;&#123;&#123;title&#125;&#125;&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123;content&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">&#x2F;&#x2F; import store from &#39;@&#x2F;stores&#39; &#x2F;&#x2F; 可以去掉了</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &#39;home&#39;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    title() &#123;</span><br><span class="line">      return this.$store.state.title</span><br><span class="line">    &#125;,</span><br><span class="line">    content() &#123;</span><br><span class="line">      return this.$store.state.content</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-1-4、使用辅助函数-mapState"><a href="#8-1-4、使用辅助函数-mapState" class="headerlink" title="8-1-4、使用辅助函数 mapState"></a>8-1-4、使用辅助函数 <code>mapState</code></h4><p>当一个组件需要获取多个状态时候，将这些状态都声明为计算属性会有些重复和冗余。为了解决这个问题，我们可以使用 <code>mapState</code> 辅助函数帮助我们生成计算属性，让你少按几次键，通常我们把 <code>store</code> 的 <code>state</code> 通过 <code>mapState</code> 函数映射到组件的 <code>computed</code> 上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;home&quot;&gt;</span><br><span class="line">    &lt;h2&gt;&#123;&#123;title&#125;&#125;&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123;content&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123;mapState&#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  name: &#39;home&#39;,</span><br><span class="line">  computed: mapState([</span><br><span class="line">    &#39;title&#39;,&#39;content&#39;</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过对象方式进行映射</p>
+<blockquote>
+<p>  场景：当组件中已有与 <code>store</code> 同名的数据名称</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;home&quot;&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;&#x2F;h1&gt;</span><br><span class="line">    &lt;h2&gt;&#123;&#123;subTitle&#125;&#125;&lt;&#x2F;h2&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123;content&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123;mapState&#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  name: &#39;home&#39;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;title: &#39;Vuex&#39;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: mapState(&#123;</span><br><span class="line">      subTitle: &#39;title&#39;,</span><br><span class="line">      content: (&#123;content&#125;) &#x3D;&gt; content.length &lt;&#x3D; 12 ? content : content.substring(0, 12) + &#39;......&#39;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-1-5、使用扩展运算符组合"><a href="#8-1-5、使用扩展运算符组合" class="headerlink" title="8-1-5、使用扩展运算符组合"></a>8-1-5、使用扩展运算符组合</h4><p>通过对象扩展运算符，可以把 <code>mapState</code> 返回的 <code>state</code> 属性与组件已有计算属性进行融合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">import &#123;mapState&#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">      computed() &#123;&#x2F;...&#x2F;&#125;,</span><br><span class="line">      ...mapState(&#123;</span><br><span class="line">          &#x2F;&#x2F; ...</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="9、getters"><a href="#9、getters" class="headerlink" title="9、getters"></a>9、getters</h3><p>有时候我们需要从 store 中的 state 中派生出一些状态，类似组件的 <code>data</code> 与 <code>computed</code>，<code>store</code> 也提供了一个 <code>getters</code> 对象来处理派生数据</p>
+<h4 id="9-1、getters-函数"><a href="#9-1、getters-函数" class="headerlink" title="9-1、getters 函数"></a>9-1、getters 函数</h4><p>与组件属性一样，我们是通过定义一个函数的形式来返回派生数据的，<code>getters</code> 函数接受两个参数</p>
+<ul>
+<li>第一个参数：<code>state</code> 对象</li>
+<li>第二个参数：<code>getters</code> 对象</li>
+</ul>
+<h4 id="9-2、通过属性访问"><a href="#9-2、通过属性访问" class="headerlink" title="9-2、通过属性访问"></a>9-2、通过属性访问</h4><p>同样的，与组件计算属性一样，默认是通过属性的方式去访问 <code>getters</code> 中的数据的，这种方式与组件的计算属性一样，也是会缓存结果的</p>
+<h4 id="9-3、通过方法访问"><a href="#9-3、通过方法访问" class="headerlink" title="9-3、通过方法访问"></a>9-3、通过方法访问</h4><p>我们还可以通过闭包函数的形式返回一个函数，来实现给 <code>getters</code> 函数传参，需要注意的是这种方式不支持结果缓存</p>
+<h4 id="9-4、使用辅助函数-mapGetters"><a href="#9-4、使用辅助函数-mapGetters" class="headerlink" title="9-4、使用辅助函数 mapGetters"></a>9-4、使用辅助函数 <code>mapGetters</code></h4><p>与 <code>mapState</code> 函数类似，通常映射到组件的 <code>computed</code> 上</p>
+<h3 id="10、mutations"><a href="#10、mutations" class="headerlink" title="10、mutations"></a>10、mutations</h3><p>更改 Vuex 的 store 中的状态的唯一方法是提交 mutation（类似 redux 中的 action + reducer），Vuex 中的 mutation 非常类似于事件：每个 mutation 都有一个字符串的 <strong>事件类型 (type)</strong> 和 一个 <strong>回调函数 (handler)</strong></p>
+<blockquote>
+<p>  <code>mutation</code> 中的函数不要直接调用</p>
+</blockquote>
+<h4 id="10-1、提交"><a href="#10-1、提交" class="headerlink" title="10-1、提交"></a>10-1、提交</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">store.commit(type, payload)</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">store.commit(&#123;</span><br><span class="line">    type: ...,</span><br><span class="line">    payload: ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>type</strong></p>
+<p>要提交的 <code>mutation</code> 回调函数名称，type 为固定的 key</p>
+<p><strong>payload</strong></p>
+<p>载荷：提交的额外数据，任意格式</p>
+<h4 id="10-2、mutation-函数"><a href="#10-2、mutation-函数" class="headerlink" title="10-2、mutation 函数"></a>10-2、mutation 函数</h4><p><code>mutation</code> 中的函数被 <code>commit</code> 执行的时候，接收两个参数</p>
+<ul>
+<li>第一个参数：<code>state</code> 对象</li>
+<li>第二个参数： <code>commit</code> 提交的 <code>payload</code></li>
+</ul>
+<p>在 <code>mutation</code> 函数中，我们就可以通过 <code>state</code> 对象进行状态数据的修改</p>
+<h4 id="10-3、使用辅助函数-mapMutations"><a href="#10-3、使用辅助函数-mapMutations" class="headerlink" title="10-3、使用辅助函数 mapMutations"></a>10-3、使用辅助函数 <code>mapMutations</code></h4><p><code>mapMutations</code> 函数的使用与 <code>mapState</code> 和 <code>mapGetters</code> 类似，但是其一般是把组件的 <code>methods</code> 映射为 <code>store</code> 的 <code>mutations</code> 的 <code>commit</code> 调用</p>
+<h4 id="10-4、mutation-函数必须是同步的"><a href="#10-4、mutation-函数必须是同步的" class="headerlink" title="10-4、mutation 函数必须是同步的"></a>10-4、mutation 函数必须是同步的</h4><p><code>commit</code> 方法没有返回值</p>
+<h3 id="11、actions"><a href="#11、actions" class="headerlink" title="11、actions"></a>11、actions</h3><p><code>action</code> 中的函数与 <code>mutation</code> 中的函数类似，但是它主要用来进行异步任务的处理，然后通过提交 <code>mutation</code> 来修改 <code>state</code></p>
+<blockquote>
+<p>注意：<code>action</code> 中的函数不要直接修改 <code>state</code></p>
+</blockquote>
+<h4 id="11-1、提交"><a href="#11-1、提交" class="headerlink" title="11-1、提交"></a>11-1、提交</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">store.dispatch(type, payload)</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">store.dispatch(&#123;</span><br><span class="line">    type: ...,</span><br><span class="line">    payload: ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>action</code> 任务需要通过 <code>dispatch</code> 方法来提交（派发），与 <code>commit</code> 类似</p>
+<p><code>dispatch</code> 方法有返回值，且一定返回一个 <code>promise</code> 对象</p>
+<h4 id="11-2、action-函数"><a href="#11-2、action-函数" class="headerlink" title="11-2、action 函数"></a>11-2、action 函数</h4><p><code>action</code> 中的函数执行的过程中也接受两个参数</p>
+<ul>
+<li>第一个参数：<code>store</code> 对象</li>
+<li>第二个参数： <code>dispatch</code> 提交的 <code>payload</code></li>
+</ul>
+<h4 id="11-3、使用辅助函数-mapActions"><a href="#11-3、使用辅助函数-mapActions" class="headerlink" title="11-3、使用辅助函数 mapActions"></a>11-3、使用辅助函数 <code>mapActions</code></h4><p>与 <code>mapMutations</code> 函数类似，把组件的 <code>methods</code> 映射为 <code>store</code> 的 <code>actions</code> 的 <code>dispatch</code> 调用</p>
+<h2 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h2><p>这个更多的是基于一种代码组织结构上的辅助</p>
+<p><a href="https://vuex.vuejs.org/zh/guide/modules.html" target="_blank" rel="noopener">https://vuex.vuejs.org/zh/guide/modules.html</a></p>
+<p><a href="https://vuex.vuejs.org/zh/guide/structure.html" target="_blank" rel="noopener">https://vuex.vuejs.org/zh/guide/structure.html</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/05/14/13-%E8%B7%AF%E7%94%B1%E5%85%83%E4%BF%A1%E6%81%AF/" rel="prev" title="13-路由元信息">
+      <i class="fa fa-chevron-left"></i> 13-路由元信息
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/05/27/1-webpack%E4%B8%8E%E6%A8%A1%E5%9D%97%E5%8C%96/" rel="next" title="1-webpack与模块化">
+      1-webpack与模块化 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vuex"><span class="nav-number">1.</span> <span class="nav-text">vuex</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、为什么要用-vuex-？"><span class="nav-number">1.1.</span> <span class="nav-text">1、为什么要用 vuex ？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、通信解决方案"><span class="nav-number">1.2.</span> <span class="nav-text">2、通信解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、vuex-是什么？"><span class="nav-number">1.3.</span> <span class="nav-text">3、vuex 是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、vuex-的工作流"><span class="nav-number">1.4.</span> <span class="nav-text">4、vuex 的工作流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、安装-vuex"><span class="nav-number">1.5.</span> <span class="nav-text">5、安装 vuex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、引入-vuex"><span class="nav-number">1.6.</span> <span class="nav-text">6、引入 vuex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、从-Store-开始"><span class="nav-number">1.7.</span> <span class="nav-text">7、从 Store 开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1、创建一个-Store"><span class="nav-number">1.7.1.</span> <span class="nav-text">7-1、创建一个 Store</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、核心概念"><span class="nav-number">1.8.</span> <span class="nav-text">8、核心概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1、state"><span class="nav-number">1.8.1.</span> <span class="nav-text">8-1、state</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-1、state-的创建"><span class="nav-number">1.8.1.1.</span> <span class="nav-text">8-1-1、state 的创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-2、在组件中使用-store"><span class="nav-number">1.8.1.2.</span> <span class="nav-text">8-1-2、在组件中使用 store</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-3、store-配置"><span class="nav-number">1.8.1.3.</span> <span class="nav-text">8-1-3、store 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-4、使用辅助函数-mapState"><span class="nav-number">1.8.1.4.</span> <span class="nav-text">8-1-4、使用辅助函数 mapState</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-5、使用扩展运算符组合"><span class="nav-number">1.8.1.5.</span> <span class="nav-text">8-1-5、使用扩展运算符组合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9、getters"><span class="nav-number">1.8.2.</span> <span class="nav-text">9、getters</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-1、getters-函数"><span class="nav-number">1.8.2.1.</span> <span class="nav-text">9-1、getters 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2、通过属性访问"><span class="nav-number">1.8.2.2.</span> <span class="nav-text">9-2、通过属性访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3、通过方法访问"><span class="nav-number">1.8.2.3.</span> <span class="nav-text">9-3、通过方法访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-4、使用辅助函数-mapGetters"><span class="nav-number">1.8.2.4.</span> <span class="nav-text">9-4、使用辅助函数 mapGetters</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10、mutations"><span class="nav-number">1.8.3.</span> <span class="nav-text">10、mutations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-1、提交"><span class="nav-number">1.8.3.1.</span> <span class="nav-text">10-1、提交</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2、mutation-函数"><span class="nav-number">1.8.3.2.</span> <span class="nav-text">10-2、mutation 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-3、使用辅助函数-mapMutations"><span class="nav-number">1.8.3.3.</span> <span class="nav-text">10-3、使用辅助函数 mapMutations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4、mutation-函数必须是同步的"><span class="nav-number">1.8.3.4.</span> <span class="nav-text">10-4、mutation 函数必须是同步的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11、actions"><span class="nav-number">1.8.4.</span> <span class="nav-text">11、actions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-1、提交"><span class="nav-number">1.8.4.1.</span> <span class="nav-text">11-1、提交</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-2、action-函数"><span class="nav-number">1.8.4.2.</span> <span class="nav-text">11-2、action 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-3、使用辅助函数-mapActions"><span class="nav-number">1.8.4.3.</span> <span class="nav-text">11-3、使用辅助函数 mapActions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Module"><span class="nav-number">1.9.</span> <span class="nav-text">Module</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

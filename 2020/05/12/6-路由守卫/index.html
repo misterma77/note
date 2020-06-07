@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="vue-router[TOC] 路由守卫当导航发生改变的时候，vue-router 会在多个不同的地方调用指定的函数，也就是与路由有关的生命周期函数，也称为：路由守卫  组件内守卫 路由独享守卫 全局守卫  组件内守卫定义在组件内的与路由有关的生命周期函数（守卫）  beforeRouteEnter beforeRouteUpdate beforeRouteLeave  beforeRouteEn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6-路由守卫">
+<meta property="og:url" content="http://yoursite.com/2020/05/12/6-%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="vue-router[TOC] 路由守卫当导航发生改变的时候，vue-router 会在多个不同的地方调用指定的函数，也就是与路由有关的生命周期函数，也称为：路由守卫  组件内守卫 路由独享守卫 全局守卫  组件内守卫定义在组件内的与路由有关的生命周期函数（守卫）  beforeRouteEnter beforeRouteUpdate beforeRouteLeave  beforeRouteEn">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-12T01:06:29.000Z">
+<meta property="article:modified_time" content="2020-05-12T01:06:29.680Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/05/12/6-%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>6-路由守卫 | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/6-%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          6-路由守卫
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-12 09:06:29" itemprop="dateCreated datePublished" datetime="2020-05-12T09:06:29+08:00">2020-05-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h1><p>[TOC]</p>
+<h2 id="路由守卫"><a href="#路由守卫" class="headerlink" title="路由守卫"></a>路由守卫</h2><p>当导航发生改变的时候，<u>vue-router</u> 会在多个不同的地方调用指定的函数，也就是与路由有关的生命周期函数，也称为：路由守卫</p>
+<ul>
+<li>组件内守卫</li>
+<li>路由独享守卫</li>
+<li>全局守卫</li>
+</ul>
+<h3 id="组件内守卫"><a href="#组件内守卫" class="headerlink" title="组件内守卫"></a>组件内守卫</h3><p>定义在组件内的与路由有关的生命周期函数（守卫）</p>
+<ul>
+<li>beforeRouteEnter</li>
+<li>beforeRouteUpdate</li>
+<li>beforeRouteLeave</li>
+</ul>
+<h4 id="beforeRouteEnter"><a href="#beforeRouteEnter" class="headerlink" title="beforeRouteEnter"></a>beforeRouteEnter</h4><p>当路由解析完成，并中指定的组件渲染之前（组件 <code>beforeCreate</code>  之前），不能这里通过 <code>this</code> 访问组件实例，需要通过 <code>next</code> 回调来进行调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">beforeRouteEnter (to, <span class="keyword">from</span>, next) &#123;</span><br><span class="line">    <span class="comment">// 不！能！获取组件实例 `this`</span></span><br><span class="line">    <span class="comment">// 因为当守卫执行前，组件实例还没被创建</span></span><br><span class="line">  	next(<span class="function"><span class="params">vm</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// vm...</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="beforeRouteUpdate"><a href="#beforeRouteUpdate" class="headerlink" title="beforeRouteUpdate"></a>beforeRouteUpdate</h4><p>在当前路由改变，但是该组件被复用时调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beforeRouteUpdate (to, <span class="keyword">from</span>, next) &#123;</span><br><span class="line">    <span class="comment">// 可以访问组件实例 `this`</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h4 id="beforeRouteLeave"><a href="#beforeRouteLeave" class="headerlink" title="beforeRouteLeave"></a>beforeRouteLeave</h4><p>导航离开该组件的对应路由时调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beforeRouteLeave (to, <span class="keyword">from</span>, next) &#123;</span><br><span class="line">    <span class="comment">// 可以访问组件实例 `this`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="路由守卫参数"><a href="#路由守卫参数" class="headerlink" title="路由守卫参数"></a>路由守卫参数</h3><h4 id="to"><a href="#to" class="headerlink" title="to"></a>to</h4><p>即将要进入的目标 路由对象（$route）</p>
+<h4 id="from"><a href="#from" class="headerlink" title="from"></a>from</h4><p>当前导航正要离开的路由对象（$route）</p>
+<h4 id="next"><a href="#next" class="headerlink" title="next"></a>next</h4><p>路由确认回调函数，类似 <u>Promise</u> 中的 <u>resolve</u> 函数，一定要确保调用 <u>next</u> 函数，但是后续的导航行为将依赖 <u>next</u> 方法的调用参数</p>
+<ul>
+<li><p><strong><code>next()</code></strong> : 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 <strong>confirmed</strong> (确认的)</p>
+</li>
+<li><p><strong><code>next(false)</code></strong> : 中断当前的导航。如果浏览器的 URL 改变了 (可能是用户手动或者浏览器后退按钮)，那么 URL 地址会重置到 <code>from</code> 路由对应的地址</p>
+</li>
+<li><p><strong><code>next(&#39;/&#39;) 或者 next({ path: &#39;/&#39; })</code></strong> : 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航</p>
+</li>
+</ul>
+<h3 id="路由独享的守卫"><a href="#路由独享的守卫" class="headerlink" title="路由独享的守卫"></a>路由独享的守卫</h3><p>可以在路由配置上直接定义 <code>beforeEnter</code> 守卫，相对来说，应用不多</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(</span><br><span class="line">  &#123; </span><br><span class="line">    routes: [ </span><br><span class="line">      &#123; </span><br><span class="line">        path: <span class="string">'/foo'</span>, </span><br><span class="line">        component: Foo, </span><br><span class="line">        beforeEnter: <span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123; </span><br><span class="line">          <span class="comment">// ... </span></span><br><span class="line">      	&#125;</span><br><span class="line">    	&#125; </span><br><span class="line">    ] </span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="全局守卫"><a href="#全局守卫" class="headerlink" title="全局守卫"></a>全局守卫</h3><p>全局守卫是注册在 <u>router</u> 对象（new VueRouter({…})）上的</p>
+<ul>
+<li>beforeEach</li>
+<li>beforeResolve</li>
+<li>afterEach</li>
+</ul>
+<h4 id="beforeEach"><a href="#beforeEach" class="headerlink" title="beforeEach"></a>beforeEach</h4><p>当一个导航触发时，全局前置守卫按照创建顺序调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="beforeResolve"><a href="#beforeResolve" class="headerlink" title="beforeResolve"></a>beforeResolve</h4><p>在所有组件内守卫和异步路由组件被解析之后被调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.beforeResolve(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="afterEach"><a href="#afterEach" class="headerlink" title="afterEach"></a>afterEach</h4><p>导航被确认后调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.afterEach(<span class="function">(<span class="params">to, <span class="keyword">from</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>因为导航已经被确认，所以没有 <code>next</code></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/05/11/3-devTools/" rel="prev" title="3-devTools">
+      <i class="fa fa-chevron-left"></i> 3-devTools
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/05/12/5-queryString/" rel="next" title="5-queryString">
+      5-queryString <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-router"><span class="nav-number">1.</span> <span class="nav-text">vue-router</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#路由守卫"><span class="nav-number">1.1.</span> <span class="nav-text">路由守卫</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组件内守卫"><span class="nav-number">1.1.1.</span> <span class="nav-text">组件内守卫</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#beforeRouteEnter"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">beforeRouteEnter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#beforeRouteUpdate"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">beforeRouteUpdate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#beforeRouteLeave"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">beforeRouteLeave</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由守卫参数"><span class="nav-number">1.1.2.</span> <span class="nav-text">路由守卫参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#to"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">to</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#from"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">from</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#next"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">next</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由独享的守卫"><span class="nav-number">1.1.3.</span> <span class="nav-text">路由独享的守卫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局守卫"><span class="nav-number">1.1.4.</span> <span class="nav-text">全局守卫</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#beforeEach"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">beforeEach</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#beforeResolve"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">beforeResolve</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#afterEach"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">afterEach</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
