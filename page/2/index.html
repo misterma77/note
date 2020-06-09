@@ -145,6 +145,307 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E8%A1%A8%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/note/2020/06/07/%E8%A1%A8%E5%8D%95/" class="post-title-link" itemprop="url">表单</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="表单"><a href="#表单" class="headerlink" title="表单"></a><a href=""></a>表单</h1><p>表单是Web浏览器和Web服务器进行通信的最常用的手段，用过表单，浏览器不仅能从Web服务器中获得信息，还能向Web服务器反馈信息<br><code>&lt;form&gt;&lt;/form&gt;</code></p>
+<blockquote>
+<p>属性：method 设置传输方法<br>传输方法：GET  POST<br>GET：速度快，安全性低，以明文的方式提交，传输数据上限为1M<br>POST：速度慢，安全性高，数据上传在媒体文件中，默认上限5M</p>
+</blockquote>
+<h2 id="输入框"><a href="#输入框" class="headerlink" title="输入框"></a><a href=""></a>输入框</h2><p><code>&lt;input&gt;</code>是单标签</p>
+<blockquote>
+<p><strong>1.type：控件的类型<br>2.value：指定的默认值<br>3.size：文本框显示的长度<br>4.maxlength：用户可舒服的最大字符<br>5.name：用于服务器获取数据<br>6.placeholder：用户提示用语（虚字，当选中输入框时，提示语消失）<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120132510868.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120132527994.png" alt="在这里插入图片描述"><br>7.disabled：获取或设置表单空间是否禁用，背景有阴影<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120132642611.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120132702638.png" alt="在这里插入图片描述"><br>8.readOnly：控件只读属性，不能更改只能复制和读取<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120132917358.png" alt="在这里插入图片描述"><br>显示效果：只读属性，无法选中<br><img src="https://img-blog.csdnimg.cn/20200120132930555.png" alt="在这里插入图片描述"><br>9.required：必填，如果不填，无法提交（一定要写提交方式）</strong><br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120133055822.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120133115225.png" alt="在这里插入图片描述"><br>10.formaction属性规定当表单提交时处理输入控件的文件的 URL<br>11.formmethod 属性定义发送表单数据到 action URL 的 HTTP 方法get/post</p>
+</blockquote>
+<h2 id="表单控件（type的属性值）"><a href="#表单控件（type的属性值）" class="headerlink" title="表单控件（type的属性值）"></a><a href=""></a>表单控件（type的属性值）</h2><blockquote>
+<p>text：单行文本输入框<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120120514943.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120120536197.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>password：密码框<br>代码：<br><img src="https://img-blog.csdnimg.cn/2020012012071126.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120120734958.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>radio：单选按钮<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120120929257.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120120940708.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>checkbox：复选框<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120121338544.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120121343676.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>file：上传文件<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120121426446.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120121447927.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>select：下拉列表<br><code>&lt;select&gt;&lt;/select&gt;</code>成对出现<br>代码：<br><img src="https://img-blog.csdnimg.cn/2020012012502589.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/2020012012503683.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>textarea：多行文本框<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120125152470.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120125155476.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>button：点击按钮<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120125446964.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120125508592.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>submit：提交按钮<br>代码：<br><img src="https://img-blog.csdnimg.cn/2020012012573297.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120125755316.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>reset：重置按钮<br>代码：<br><img src="https://img-blog.csdnimg.cn/2020012012585614.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120125905728.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<h2 id="单选和多选"><a href="#单选和多选" class="headerlink" title="单选和多选"></a><a href=""></a>单选和多选</h2><blockquote>
+<p>属性<br>value 该选项被选中后提交到服务器的值<br>checked 默认的选中值<br>name单选此值自定义且相同<br><code>&lt;label&gt;</code>标签<br>用于单选、多选<br>点击label中的文本时，触发指定控件<br>将label与控件绑定的方法：label的for属性与input的id属性相同<br>代码：<img src="https://img-blog.csdnimg.cn/2020012013540348.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120135417514.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<h2 id="下拉列表"><a href="#下拉列表" class="headerlink" title="下拉列表"></a><a href=""></a>下拉列表</h2><blockquote>
+<p>属性：<br>name 名字<br>size列表框长度<br>multiple标识可多选，不设置则只能单选</p>
+</blockquote>
+<blockquote>
+<p>option属性：<br>value该选项被选中并提交后，Web浏览器传送给服务器的数据。缺省时，将传送选项内容<br>selected指定选项的初始状态，表示该选项在初始时是被选中的<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120141511771.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120141525113.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<h2 id="多行文本框"><a href="#多行文本框" class="headerlink" title="多行文本框"></a><a href=""></a>多行文本框</h2><blockquote>
+<p>属性：<br>name指定文本输入框的名字<br>cols文本输入框的宽度<br>rows文本输入框的高度<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200120141732997.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120141745279.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/note/2020/06/07/%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" class="post-title-link" itemprop="url">常用标签</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1.<strong>HTML标题</strong>：标题通过<code>&lt;h1&gt;~&lt;h6&gt;</code>标签进行定义的</p>
+<blockquote>
+<p><code>&lt;h1&gt;</code>为最大，<code>&lt;h6&gt;</code>为最小<br>代码：<img src="https://img-blog.csdnimg.cn/20200117170347807.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200117170401850.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>2.<strong>水平线</strong>：<code>&lt;hr&gt;</code>标签在HTML页面中用于创建水平线，分割内容</p>
+<blockquote>
+<p>代码：<img src="https://img-blog.csdnimg.cn/20200117170754802.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200117170813850.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>3.<strong>注释</strong><br>可以将注释插入HTML代码中， 这样可以提高其可读性，使代码容易被人理解。浏览器会忽视注释，不显示      快捷键为：Crtl+/</p>
+<p>写法：<br>html中：``<br>Css中：<code>/*注释*/</code><br>JavaScript：单行注释<code>//</code>      多行注释<code>/**/</code></p>
+<blockquote>
+<p>代码：<img src="https://img-blog.csdnimg.cn/20200117171021852.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200117171045483.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>4.列表：有序列表 / 无序列表  /  自定义列表<br>有序列表<code>&lt;ol&gt;&lt;/ol&gt;</code>下一层子级只能是<code>&lt;li&gt;&lt;/li&gt;</code>具体内容存放在li中，不存在两个li嵌套，除此之外，列表中可以任意嵌套<br>自定义列表是将标题与内容成对显示，作为子项数量不限，一个dl中包含1~n个子项</p>
+<blockquote>
+<p>代码：<img src="https://img-blog.csdnimg.cn/20200117171630434.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200117171645840.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>5.<strong>字体加粗</strong>：<code>&lt;b&gt;&lt;/b&gt;</code>      <code>&lt;strong&gt;&lt;/strong&gt;</code></p>
+<p><strong>倾斜</strong>：<code>&lt;i&gt;&lt;/i&gt;</code></p>
+<p><strong>下标/上标</strong>：<code>&lt;sub&gt;&lt;/sub&gt;</code>   <code>&lt;sup&gt;&lt;/sup&gt;</code></p>
+<p><strong>大号字/小号字</strong>：<code>&lt;big&gt;&lt;/big&gt; &lt;small&gt;&lt;/small&gt;</code></p>
+<p><strong>删除线</strong>：<code>&lt;s&gt;&lt;/s&gt;</code>   <code>&lt;del&gt;&lt;/del&gt;</code></p>
+<blockquote>
+<p>代码：<img src="https://img-blog.csdnimg.cn/20200116191559665.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="d"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200116191803967.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>6.<strong>段落</strong>：<code>&lt;p&gt;&lt;/p&gt;</code>可以将文档分割为若干段落<br><code>&lt;div&gt;&lt;/div&gt;</code>作用与<code>&lt;p&gt;&lt;/p&gt;</code>相同</p>
+<blockquote>
+<p>代码：<img src="https://img-blog.csdnimg.cn/20200117173324933.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200117173348417.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>7.<strong>换行</strong>：<code>&lt;br&gt;</code>在不产生一个新段落的情况下换行</p>
+<blockquote>
+<p>代码：<img src="https://img-blog.csdnimg.cn/20200117174031518.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200117174049701.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>8.<strong>链接</strong>：<code>&lt;a&gt;&lt;/a&gt;</code>在HTML文档中创建链接</p>
+<blockquote>
+<p>语法：<code>&lt;a&gt;名称&lt;/a&gt;</code></p>
+</blockquote>
+<blockquote>
+<p>属性：<a href="https://www.runoob.com/tags/tag-a.html" target="_blank" rel="noopener">a标签属性</a><br>1.<strong>href</strong>：指定链接的目标URL<br><strong>值</strong>：URL<br>2.<strong>rel</strong>：规定当前文档与目标URL之间的关系，仅再href属性存在时使用<br><strong>值</strong>：<a href="https://www.runoob.com/tags/att-a-rel.html" target="_blank" rel="noopener">rel属性值</a><br>3.<strong>target</strong>：规定在何处打开目标URL<br><strong>值</strong>：<a href="https://www.runoob.com/tags/att-a-target.html" target="_blank" rel="noopener">target属性值</a><br>_blank：在新串口中打开被链接的文档<br>_self：默认。在相同的框架中打开被链接文档</p>
+</blockquote>
+<blockquote>
+<p>代码：<img src="https://img-blog.csdnimg.cn/20200117180731403.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200117180744395.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200117180750728.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>9.<strong>插入图片</strong>：<code>&lt;img&gt;</code></p>
+<blockquote>
+<p>语法：<code>&lt;a href=&quot; &quot;/&gt;</code></p>
+</blockquote>
+<blockquote>
+<p>属性：<a href="https://www.runoob.com/tags/tag-img.html" target="_blank" rel="noopener">img标签的属性</a><br>1.src：规定显示图像的URL（可使用本地链接与网络链接）<br>2.alt：当图片无法加载时显示的替代文字<br>3.title：当鼠标悬停于图片上时的提示信息</p>
+</blockquote>
+<blockquote>
+<p>代码：<img src="https://img-blog.csdnimg.cn/20200117182031103.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200117182102541.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E5%BE%AA%E7%8E%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/note/2020/06/07/%E5%BE%AA%E7%8E%AF/" class="post-title-link" itemprop="url">循环</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a><a href=""></a>while循环</h2><blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200125134823379.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200125134939530.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a><a href=""></a>for循环</h2><blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200125135230587.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/2020012513523413.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h2 id="do-while循环"><a href="#do-while循环" class="headerlink" title="do while循环"></a><a href=""></a>do while循环</h2><p>该循环，不管是否满足条件都会进行循环体一次，<code>while</code>和<code>for</code>不会</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200125141558799.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200125141615834.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h6 id="break和continue"><a href="#break和continue" class="headerlink" title="break和continue"></a><a href=""></a>break和continue</h6><blockquote>
+<p>相同点：都可以改变循环执行的状态，都不能单独使用,之后的代码都不再执行</p>
+</blockquote>
+<blockquote>
+<p>不同点：1.break在分支语句中，用于结束整个分支语句，continue则不是<br>    2.在循环中，break是结束当前整个循环，继续执行下一个功能<br>    continue则是结束本轮循环，继续执行下一轮循环</p>
+</blockquote>
+<h6 id="document-write"><a href="#document-write" class="headerlink" title="document.write()"></a><a href=""></a>document.write()</h6><p>作用：输出到页面<br>用于控制台无法很好的显示时的测试<br>会覆盖当前页面的所有内容</p>
+<h6 id="获取元素"><a href="#获取元素" class="headerlink" title="获取元素"></a><a href=""></a>获取元素</h6><blockquote>
+<p>1.通过标签名获取<br> document.getElementsByTagName(标签名)[0]；<br>2.通过class类名<br> document.getElementsByClassName(class类名)[0]；<br>3.通过id名<br> document.getElementById(id名);<br>4.通过name属性<br> document.getElementsByName()[0];<br>1、2、4方法可获取到多个元素，但是你只想获取第一个时，需要在末尾加上[0]</p>
+</blockquote>
+<h6 id="设置HTML中的文字"><a href="#设置HTML中的文字" class="headerlink" title="设置HTML中的文字"></a><a href=""></a>设置HTML中的文字</h6><blockquote>
+<p>1.innerHTML:会修改开始标签到结束标签之间的所有内容（会覆盖子元素）<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200125145959100.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200125150012368.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.innerText:只会修改文本内容</p>
+</blockquote>
+<h6 id="通过js来修改HTML的样式"><a href="#通过js来修改HTML的样式" class="headerlink" title="通过js来修改HTML的样式"></a><a href=""></a>通过js来修改HTML的样式</h6><p>可修改宽，高，颜色等属性</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200125151813288.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200125151822514.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E6%95%B0%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -705,262 +1006,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/note/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="javascript.note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/note/2020/06/07/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">字符串</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h6 id="创建"><a href="#创建" class="headerlink" title="创建"></a><a href=""></a>创建</h6><p>通过new关键字来创建一个对象，String对象处理字符串<br><code>var str = new String(&quot;123&quot;)</code><br>通过字面量的方式<br><code>var s = &quot;123&quot;</code></p>
-<h2 id="字符串方法"><a href="#字符串方法" class="headerlink" title="字符串方法"></a><a href=""></a>字符串方法</h2><p>1.<code>charAt(位置)</code> 返回指定位置的字符</p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128115550243.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128115602169.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>2.<code>.length</code> 返回字符串的长度</p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128115654750.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128115704276.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>3.<code>charCodeAt(位置)</code> 返回指定位置字符的Unicode编码</p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128115950200.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128120009409.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>4.<code>fromCharCode()</code> 接收一个UniCode编码，返回对应字符串</p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128120317732.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128120324787.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>5.<code>replace(参数1，参数2)</code>    替换，会将替换后的字符串整体返回，不修改原字符串<br>参数1：被替换目标<br>参数2：替换的新内容</p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128121153227.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128121200692.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>6.<code>substring(参数1，参数2)</code>    提取介于两个下标之间的字符串(相当于数组中的slice)<br>包头不包尾，不影响原字符串<br>参数1：开始下标<br>参数2：结束下标</p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/2020012812165847.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128121704513.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>7.<code>substr(参数1，参数2)</code> 从开始位置截取指定长度的字符串(splice),不影响原字符串<br>参数1：开始i位置<br>参数2：截取长度</p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128122140142.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128122159113.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>8.<code>split(参数1，参数2)</code> 把一个字符串分割成字符串数组,不影响原字符串<br>参数1：分割依据<br>参数2(可选)：分割后返回的长度<br>（超出实际大小，按照实际大小算。小于实际大小的话，按照指定长度返回，超出的不返回）</p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128122805177.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128122808430.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>9.<code>slice(参数1，参数2)</code> 提取指定范围的字符串<br>参数1：开始范围<br>参数2：结束范围</p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128122950454.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128123002958.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>10.<code>indexOf()</code> 返回指定字符的对应下标(首先出现的),如果没有则返回-1</p>
-<blockquote>
-<p>代码：<strong>利用indexOf()去重</strong><br><img src="https://img-blog.csdnimg.cn/20200128123617108.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128123628738.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>11.<code>lastIndexOf()</code> 返回指定字符最后出现的位置<br>12.<code>toLowerCase()</code> 字符串转换为小写<br>  <code>toUpperCase()</code> 字符串转换为大写</p>
-<blockquote>
-<p>代码：将首字母转换为大写<br><img src="https://img-blog.csdnimg.cn/20200128125608857.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">显示效果：<br><img src="https://img-blog.csdnimg.cn/2020012812561975.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AD%98%E5%82%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/note/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="javascript.note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/note/2020/06/07/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AD%98%E5%82%A8/" class="post-title-link" itemprop="url">客户端存储</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a><a href=""></a>cookie</h1><p>  cookie是http协议下，服务端或者脚本可以维护客户端信息的一种方式</p>
-<blockquote>
-<h6 id="koa中cookie的使用"><a href="#koa中cookie的使用" class="headerlink" title="koa中cookie的使用"></a><a href=""></a>koa中cookie的使用</h6><p>  储存cookie的值：<code>ctx.cookies.set(name,value,[option])</code><br>  获取cookie的值：<code>ctx.cookies.get(name,[option])</code><br><strong>option常用设置</strong><br>  1.<code>maxAge</code> 一个数字表示从<code>Data.new()</code>得到的毫秒数<br>  2.<code>expires</code>  cookie 过期的 <code>Date</code><br>  3.<code>path</code> cookie 路径, 默认是<code>&#39;/&#39;</code><br>  4.<code>domain</code> cookie 域名<br>  5.<code>secure</code> 安全 cookie  设置后只能通过https来传递cookie<br>  6.<code>httpOnly</code> 服务器可访问 cookie, 默认是 <strong>true</strong><br>  7.<code>overwrite</code> 一个布尔值，表示是否覆盖以前设置的同名的 cookie (默认是 <strong>false</strong>).<br>     如果是 true, 在同一个请求中设置相同名称的所有 Cookie</p>
-</blockquote>
-<blockquote>
-<h6 id="客户端使用cookie"><a href="#客户端使用cookie" class="headerlink" title="客户端使用cookie"></a><a href=""></a>客户端使用cookie</h6><p> <strong>特点</strong>：<br>  1.浏览器会主动存储接收到的 set-cookie 头信息的值<br>  2.有时效性；<br>  3.可以设置 http-only 属性为 true 来禁止客户端代码（js）修改该值<br> <strong>设置</strong>：<code>document.cookie=&quot;key=value&quot;</code>key和value是包含在一个字符串中<br> key包含字段<br>  -[name] 这个name为自己取的cookie名称，同名的值会覆盖<br>  -domain 所属域名<br>  - path 所属路径<br>  - Expires/Max-Age 到期时间/持续时间 (单位是秒)<br>  - http-only 是否只作为http时使用，如果为true，那么客户端能够在http请求和响应中进行传输，但是<br>    客户端浏览器不能使用js去读取或修改<br>  -多个key=value使用 ; （分号+空格）分隔<br> <strong>获取</strong>：<code>document.cookie</code><br>  返回值是当前域名下的所有cookie，并按照某种格式组织的字符串 ：key=value;key1=value1;…<br>  keyn=valuen<br><strong><mark>封装cookie</mark></strong><br><img src="https://img-blog.csdnimg.cn/2020032614340265.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200326143450369.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-</blockquote>
-<h1 id="本地缓存Storage"><a href="#本地缓存Storage" class="headerlink" title="本地缓存Storage"></a><a href=""></a>本地缓存Storage</h1><h6 id="localStorage及sessionStorage的使用"><a href="#localStorage及sessionStorage的使用" class="headerlink" title="localStorage及sessionStorage的使用"></a><a href=""></a>localStorage及sessionStorage的使用</h6><blockquote>
-<p>1.设置<br> <code>localStorage/sessionStorage.setItem(key,value)</code><br> 添加或更新（如果数据项中已存在该key）数据项中指定key的value<br>2.获取<br> <code>localStorage/sessionStorage.getItem(key)</code><br> 获取数据项中指定key对应的value<br>3.移除指定项<br> <code>localStorage/sessionStorage.removeItem(key)</code><br> 删除数据项中指定key的value<br>4.清空所有数据<br> <code>localStorage/sessionStorage.clear()</code><br> 清空所有数据项</p>
-</blockquote>
-<h6 id="Storage和cookie共同点"><a href="#Storage和cookie共同点" class="headerlink" title="Storage和cookie共同点"></a><a href=""></a>Storage和cookie共同点</h6><blockquote>
-<ul>
-<li>同域（同源策略）限制：同源策略：请求与响应的 协议、域名、端口都相同 则时同源，否则为 跨源/跨域</li>
-<li>存储的内容都会转为字符串格式</li>
-<li>都有存储大小限制</li>
-</ul>
-</blockquote>
-<h6 id="localStorage和sessionStorage的共同点"><a href="#localStorage和sessionStorage的共同点" class="headerlink" title="localStorage和sessionStorage的共同点"></a><a href=""></a>localStorage和sessionStorage的共同点</h6><blockquote>
-<ul>
-<li>API相同</li>
-<li>存储大小限制一样基本类似</li>
-<li>无个数限制</li>
-</ul>
-</blockquote>
-<h2 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a><a href=""></a>不同点</h2><blockquote>
-<p><strong>localStorage</strong><br> 没有有效期，除非删除，否则一直存在<br> 同域下页面共享<br> 支持 storage 事件<br><strong>sessionStorage</strong><br> 浏览器关闭，自动销毁<br> 页面私有<br> 不支持 storage 事件<br><strong>cookie</strong><br> 浏览器也会在每次请求的时候主动组织所有域下的cookie到请求头 cookie 中，发送给服务器端<br> 浏览器会主动存储接收到的 set-cookie 头信息的值<br> 可以设置 http-only 属性为 true 来禁止客户端代码（js）修改该值<br> 可以设置有效期 (默认浏览器关闭自动销毁)(不同浏览器有所不同)<br> 同域下个数有限制，最好不要超过50个(不同浏览器有所不同)<br> 单个cookie内容大小有限制，最好不要超过4000字节(不同浏览器有所不同)</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/note/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="javascript.note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/note/2020/06/07/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" class="post-title-link" itemprop="url">作用域链</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a><a href=""></a>作用域</h4><p>从变量开始创建到被系统回收的过程</p>
-<blockquote>
-<p>全局变量：即在任意函数以外创建的变量<br>局部变量：即在任意函数内创建的变量<br>在es5中，只有函数能够生成局部作用域，其它结构不可以</p>
-</blockquote>
-<h4 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a><a href=""></a>作用域链</h4><p>现在当前作用域的上下文查找，找到即执行<br>如果没有，继续向上一层查找，找到即执行<br>如果查找到全局中，依然没有，会报错，阻断程序运行</p>
-<h4 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a><a href=""></a>变量提升</h4><p>如果使用了未声明的变量，正常情况会应为找不到变量而报错<br>但是如果在使用的下方，出现了该变量的声明，会默认将它提升到使用之前，但不包括值<br>先使用后声明，该变量的因变量提升，可以找到但是值为undefined<br><strong>变量提升存在的意义</strong>：保证后续任务继续执行，只是失去了当前功能的值</p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200131105903913.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200131105913280.png" alt="在这里插入图片描述"></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/note/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/note/">1</a><span class="page-number current">2</span><a class="page-number" href="/note/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/note/page/8/">8</a><a class="extend next" rel="next" href="/note/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/note/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/note/">1</a><span class="page-number current">2</span><a class="page-number" href="/note/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/note/page/9/">9</a><a class="extend next" rel="next" href="/note/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1026,7 +1075,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/note/archives/">
         
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

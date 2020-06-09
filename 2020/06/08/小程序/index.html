@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="微信小程序，小程序的一种，英文名Wechat Mini Program，是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或搜一下即可打开应用。全面开放申请后，主体类型为企业、政府、媒体、其他组织或个人的开发者，均可申请注册小程序。微信小程序、微信订阅号、微信服务号、微信企业号是并行的体系。开发者工具使用： 点击添加项目后输入所属信息（AppID可登陆网页版小程序后在”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序">
+<meta property="og:url" content="http://yoursite.com/2020/06/08/%E5%B0%8F%E7%A8%8B%E5%BA%8F/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="微信小程序，小程序的一种，英文名Wechat Mini Program，是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或搜一下即可打开应用。全面开放申请后，主体类型为企业、政府、媒体、其他组织或个人的开发者，均可申请注册小程序。微信小程序、微信订阅号、微信服务号、微信企业号是并行的体系。开发者工具使用： 点击添加项目后输入所属信息（AppID可登陆网页版小程序后在”">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-08T01:30:35.005Z">
+<meta property="article:modified_time" content="2020-06-08T01:48:40.293Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/08/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>小程序 | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/08/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          小程序
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-08 09:30:35 / Modified: 09:48:40" itemprop="dateCreated datePublished" datetime="2020-06-08T09:30:35+08:00">2020-06-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="微信小程序，小程序的一种，英文名Wechat-Mini-Program，是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或搜一下即可打开应用。"><a href="#微信小程序，小程序的一种，英文名Wechat-Mini-Program，是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或搜一下即可打开应用。" class="headerlink" title="微信小程序，小程序的一种，英文名Wechat Mini Program，是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或搜一下即可打开应用。"></a>微信小程序，小程序的一种，英文名Wechat Mini Program，是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或搜一下即可打开应用。</h2><h3 id="全面开放申请后，主体类型为企业、政府、媒体、其他组织或个人的开发者，均可申请注册小程序。微信小程序、微信订阅号、微信服务号、微信企业号是并行的体系。"><a href="#全面开放申请后，主体类型为企业、政府、媒体、其他组织或个人的开发者，均可申请注册小程序。微信小程序、微信订阅号、微信服务号、微信企业号是并行的体系。" class="headerlink" title="全面开放申请后，主体类型为企业、政府、媒体、其他组织或个人的开发者，均可申请注册小程序。微信小程序、微信订阅号、微信服务号、微信企业号是并行的体系。"></a>全面开放申请后，主体类型为企业、政府、媒体、其他组织或个人的开发者，均可申请注册小程序。微信小程序、微信订阅号、微信服务号、微信企业号是并行的体系。</h3><h2 id="开发者工具使用："><a href="#开发者工具使用：" class="headerlink" title="开发者工具使用："></a>开发者工具使用：</h2><ul>
+<li>点击添加项目后输入所属信息（AppID可登陆网页版小程序后在”开发” - “开发设置”中看到）后即可创建，在开发工具主页中可看到创建的小程序<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2></li>
+</ul>
+<ul>
+<li>AppID(小程序ID)<br>做上面的那些步骤就是为了得到小程序ID~</li>
+</ul>
+<h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><ul>
+<li><p>我们在官方下载的微信wweb开发者工具中,必须填入小程序ID才能进行下一步,在选择项目目录之前,最好先创建一个代码仓库,来管理我们的项目代码。</p>
+</li>
+<li><p>主体框架结构：</p>
+<ul>
+<li>.json：json配置文件(json文件中无法使用注释)<pre><code>通过app.json中的pages可以获取当前小程序的所有页面路径</code></pre></li>
+<li>.wxml:html模板文件(某些标签会与html有所不同)</li>
+<li>.wxss:css样式文件具有css大部分特性且提供了新的尺寸单位rpx和全局样式/局部样式</li>
+<li>.js:JavaScript文件</li>
+</ul>
+</li>
+<li><p> 微信客户端会先根据json文件生成界面,然后加载页面的wxml结构和wxss样式,最后装载js文件</p>
+<h2 id="app-json全局json配置："><a href="#app-json全局json配置：" class="headerlink" title="app.json全局json配置："></a>app.json全局json配置：</h2><h3 id="所有组件的公共属性："><a href="#所有组件的公共属性：" class="headerlink" title="所有组件的公共属性："></a>所有组件的公共属性：</h3></li>
+<li><p>id：组件的唯一标示（string）</p>
+</li>
+<li><p>class：组件的类名（string）</p>
+</li>
+<li><p>style:组件的内联css样式（string）</p>
+</li>
+<li><p>hidden：组件的显示状态（布尔值）</p>
+</li>
+<li><p>data-* 组件的自定义属性？</p>
+</li>
+<li><p>bind/catch 组件的事件？<br>微信小程序推出一年多一点的时间，算是一个新事物，但是利用的技术却都是已经存在的技术。如果你稍加调查就会发现，不光是微信小程序，很多类似形态的应用都采用类似的架构：</p>
+<p>  使用 JSON 技术来表现应用的配置信息。包含应用的基本信息，页面配置和路由，应用全体的信息等。<br>使用经过定制 CSS+XML 技术来实现视图层的描述。画面元素，例如列表、按钮、文本框、选择框等都通过 XML 语言来描述，遵从 XML 语法，对于页面的共同风格，使用 CSS 进行定义。<br>使用 JavaScript 语言来实现逻辑层结构。包括用户操作的处理，系统 API 的调用等。<br>架构在视图层和逻辑层之间提供数据和事件传输功能，从而尽量减少难度。由于类似应有都属于轻应用，所以提供的功能都比较单一。<br>具体的语法，用途等将会在使用的时候详细介绍，这里只提一下相关技术的基本情况，了解即可。</p>
+</li>
+</ul>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><ul>
+<li>JSON（JavaScript Object Notation）是一种轻量级的数据交换格式。它基于 ECMAScript（W3C 制定的 JavaScript 规范）的一个子集，采用完全独立于编程语言的文本格式来存储和表示数据。简洁和清晰的层次结构使得 JSON 成为理想的数据交换语言。易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/06/08/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%80/" rel="prev" title="小程序一">
+      <i class="fa fa-chevron-left"></i> 小程序一
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/06/09/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BA%8C/" rel="next" title="小程序二">
+      小程序二 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#微信小程序，小程序的一种，英文名Wechat-Mini-Program，是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或搜一下即可打开应用。"><span class="nav-number">1.</span> <span class="nav-text">微信小程序，小程序的一种，英文名Wechat Mini Program，是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或搜一下即可打开应用。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全面开放申请后，主体类型为企业、政府、媒体、其他组织或个人的开发者，均可申请注册小程序。微信小程序、微信订阅号、微信服务号、微信企业号是并行的体系。"><span class="nav-number">1.1.</span> <span class="nav-text">全面开放申请后，主体类型为企业、政府、媒体、其他组织或个人的开发者，均可申请注册小程序。微信小程序、微信订阅号、微信服务号、微信企业号是并行的体系。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发者工具使用："><span class="nav-number">2.</span> <span class="nav-text">开发者工具使用：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发"><span class="nav-number">3.</span> <span class="nav-text">开发</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建项目"><span class="nav-number"></span> <span class="nav-text">创建项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#app-json全局json配置："><span class="nav-number">1.</span> <span class="nav-text">app.json全局json配置：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#所有组件的公共属性："><span class="nav-number">1.1.</span> <span class="nav-text">所有组件的公共属性：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON"><span class="nav-number">2.</span> <span class="nav-text">JSON</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

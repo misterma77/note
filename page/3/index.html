@@ -145,6 +145,258 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/note/2020/06/07/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">字符串</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h6 id="创建"><a href="#创建" class="headerlink" title="创建"></a><a href=""></a>创建</h6><p>通过new关键字来创建一个对象，String对象处理字符串<br><code>var str = new String(&quot;123&quot;)</code><br>通过字面量的方式<br><code>var s = &quot;123&quot;</code></p>
+<h2 id="字符串方法"><a href="#字符串方法" class="headerlink" title="字符串方法"></a><a href=""></a>字符串方法</h2><p>1.<code>charAt(位置)</code> 返回指定位置的字符</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128115550243.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128115602169.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>2.<code>.length</code> 返回字符串的长度</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128115654750.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128115704276.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>3.<code>charCodeAt(位置)</code> 返回指定位置字符的Unicode编码</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128115950200.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128120009409.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>4.<code>fromCharCode()</code> 接收一个UniCode编码，返回对应字符串</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128120317732.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128120324787.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>5.<code>replace(参数1，参数2)</code>    替换，会将替换后的字符串整体返回，不修改原字符串<br>参数1：被替换目标<br>参数2：替换的新内容</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128121153227.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128121200692.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>6.<code>substring(参数1，参数2)</code>    提取介于两个下标之间的字符串(相当于数组中的slice)<br>包头不包尾，不影响原字符串<br>参数1：开始下标<br>参数2：结束下标</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/2020012812165847.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128121704513.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>7.<code>substr(参数1，参数2)</code> 从开始位置截取指定长度的字符串(splice),不影响原字符串<br>参数1：开始i位置<br>参数2：截取长度</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128122140142.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128122159113.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>8.<code>split(参数1，参数2)</code> 把一个字符串分割成字符串数组,不影响原字符串<br>参数1：分割依据<br>参数2(可选)：分割后返回的长度<br>（超出实际大小，按照实际大小算。小于实际大小的话，按照指定长度返回，超出的不返回）</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128122805177.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128122808430.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>9.<code>slice(参数1，参数2)</code> 提取指定范围的字符串<br>参数1：开始范围<br>参数2：结束范围</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200128122950454.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128123002958.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>10.<code>indexOf()</code> 返回指定字符的对应下标(首先出现的),如果没有则返回-1</p>
+<blockquote>
+<p>代码：<strong>利用indexOf()去重</strong><br><img src="https://img-blog.csdnimg.cn/20200128123617108.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200128123628738.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<p>11.<code>lastIndexOf()</code> 返回指定字符最后出现的位置<br>12.<code>toLowerCase()</code> 字符串转换为小写<br>  <code>toUpperCase()</code> 字符串转换为大写</p>
+<blockquote>
+<p>代码：将首字母转换为大写<br><img src="https://img-blog.csdnimg.cn/20200128125608857.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">显示效果：<br><img src="https://img-blog.csdnimg.cn/2020012812561975.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AD%98%E5%82%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/note/2020/06/07/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AD%98%E5%82%A8/" class="post-title-link" itemprop="url">客户端存储</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a><a href=""></a>cookie</h1><p>  cookie是http协议下，服务端或者脚本可以维护客户端信息的一种方式</p>
+<blockquote>
+<h6 id="koa中cookie的使用"><a href="#koa中cookie的使用" class="headerlink" title="koa中cookie的使用"></a><a href=""></a>koa中cookie的使用</h6><p>  储存cookie的值：<code>ctx.cookies.set(name,value,[option])</code><br>  获取cookie的值：<code>ctx.cookies.get(name,[option])</code><br><strong>option常用设置</strong><br>  1.<code>maxAge</code> 一个数字表示从<code>Data.new()</code>得到的毫秒数<br>  2.<code>expires</code>  cookie 过期的 <code>Date</code><br>  3.<code>path</code> cookie 路径, 默认是<code>&#39;/&#39;</code><br>  4.<code>domain</code> cookie 域名<br>  5.<code>secure</code> 安全 cookie  设置后只能通过https来传递cookie<br>  6.<code>httpOnly</code> 服务器可访问 cookie, 默认是 <strong>true</strong><br>  7.<code>overwrite</code> 一个布尔值，表示是否覆盖以前设置的同名的 cookie (默认是 <strong>false</strong>).<br>     如果是 true, 在同一个请求中设置相同名称的所有 Cookie</p>
+</blockquote>
+<blockquote>
+<h6 id="客户端使用cookie"><a href="#客户端使用cookie" class="headerlink" title="客户端使用cookie"></a><a href=""></a>客户端使用cookie</h6><p> <strong>特点</strong>：<br>  1.浏览器会主动存储接收到的 set-cookie 头信息的值<br>  2.有时效性；<br>  3.可以设置 http-only 属性为 true 来禁止客户端代码（js）修改该值<br> <strong>设置</strong>：<code>document.cookie=&quot;key=value&quot;</code>key和value是包含在一个字符串中<br> key包含字段<br>  -[name] 这个name为自己取的cookie名称，同名的值会覆盖<br>  -domain 所属域名<br>  - path 所属路径<br>  - Expires/Max-Age 到期时间/持续时间 (单位是秒)<br>  - http-only 是否只作为http时使用，如果为true，那么客户端能够在http请求和响应中进行传输，但是<br>    客户端浏览器不能使用js去读取或修改<br>  -多个key=value使用 ; （分号+空格）分隔<br> <strong>获取</strong>：<code>document.cookie</code><br>  返回值是当前域名下的所有cookie，并按照某种格式组织的字符串 ：key=value;key1=value1;…<br>  keyn=valuen<br><strong><mark>封装cookie</mark></strong><br><img src="https://img-blog.csdnimg.cn/2020032614340265.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200326143450369.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<h1 id="本地缓存Storage"><a href="#本地缓存Storage" class="headerlink" title="本地缓存Storage"></a><a href=""></a>本地缓存Storage</h1><h6 id="localStorage及sessionStorage的使用"><a href="#localStorage及sessionStorage的使用" class="headerlink" title="localStorage及sessionStorage的使用"></a><a href=""></a>localStorage及sessionStorage的使用</h6><blockquote>
+<p>1.设置<br> <code>localStorage/sessionStorage.setItem(key,value)</code><br> 添加或更新（如果数据项中已存在该key）数据项中指定key的value<br>2.获取<br> <code>localStorage/sessionStorage.getItem(key)</code><br> 获取数据项中指定key对应的value<br>3.移除指定项<br> <code>localStorage/sessionStorage.removeItem(key)</code><br> 删除数据项中指定key的value<br>4.清空所有数据<br> <code>localStorage/sessionStorage.clear()</code><br> 清空所有数据项</p>
+</blockquote>
+<h6 id="Storage和cookie共同点"><a href="#Storage和cookie共同点" class="headerlink" title="Storage和cookie共同点"></a><a href=""></a>Storage和cookie共同点</h6><blockquote>
+<ul>
+<li>同域（同源策略）限制：同源策略：请求与响应的 协议、域名、端口都相同 则时同源，否则为 跨源/跨域</li>
+<li>存储的内容都会转为字符串格式</li>
+<li>都有存储大小限制</li>
+</ul>
+</blockquote>
+<h6 id="localStorage和sessionStorage的共同点"><a href="#localStorage和sessionStorage的共同点" class="headerlink" title="localStorage和sessionStorage的共同点"></a><a href=""></a>localStorage和sessionStorage的共同点</h6><blockquote>
+<ul>
+<li>API相同</li>
+<li>存储大小限制一样基本类似</li>
+<li>无个数限制</li>
+</ul>
+</blockquote>
+<h2 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a><a href=""></a>不同点</h2><blockquote>
+<p><strong>localStorage</strong><br> 没有有效期，除非删除，否则一直存在<br> 同域下页面共享<br> 支持 storage 事件<br><strong>sessionStorage</strong><br> 浏览器关闭，自动销毁<br> 页面私有<br> 不支持 storage 事件<br><strong>cookie</strong><br> 浏览器也会在每次请求的时候主动组织所有域下的cookie到请求头 cookie 中，发送给服务器端<br> 浏览器会主动存储接收到的 set-cookie 头信息的值<br> 可以设置 http-only 属性为 true 来禁止客户端代码（js）修改该值<br> 可以设置有效期 (默认浏览器关闭自动销毁)(不同浏览器有所不同)<br> 同域下个数有限制，最好不要超过50个(不同浏览器有所不同)<br> 单个cookie内容大小有限制，最好不要超过4000字节(不同浏览器有所不同)</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/note/2020/06/07/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" class="post-title-link" itemprop="url">作用域链</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a><a href=""></a>作用域</h4><p>从变量开始创建到被系统回收的过程</p>
+<blockquote>
+<p>全局变量：即在任意函数以外创建的变量<br>局部变量：即在任意函数内创建的变量<br>在es5中，只有函数能够生成局部作用域，其它结构不可以</p>
+</blockquote>
+<h4 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a><a href=""></a>作用域链</h4><p>现在当前作用域的上下文查找，找到即执行<br>如果没有，继续向上一层查找，找到即执行<br>如果查找到全局中，依然没有，会报错，阻断程序运行</p>
+<h4 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a><a href=""></a>变量提升</h4><p>如果使用了未声明的变量，正常情况会应为找不到变量而报错<br>但是如果在使用的下方，出现了该变量的声明，会默认将它提升到使用之前，但不包括值<br>先使用后声明，该变量的因变量提升，可以找到但是值为undefined<br><strong>变量提升存在的意义</strong>：保证后续任务继续执行，只是失去了当前功能的值</p>
+<blockquote>
+<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200131105903913.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200131105913280.png" alt="在这里插入图片描述"></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E5%87%BD%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -950,285 +1202,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/vue-%E8%BF%87%E6%BB%A4%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/note/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="javascript.note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/note/2020/06/07/vue-%E8%BF%87%E6%BB%A4%E5%99%A8/" class="post-title-link" itemprop="url">vue-过滤器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Vue-js"><a href="#Vue-js" class="headerlink" title="Vue.js"></a>Vue.js</h1><p>[TOC]</p>
-<h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><p>过滤器是一个使用在 <code>双大括号插值</code> 和 <code>v-bind</code> 中，用于过滤输出内容的函数</p>
-<p>假设有一个用于把内容转为大写的过滤器函数 <code>toUpperCase</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;content|toUpperCase&#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>|</code> : 管道符，表示数据从左至右通过管道符进行传递</li>
-<li>过滤器可以有多个，执行顺序从左至右，过滤器函数第一个参数的值就是其管道符前一个的结果</li>
-</ul>
-<h3 id="注册过滤器"><a href="#注册过滤器" class="headerlink" title="注册过滤器"></a>注册过滤器</h3><h4 id="全局过滤器"><a href="#全局过滤器" class="headerlink" title="全局过滤器"></a>全局过滤器</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.filter(<span class="string">'过滤器名称'</span>, 过滤器函数);</span><br></pre></td></tr></table></figure>
-
-<h4 id="局部过滤器"><a href="#局部过滤器" class="headerlink" title="局部过滤器"></a>局部过滤器</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'组件'</span>, &#123;</span><br><span class="line">  ...,</span><br><span class="line">  filters: &#123;</span><br><span class="line">  	<span class="string">'过滤器名称'</span>: 过滤器函数	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        &#123;&#123;title|toUpperCase|slice(3)&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="actionscript">                title: <span class="string">'kaikeba'</span></span></span><br><span class="line">            &#125;,</span><br><span class="line">            filters: &#123;</span><br><span class="line"><span class="actionscript">                toUpperCase: <span class="function"><span class="keyword">function</span><span class="params">(val)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">return</span> val.toUpperCase();</span></span><br><span class="line">                &#125;,</span><br><span class="line">                slice(val, n) &#123;</span><br><span class="line"><span class="actionscript">                    <span class="keyword">return</span> val.slice(n);</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/note/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="javascript.note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/note/2020/06/07/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">事件对象</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a><a href=""></a>事件对象</h2><p>事件有<code>DOM0</code>和<code>DOM2</code>的区别<br>DOM0就是直接通过事件写到html中的事件<br>DOM2就是通过addEventListener绑定/监听事件</p>
-<h2 id="事件冒泡和捕获"><a href="#事件冒泡和捕获" class="headerlink" title="事件冒泡和捕获"></a><a href=""></a>事件冒泡和捕获</h2><p>事件流：从页面中接受事件的顺序(事件冒泡和事件捕获)<br>DOM2级包含3个事件：事件捕获阶段、处于目标阶段和事件冒泡阶段<br>事件的目标在捕获阶段不会接收到事件，下一阶段处于目标阶段，事件在目标上发生，在事件处理中被看成冒泡阶段的一部分</p>
-<h6 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a><a href=""></a>事件捕获</h6><blockquote>
-<p>不太具体的Dom节点应该更早接收到事件，而最具体的节点应该最后接收到事件<br>从上到下，由不具体到具体</p>
-</blockquote>
-<h6 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a><a href=""></a>事件冒泡</h6><blockquote>
-<p>IE的事件流叫做事件冒泡，即事件开始时，由最具体的元素接受，然后逐级向上传播到较为不具体的节点<br>从下到上，由具体到不具体</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/20200201105814469.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h1 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a><a href=""></a>事件监听</h1><h6 id="添加事件监听"><a href="#添加事件监听" class="headerlink" title="添加事件监听"></a><a href=""></a>添加事件监听</h6><p><code>addEventListener(参数1,参数2,参数3)</code></p>
-<blockquote>
-<p>参数1：事件类型<br>参数2：触发事件后执行的函数<br>参数3：布尔值，是否按照事件冒泡顺序。默认为false 冒泡<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200201213753655.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200201213803455.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>点击前两个之后：<br><img src="https://img-blog.csdnimg.cn/20200201213844159.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<h6 id="删除事件监听"><a href="#删除事件监听" class="headerlink" title="删除事件监听"></a><a href=""></a>删除事件监听</h6><p><code>removeEventListener(参数1,参数2,参数3)</code><br>删除时的三个参数要和添加时的三个参数相同</p>
-<blockquote>
-<p>注意事项：<br>1.相同元素调用<br>2.相同事件名称<br>3.相同函数名（匿名函数不行，需要全局函数）<br>4.相同的执行阶段</p>
-</blockquote>
-<h6 id="普通事件绑定和事件监听的区别"><a href="#普通事件绑定和事件监听的区别" class="headerlink" title="普通事件绑定和事件监听的区别"></a><a href=""></a>普通事件绑定和事件监听的区别</h6><blockquote>
-<p>1.普通事件绑定只能给元素相同类型的事件绑定一个，如果绑定第二个，将会覆盖上一个<br>事件监听可以给同一个元素的相同类型事件绑定多个<br>2.事件监听可以控制事件的传播方式(事件冒泡或事件捕获)<br>3.普通事件绑定只能通过null来取消<br>事件监听则可以通过删除的方法来取消事件<br>4.事件监听可以对动态生成的元素(未来元素)生效<br>普通事件绑定不可以</p>
-</blockquote>
-<h6 id="oncontextmenu-事件"><a href="#oncontextmenu-事件" class="headerlink" title="oncontextmenu 事件"></a><a href=""></a>oncontextmenu 事件</h6><blockquote>
-<p>事件在元素中用户右击鼠标时触发并打开上下文菜单。</p>
-</blockquote>
-<h1 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a><a href=""></a>事件委托</h1><p>利用事件冒泡机制指定一个事件处理程序，来管理某一类型的所有事件<br>即利用事件冒泡的原理，把事件加到父级上，触发执行效果<br>优点：1.只在内存中开辟了一块空间，节省资源的同时，减少了DOM操作，提高性能<br>   2.对于新添加的元素也会有之前的事件</p>
-<h1 id="event对象"><a href="#event对象" class="headerlink" title="event对象"></a><a href=""></a>event对象</h1><p>Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。事件通常与函数结合使用，函数不会在事件发生前被执行<br>在事件发生时，负责处理事件的函数，会接收一个event对象<br>浏览器负责处理事件，js负责告诉浏览器如何处理<br>作用：用来储存事件源的信息(鼠标位置，键盘编码)<br>属性：兼容写法     <code>var ev = ev || window.event</code></p>
-<blockquote>
-<p>1.<code>ev.target</code> 返回事件源<br>2.<code>ev.button</code> 返回被鼠标按下的那个键(0为左，1为中，2为右)<br>3.<code>ev.offsetX</code> 返回鼠标在元素上x轴上的位置<br>4.<code>ev.clientX</code> 鼠标在浏览器可视区域X轴上的位置(据左距离)<br>5.<code>ev.keyCode</code> 返回键盘的编码，以次来确定是哪个键位<br>6.<code>ev.scrollX</code> 文档水平滚动的值<br>7.<code>ev.stopPropagation()</code> 阻止事件冒泡<br>8.<code>ev.preventDefault()</code> 阻止默认事件</p>
-</blockquote>
-<h2 id="this指针的指向问题"><a href="#this指针的指向问题" class="headerlink" title="this指针的指向问题"></a><a href=""></a>this指针的指向问题</h2><p>1.在普通函数外部调用的时候</p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/2020020120525478.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200201205256388.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>2.在普通函数内部调用的时候</p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/2020020120563275.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/2020020120563935.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">3.对于自执行的匿名函数而言，this指向window</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/vue-cli/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/note/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="javascript.note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/note/2020/06/07/vue-cli/" class="post-title-link" itemprop="url">vue-cli</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="vue-cli"><a href="#vue-cli" class="headerlink" title="vue-cli"></a>vue-cli</h1><p>[TOC]</p>
-<h2 id="vue-cli-1"><a href="#vue-cli-1" class="headerlink" title="vue-cli"></a>vue-cli</h2><p><a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener">https://cli.vuejs.org/zh/</a></p>
-<p><u>vue-cli</u> 是 <u>vue</u> 提供的一个用于自动化构建和开发项目的工具，也称为：<u>脚手架</u>，它是一系列工具的集合，它主要有：</p>
-<ul>
-<li>根据配置选项自动构建项目，并安装所需要的依赖</li>
-<li>启动一个本地开发服务器，通过这个服务器可以基于服务器环境访问本地项目，同时提供了跨域代理服务</li>
-<li>项目的自动编译、打包</li>
-<li>项目测试（单元测试、e2e测试）</li>
-</ul>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">yarn global add @vue/cli</span><br></pre></td></tr></table></figure>
-
-<p>安装成功以后，会提供一个 <code>vue</code> 的命令</p>
-<p><strong>查看版本</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vue --version</span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">vue -V</span><br></pre></td></tr></table></figure>
-
-<p><strong>帮助</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vue --<span class="built_in">help</span></span><br><span class="line"><span class="comment"># OR</span></span><br><span class="line">vue -h</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p><u>vue-cli</u> 提供了两种方式来创建项目</p>
-<ul>
-<li>命令行 - cli</li>
-<li>图形界面（基于浏览器） - ui</li>
-</ul>
-<h4 id="命令行方式创建项目"><a href="#命令行方式创建项目" class="headerlink" title="命令行方式创建项目"></a>命令行方式创建项目</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create 项目名称</span><br></pre></td></tr></table></figure>
-
-<h4 id="基于浏览器图形界面方式创建项目"><a href="#基于浏览器图形界面方式创建项目" class="headerlink" title="基于浏览器图形界面方式创建项目"></a>基于浏览器图形界面方式创建项目</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue ui</span><br></pre></td></tr></table></figure>
-
-<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>项目创建成功以后，进入项目根目录，打开 <u>package.json</u> 文件，我们可以看到</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ...,</span><br><span class="line">  "scripts": &#123;</span><br><span class="line">    "serve": "vue-cli-service serve",</span><br><span class="line">    "build": "vue-cli-service build"</span><br><span class="line">  &#125;,</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://cli.vuejs.org/zh/guide/cli-service.html#使用命令" target="_blank" rel="noopener">https://cli.vuejs.org/zh/guide/cli-service.html#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4</a></p>
-<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><p>打包的具体命令，我们在后期项目开发完成以后再说</p>
-<h3 id="项目目录结构文件说明"><a href="#项目目录结构文件说明" class="headerlink" title="项目目录结构文件说明"></a>项目目录结构文件说明</h3><p><img src="./assets/vue-directory.png" alt="vue-directory"></p>
-<p><strong>src</strong></p>
-<p>先来说一个最重要的目录 <u>src</u> ，这个就是存放的就是我们项目源码的目录，我们开发过程中大部分的时间就在这个目录中</p>
-<ul>
-<li>main.js</li>
-</ul>
-<p>项目的入口文件</p>
-<ul>
-<li>App.vue</li>
-</ul>
-<p>首先，这是 <u>vue</u> 提供的一种单文件组件的文件模式（后续会讲），一个 <u>.vue</u> 文件就是一个独立的组件，这里的 <u>App.vue</u> 是应用的根组件</p>
-<ul>
-<li>components 目录</li>
-</ul>
-<p>存放组件的目录</p>
-<ul>
-<li>assets 目录</li>
-</ul>
-<p>存放静态资源的目录，比如：图片，css 等。这里的文件与外层 <u>public</u> 目录存放的静态资源的最大区别是：<u>assets</u> 存放的资源是通过 <u>import</u> 等方式作为模块导入，最后打包处理的。而 <u>public</u> 中的资源并不通过模块方式导入，一般都是通过 <u>script</u> 、<u>link</u> 、<u>img</u> 等方式从浏览器引入的资源，比如无法通过模块化处理的 js 文件（这样的需求情况并不多）</p>
-<p><strong>public</strong></p>
-<p>一些并非通过模块方式引入的资源文件存放的位置，一般都是通过 script 、link 、img 等方式从浏览器引入的资源，比如无法通过模块化处理的 js 文件（这样的需求情况并不多）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/note/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/note/">1</a><a class="page-number" href="/note/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/note/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/note/page/8/">8</a><a class="extend next" rel="next" href="/note/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/note/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/note/">1</a><a class="page-number" href="/note/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/note/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/note/page/9/">9</a><a class="extend next" rel="next" href="/note/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1294,7 +1271,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/note/archives/">
         
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
