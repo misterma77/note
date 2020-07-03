@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="React-1课程内容React 是什么？一个用于构建用户界面的 JavaScript 库中文手册：https:&#x2F;&#x2F;react.docschina.org&#x2F; 命令式编程 和 声明式编程 告诉计算机怎么做（How） - 过程 告诉计算机我们要什么（What） - 结果  如何使用 React基于浏览器的模式 React.js 提供 React.js 核心功能代码，如：虚拟 dom，组件 React.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-1">
+<meta property="og:url" content="http://yoursite.com/2020/06/29/React-1/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="React-1课程内容React 是什么？一个用于构建用户界面的 JavaScript 库中文手册：https:&#x2F;&#x2F;react.docschina.org&#x2F; 命令式编程 和 声明式编程 告诉计算机怎么做（How） - 过程 告诉计算机我们要什么（What） - 结果  如何使用 React基于浏览器的模式 React.js 提供 React.js 核心功能代码，如：虚拟 dom，组件 React.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-29T02:30:57.589Z">
+<meta property="article:modified_time" content="2020-06-29T02:30:57.887Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/29/React-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>React-1 | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/29/React-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React-1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-29 10:30:57" itemprop="dateCreated datePublished" datetime="2020-06-29T10:30:57+08:00">2020-06-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="React-1"><a href="#React-1" class="headerlink" title="React-1"></a>React-1</h1><h1 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h1><h2 id="React-是什么？"><a href="#React-是什么？" class="headerlink" title="React 是什么？"></a>React 是什么？</h2><p>一个用于构建用户界面的 JavaScript 库<br>中文手册：<a href="https://react.docschina.org/" target="_blank" rel="noopener">https://react.docschina.org/</a></p>
+<h2 id="命令式编程-和-声明式编程"><a href="#命令式编程-和-声明式编程" class="headerlink" title="命令式编程 和 声明式编程"></a>命令式编程 和 声明式编程</h2><ul>
+<li>告诉计算机怎么做（How） - 过程</li>
+<li>告诉计算机我们要什么（What） - 结果</li>
+</ul>
+<h2 id="如何使用-React"><a href="#如何使用-React" class="headerlink" title="如何使用 React"></a>如何使用 React</h2><h3 id="基于浏览器的模式"><a href="#基于浏览器的模式" class="headerlink" title="基于浏览器的模式"></a>基于浏览器的模式</h3><ul>
+<li>React.js 提供 React.js 核心功能代码，如：虚拟 dom，组件<ul>
+<li>React.createElement(type,props,children);</li>
+</ul>
+</li>
+<li>ReactDOM 提供了与浏览器交互的 DOM 功能，如：dom 渲染<ul>
+<li>ReactDOM.render(element, container[, callback])<ul>
+<li>element：要渲染的内容</li>
+<li>container：要渲染的内容存放容器</li>
+<li>callback：渲染后的回调函数 <h3 id="babel"><a href="#babel" class="headerlink" title="babel"></a>babel</h3>babel-standalone.js：在浏览器中处理 JSX<br><a href="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js" target="_blank" rel="noopener">https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h3><p>JSX 是一个基于 JavaScript + XML 的一个扩展语法<br>    - 它可以作为值使用<br>    - 它并不是字符串<br>    - 它也不是HTML<br>    - 它可以配合JavaScript 表达式一起使用</p>
+<h4 id="插值表达式"><a href="#插值表达式" class="headerlink" title="插值表达式"></a>插值表达式</h4><p>在 JXS 中可以使用 {表达式} 嵌入表达式</p>
+<p>表达式：产生值的一组代码的集合</p>
+<ul>
+<li>变量</li>
+<li>算术运算</li>
+<li>函数调用</li>
+<li>……</li>
+</ul>
+<p>注意：分清楚 表达式 与 语句 的区别，if、for、while 这些都是语句，JSX 不支持语句</p>
+<h5 id="各种类型内容在插值中的使用"><a href="#各种类型内容在插值中的使用" class="headerlink" title="各种类型内容在插值中的使用"></a>各种类型内容在插值中的使用</h5><ul>
+<li>注释<br>  {/<em>注释</em>/}<pre><code>{/*
+        多行注释
+*/}</code></pre></li>
+</ul>
+<h4 id="输出数据类型"><a href="#输出数据类型" class="headerlink" title="输出数据类型"></a>输出数据类型</h4><ul>
+<li>字符串、数字：原样输出</li>
+<li>布尔值、空、未定义 会被忽略<h4 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h4></li>
+<li>数组</li>
+<li>对象<br>扩展：虚拟 DOM （virtualDOM） 和 diff</li>
+</ul>
+<h4 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h4><ul>
+<li>三元运算符</li>
+<li>与或运算符</li>
+</ul>
+<h3 id="在属性上使用-表达式"><a href="#在属性上使用-表达式" class="headerlink" title="在属性上使用 表达式"></a>在属性上使用 表达式</h3><p>JSX 中的表达式也可以使用在属性上，但是使用的时候需要注意</p>
+<ul>
+<li>当在属性中使用 {} 的时候，不要使用引号包含</li>
+</ul>
+<h4 id="JSX-使用注意事项"><a href="#JSX-使用注意事项" class="headerlink" title="JSX 使用注意事项"></a>JSX 使用注意事项</h4><ul>
+<li>必须有,且只有一个顶层的包含元素 - React.Fragment</li>
+<li>JSX 不是html，很多属性在编写时不一样<ul>
+<li>className</li>
+<li>style </li>
+</ul>
+</li>
+<li>列表渲染时，必须有 key 值</li>
+<li>在 jsx 所有标签必须闭合</li>
+<li>组件的首字母一定大写，标签一定要小写</li>
+</ul>
+<p><strong>XSS</strong><br>为了有效的防止 XSS 注入攻击，React DOM 会在渲染的时候把内容（字符串）进行转义，所以字符串形式的标签是不会作为 HTML 标签进行处理的</p>
+<h2 id="基于自动化的集成环境模式-create-react-app-脚手架"><a href="#基于自动化的集成环境模式-create-react-app-脚手架" class="headerlink" title="基于自动化的集成环境模式 - create-react-app - 脚手架"></a>基于自动化的集成环境模式 - create-react-app - 脚手架</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>通过前面 script 的方式虽然也能完成 React.js 的开发，但是有一个现在前端很重要的特性 - 模块化，无法使用。</p>
+<p>Create React App 是一个使用 Node.js 编写的命令行工具，通过它可以帮助我们快速生成 React.js 项目，并内置了 Babel、Webpack 等工具帮助我们实现 ES6+ 解析、模块化解析打包，也就是通过它，我们可以使用 模块化 以及 ES6+ 等更新的一些特性。同时它还内置 ESLint 语法检测工具、Jest 单元测试工具。还有一个基于 Node.js 的 WebServer 帮助我们更好的在本地预览应用，其实还有更多。</p>
+<p>这些都通过 Create React App 帮助我们安装并配置好了，<strong>开箱即用</strong></p>
+<h3 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h3><p>通过 npm、yarn、npx 都可以</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><h6 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g create-react-app</span><br></pre></td></tr></table></figure>
+
+<h6 id="yarn"><a href="#yarn" class="headerlink" title="yarn"></a>yarn</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn global add create-react-app</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>安装完成以后，即可使用 create-react-app 命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create-react-app &lt;项目名称&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或者通过 npx 的方式</p>
+<h6 id="npx"><a href="#npx" class="headerlink" title="npx"></a>npx</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app &lt;项目名称&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="项目目录结构说明"><a href="#项目目录结构说明" class="headerlink" title="项目目录结构说明"></a>项目目录结构说明</h3><p>运行命令以后，就会在运行命令所在目录下面创建一个以项目名称为名的目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">my-app&#x2F;</span><br><span class="line">  README.md</span><br><span class="line">  node_modules&#x2F;</span><br><span class="line">  package.json</span><br><span class="line">  public&#x2F;</span><br><span class="line">    index.html</span><br><span class="line">    favicon.ico</span><br><span class="line">  src&#x2F;</span><br><span class="line">    App.css</span><br><span class="line">    App.js</span><br><span class="line">    App.test.js</span><br><span class="line">    index.css</span><br><span class="line">    index.js</span><br><span class="line">    logo.svg</span><br></pre></td></tr></table></figure>
+
+<h3 id="命令脚本"><a href="#命令脚本" class="headerlink" title="命令脚本"></a>命令脚本</h3><p>create-react-app 同时也提供了其它一些命令来帮助我们进行开发</p>
+<h6 id="npm-start"><a href="#npm-start" class="headerlink" title="npm start"></a>npm start</h6><p>启动一个内置的本地 WebServer，根目录映射到 ‘./public’ 目录，默认端口：3000</p>
+<h6 id="npm-run-test"><a href="#npm-run-test" class="headerlink" title="npm run test"></a>npm run test</h6><p>运行 Jest 测试</p>
+<h6 id="npm-run-build"><a href="#npm-run-build" class="headerlink" title="npm run build"></a>npm run build</h6><p>打包应用（准备上线）</p>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>对具有一定独立功能的数据与方法的封装，对外暴露接口，有利于代码功能的复用，且不用担心冲突问题。</p>
+<h3 id="函数式组件"><a href="#函数式组件" class="headerlink" title="函数式组件"></a>函数式组件</h3><ul>
+<li>函数的名称就是组件的名称</li>
+<li>函数的返回值就是组件要渲染的内容</li>
+</ul>
+<h3 id="类式组件"><a href="#类式组件" class="headerlink" title="类式组件"></a>类式组件</h3><ul>
+<li>组件类必须继承 <strong>React.Component</strong></li>
+<li>组件类必须有 <strong>render</strong> 方法</li>
+</ul>
+<h2 id="不从实际案例开始的知识点就是耍-LM"><a href="#不从实际案例开始的知识点就是耍-LM" class="headerlink" title="不从实际案例开始的知识点就是耍 LM"></a>不从实际案例开始的知识点就是耍 LM</h2><p><strong>样式</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.friend-list</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000000</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.friend-group</span> <span class="selector-tag">dt</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgb</span>(<span class="number">64</span>, <span class="number">158</span>, <span class="number">255</span>);</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.friend-group</span> <span class="selector-tag">dd</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.friend-group</span><span class="selector-class">.expanded</span> <span class="selector-tag">dd</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.friend-group</span> <span class="selector-tag">dd</span><span class="selector-class">.checked</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: green;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-FriendList-组件"><a href="#创建-FriendList-组件" class="headerlink" title="创建 FriendList 组件"></a>创建 FriendList 组件</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FriendList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  	render() &#123;</span><br><span class="line">      	<span class="keyword">return</span> (</span><br><span class="line">          	&lt;div className=<span class="string">"friend-list"</span>&gt;</span><br><span class="line">                &lt;div className=<span class="string">"friend-group"</span>&gt;</span><br><span class="line">                    &lt;dt&gt;家人&lt;<span class="regexp">/dt&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;dd&gt;爸爸&lt;/</span>dd&gt;</span><br><span class="line">                    &lt;dd&gt;妈妈&lt;<span class="regexp">/dd&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>div&gt;</span><br><span class="line">                &lt;div className=<span class="string">"friend-group"</span>&gt;</span><br><span class="line">                    &lt;dt&gt;朋友&lt;<span class="regexp">/dt&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;dd&gt;张三&lt;/</span>dd&gt;</span><br><span class="line">                    &lt;dd&gt;李四&lt;<span class="regexp">/dd&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;dd&gt;王五&lt;/</span>dd&gt;</span><br><span class="line">                &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">                &lt;div className="friend-group"&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;dt&gt;客户&lt;/</span>dt&gt;</span><br><span class="line">                    &lt;dd&gt;阿里&lt;<span class="regexp">/dd&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;dd&gt;腾讯&lt;/</span>dd&gt;</span><br><span class="line">                    &lt;dd&gt;头条&lt;<span class="regexp">/dd&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>div&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        );</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="组件复用-数据抽取"><a href="#组件复用-数据抽取" class="headerlink" title="组件复用 - 数据抽取"></a>组件复用 - 数据抽取</h3><p>为了提高组件的复用性，通常会把组件中的一些可变数据提取出来</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> datas = &#123;</span><br><span class="line">    family: &#123;</span><br><span class="line">        title: <span class="string">'家人'</span>,</span><br><span class="line">        list: [</span><br><span class="line">            &#123;<span class="attr">name</span>: <span class="string">'爸爸'</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">name</span>: <span class="string">'妈妈'</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    friend: &#123;</span><br><span class="line">        title: <span class="string">'朋友'</span>,</span><br><span class="line">        list: [</span><br><span class="line">            &#123;<span class="attr">name</span>: <span class="string">'张三'</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">name</span>: <span class="string">'李四'</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">name</span>: <span class="string">'王五'</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    customer: &#123;</span><br><span class="line">        title: <span class="string">'客户'</span>,</span><br><span class="line">        list: [</span><br><span class="line">            &#123;<span class="attr">name</span>: <span class="string">'阿里'</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">name</span>: <span class="string">'腾讯'</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">name</span>: <span class="string">'头条'</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="props-和-state"><a href="#props-和-state" class="headerlink" title="props 和 state"></a>props 和 state</h2><ul>
+<li>props 父组件传递过来的参数</li>
+<li>state 组件自身状态<ul>
+<li>setState</li>
+<li>多个 setState 合并<h3 id="props-与-state-的区别"><a href="#props-与-state-的区别" class="headerlink" title="props 与 state 的区别"></a>props 与 state 的区别</h3>state 的主要作用是用于组件保存、控制、修改<em>自己</em>的可变状态，在组件内部进行初始化，也可以在组件内部进行修改，但是组件外部不能修改组件的 state<br>props 的主要作用是让使用该组件的父组件可以传入参数来配置该组件，它是外部传进来的配置参数，组件内部无法控制也无法修改<br>state 和 props 都可以决定组件的外观和显示状态。通常，props 做为不变数据或者初始化数据传递给组件，可变状态使用 state</li>
+</ul>
+</li>
+</ul>
+<h3 id="组件通信与数据流"><a href="#组件通信与数据流" class="headerlink" title="组件通信与数据流"></a>组件通信与数据流</h3><p>在 React.js 中，数据是从上自下流动（传递）的，也就是一个父组件可以把它的 state / props 通过 props 传递给它的子组件，但是子组件不能修改 props - React.js 是单向数据流，如果子组件需要修改父组件状态（数据），是通过回调函数方式来完成的。</p>
+<ul>
+<li>父级向子级通信</li>
+<li>子级向父级通信</li>
+</ul>
+<h3 id="React-中的事件"><a href="#React-中的事件" class="headerlink" title="React 中的事件"></a>React 中的事件</h3><ul>
+<li>大小写问题</li>
+<li>this 问题</li>
+</ul>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><ul>
+<li>今天练习，把好友列表自己实现一遍</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h2 id="下节课内容"><a href="#下节课内容" class="headerlink" title="下节课内容"></a>下节课内容</h2><ul>
+<li>组件间通信</li>
+<li>受控组件和非受控组件</li>
+<li>children</li>
+<li>生命周期</li>
+<li>ref</li>
+<li>context</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/06/29/React-2/" rel="prev" title="React-2">
+      <i class="fa fa-chevron-left"></i> React-2
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React-1"><span class="nav-number">1.</span> <span class="nav-text">React-1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#课程内容"><span class="nav-number">2.</span> <span class="nav-text">课程内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#React-是什么？"><span class="nav-number">2.1.</span> <span class="nav-text">React 是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令式编程-和-声明式编程"><span class="nav-number">2.2.</span> <span class="nav-text">命令式编程 和 声明式编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用-React"><span class="nav-number">2.3.</span> <span class="nav-text">如何使用 React</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于浏览器的模式"><span class="nav-number">2.3.1.</span> <span class="nav-text">基于浏览器的模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#babel"><span class="nav-number">2.3.2.</span> <span class="nav-text">babel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSX"><span class="nav-number">2.3.3.</span> <span class="nav-text">JSX</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插值表达式"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">插值表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#各种类型内容在插值中的使用"><span class="nav-number">2.3.3.1.1.</span> <span class="nav-text">各种类型内容在插值中的使用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出数据类型"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">输出数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表渲染"><span class="nav-number">2.3.3.3.</span> <span class="nav-text">列表渲染</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件渲染"><span class="nav-number">2.3.3.4.</span> <span class="nav-text">条件渲染</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在属性上使用-表达式"><span class="nav-number">2.3.4.</span> <span class="nav-text">在属性上使用 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSX-使用注意事项"><span class="nav-number">2.3.4.1.</span> <span class="nav-text">JSX 使用注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于自动化的集成环境模式-create-react-app-脚手架"><span class="nav-number">2.4.</span> <span class="nav-text">基于自动化的集成环境模式 - create-react-app - 脚手架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">2.4.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装与使用"><span class="nav-number">2.4.2.</span> <span class="nav-text">安装与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#npm"><span class="nav-number">2.4.2.1.0.1.</span> <span class="nav-text">npm</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#yarn"><span class="nav-number">2.4.2.1.0.2.</span> <span class="nav-text">yarn</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">2.4.2.2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#npx"><span class="nav-number">2.4.2.2.0.1.</span> <span class="nav-text">npx</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目目录结构说明"><span class="nav-number">2.4.3.</span> <span class="nav-text">项目目录结构说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令脚本"><span class="nav-number">2.4.4.</span> <span class="nav-text">命令脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#npm-start"><span class="nav-number">2.4.4.0.0.1.</span> <span class="nav-text">npm start</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#npm-run-test"><span class="nav-number">2.4.4.0.0.2.</span> <span class="nav-text">npm run test</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#npm-run-build"><span class="nav-number">2.4.4.0.0.3.</span> <span class="nav-text">npm run build</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件"><span class="nav-number">2.5.</span> <span class="nav-text">组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数式组件"><span class="nav-number">2.5.1.</span> <span class="nav-text">函数式组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类式组件"><span class="nav-number">2.5.2.</span> <span class="nav-text">类式组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不从实际案例开始的知识点就是耍-LM"><span class="nav-number">2.6.</span> <span class="nav-text">不从实际案例开始的知识点就是耍 LM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-FriendList-组件"><span class="nav-number">2.6.1.</span> <span class="nav-text">创建 FriendList 组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件复用-数据抽取"><span class="nav-number">2.6.2.</span> <span class="nav-text">组件复用 - 数据抽取</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#props-和-state"><span class="nav-number">2.7.</span> <span class="nav-text">props 和 state</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#props-与-state-的区别"><span class="nav-number">2.7.1.</span> <span class="nav-text">props 与 state 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件通信与数据流"><span class="nav-number">2.7.2.</span> <span class="nav-text">组件通信与数据流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-中的事件"><span class="nav-number">2.7.3.</span> <span class="nav-text">React 中的事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#练习"><span class="nav-number">2.8.</span> <span class="nav-text">练习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.9.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下节课内容"><span class="nav-number">2.10.</span> <span class="nav-text">下节课内容</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

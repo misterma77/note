@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/note/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/note/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/note/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/note/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/note/css/main.css">
+
+
+<link rel="stylesheet" href="/note/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/note/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="React-上节课重点内容回顾JSX 注意事项12345678910111213141516必须有,且只有一个顶层的包含元素 - React.FragmentJSX 不是html，很多属性在编写时不一样classNamestyle列表渲染时，必须有 key 值在 jsx 所有标签必须闭合组件的首字母一定大写，标签一定要小写类组件组件类必须继承 React.Component组件类必须有 rende">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-2">
+<meta property="og:url" content="http://yoursite.com/2020/06/29/React-2/index.html">
+<meta property="og:site_name" content="javascript.note">
+<meta property="og:description" content="React-上节课重点内容回顾JSX 注意事项12345678910111213141516必须有,且只有一个顶层的包含元素 - React.FragmentJSX 不是html，很多属性在编写时不一样classNamestyle列表渲染时，必须有 key 值在 jsx 所有标签必须闭合组件的首字母一定大写，标签一定要小写类组件组件类必须继承 React.Component组件类必须有 rende">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-29T02:30:57.589Z">
+<meta property="article:modified_time" content="2020-07-03T06:54:45.414Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/06/29/React-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>React-2 | javascript.note</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/note/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">javascript.note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/note/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/note/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/29/React-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React-2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-29 10:30:57" itemprop="dateCreated datePublished" datetime="2020-06-29T10:30:57+08:00">2020-06-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-03 14:54:45" itemprop="dateModified" datetime="2020-07-03T14:54:45+08:00">2020-07-03</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="React"><a href="#React" class="headerlink" title="React-"></a>React-</h1><h2 id="上节课重点内容回顾"><a href="#上节课重点内容回顾" class="headerlink" title="上节课重点内容回顾"></a>上节课重点内容回顾</h2><h4 id="JSX-注意事项"><a href="#JSX-注意事项" class="headerlink" title="JSX 注意事项"></a>JSX 注意事项</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">必须有,且只有一个顶层的包含元素 - React.Fragment</span><br><span class="line">JSX 不是html，很多属性在编写时不一样</span><br><span class="line">className</span><br><span class="line">style</span><br><span class="line">列表渲染时，必须有 key 值</span><br><span class="line">在 jsx 所有标签必须闭合</span><br><span class="line">组件的首字母一定大写，标签一定要小写</span><br><span class="line">类组件</span><br><span class="line">组件类必须继承 React.Component</span><br><span class="line">组件类必须有 render 方法</span><br><span class="line">事件</span><br><span class="line">大小写问题</span><br><span class="line">this 问题</span><br><span class="line">props 和 state</span><br><span class="line">props 父组件传递过来的参数</span><br><span class="line">state 组件自身状态</span><br></pre></td></tr></table></figure>
+<h2 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">掌握 setState 的各种使用情况</span><br><span class="line">掌握 React 组件间通信</span><br><span class="line">掌握 React 组件的生命周期</span><br><span class="line">掌握受控组件的使用</span><br></pre></td></tr></table></figure>
+<h2 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h2><h3 id="state-和-setState"><a href="#state-和-setState" class="headerlink" title="state 和 setState"></a>state 和 setState</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">setState(updater, [callback])</span><br><span class="line">updater: 更新数据 FUNCTION&#x2F;OBJECT</span><br><span class="line">callback: 更新成功后的回调 FUNCTION</span><br><span class="line">异步:react通常会集齐一批需要更新的组件，然后一次性更新来保证渲染的性能</span><br><span class="line">浅合并 Objecr.assign()</span><br></pre></td></tr></table></figure>
+<h3 id="组件间通信"><a href="#组件间通信" class="headerlink" title="组件间通信"></a>组件间通信</h3><p>在 React.js 中，数据是从上自下流动（传递）的，也就是一个父组件可以把它的 state / props 通过 props 传递<br>给它的子组件，但是子组件不能修改 props - React.js 是单向数据流，如果子组件需要修改父组件状态（数<br>据），是通过回调函数方式来完成的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">父级向子级通信 把数据添加子组件的属性中，然后子组件中从props属性中，获取父级传递过来的数据</span><br></pre></td></tr></table></figure>
+
+<h4 id="子级向父级通信-在父级中定义相关的数据操作方法-或其他回调-把该方法传递给子级，在子级中调用该"><a href="#子级向父级通信-在父级中定义相关的数据操作方法-或其他回调-把该方法传递给子级，在子级中调用该" class="headerlink" title="子级向父级通信 在父级中定义相关的数据操作方法(或其他回调), 把该方法传递给子级，在子级中调用该"></a>子级向父级通信 在父级中定义相关的数据操作方法(或其他回调), 把该方法传递给子级，在子级中调用该</h4><h4 id="方法父级传递消息"><a href="#方法父级传递消息" class="headerlink" title="方法父级传递消息"></a>方法父级传递消息</h4><h4 id="案例：完善好友列表"><a href="#案例：完善好友列表" class="headerlink" title="案例：完善好友列表"></a>案例：完善好友列表</h4><p>跨组件通信 <strong>context -</strong> 扩展</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">React.createContext(defaultValue); &#123; Consumer, Provider &#125; &#x3D; createContext(defaultValue)</span><br><span class="line">Context.Provider 在父组件调用 Provider 传递数据</span><br><span class="line">value 要传递的数据</span><br><span class="line">接收数据</span><br><span class="line">class.contextType &#x3D; Context;</span><br><span class="line">static contextType &#x3D; Context;</span><br><span class="line">this.context;</span><br><span class="line">Context.Consumer &lt;Consumer&gt; &#123;(props)&#x3D;&gt;&#123; console.log(props); return &lt;div&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&#125;&#125; &lt;&#x2F;Consumer&gt; 注意在使用不熟练时，最好不要再项目中使用 context ， context 一般给第</span><br><span class="line">三方库使用</span><br></pre></td></tr></table></figure>
+<h3 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a>组件的生命周期</h3><p>所谓的生命周期就是指某个事物从开始到结束的各个阶段，当然在 React.js 中指的是组件从创建到销毁的过<br>程，React.js 在这个过程中的不同阶段调用的函数，通过这些函数，我们可以更加精确的对组件进行控制，前面<br>我们一直在使用的 render 函数其实就是组件生命周期渲染阶段执行的函数</p>
+<p>生命周期演变</p>
+<p>之前（ <strong>React 16.3</strong> 之前）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">挂载阶段</span><br><span class="line">constructor</span><br><span class="line">componentWillMount</span><br><span class="line">render</span><br><span class="line">componentDidMount</span><br><span class="line">更新阶段</span><br><span class="line">父组件更新引起组件更新</span><br><span class="line">componentWillReceiveProps(nextProps)</span><br><span class="line">shouldComponentUpdate(nextProps, nextState)</span><br><span class="line">componentWillUpdate(nextProps, nextState)</span><br><span class="line">render</span><br><span class="line">componentDidUpdate(prevProps, prevState)</span><br><span class="line">组件自身更新</span><br><span class="line">shouldComponentUpdate</span><br><span class="line">componentWillUpdate</span><br><span class="line">render</span><br><span class="line">componentDidUpdate</span><br><span class="line">卸载阶段</span><br><span class="line">componentWillUnmount</span><br></pre></td></tr></table></figure>
+<p>现在</p>
+<h4 id="挂载阶段"><a href="#挂载阶段" class="headerlink" title="挂载阶段"></a>挂载阶段</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">constructor</span><br><span class="line">static getDerivedStateFromProps(props, state)</span><br><span class="line">注意 this 问题</span><br><span class="line">render</span><br><span class="line">componentDidMount</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">更新阶段</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">父组件更新引起组件更新</span><br><span class="line">static getDerivedStateFromProps(props, state)</span><br><span class="line">shouldComponentUpdate()</span><br><span class="line">componentWillUpdate()</span><br><span class="line">render()</span><br><span class="line">getSnapshotBeforeUpdate()</span><br><span class="line">componentDidUpdate()</span><br><span class="line">组件自身更新</span><br><span class="line">shouldComponentUpdate()</span><br><span class="line">componentWillUpdate()</span><br><span class="line">render()</span><br><span class="line">getSnapshotBeforeUpdate()</span><br><span class="line">componentDidUpdate()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">卸载阶段</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">componentWillUnmount</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">错误处理</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">static getDerivedStateFromError()</span><br><span class="line">componentDidCatch(error, info) 参考：http:&#x2F;&#x2F;projects.wojtekmaj.pl&#x2F;react-lifecycle-methods-</span><br><span class="line">diagram&#x2F;</span><br></pre></td></tr></table></figure>
+<h3 id="生命周期函数详解"><a href="#生命周期函数详解" class="headerlink" title="生命周期函数详解"></a>生命周期函数详解</h3><p><strong>constructor(props)</strong></p>
+<p>类的构造函数，也是组件初始化函数，一般情况下，我们会在这个阶段做一些初始化的工作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">初始化 state</span><br><span class="line">处理事件绑定函数的 this</span><br></pre></td></tr></table></figure>
+<p><strong>render()</strong></p>
+<p>render 方法是 Class 组件必须实现的方法</p>
+<p><strong>static getDerivedStateFromProps(props, state)</strong></p>
+<p>该方法会在 render 方法之前调用，无论是挂载阶段还是更新阶段，它的存在只有一个目的：让组件在 props 变<br>化时更新 state</p>
+<p><strong>componentDidMount()</strong></p>
+<p>在组件挂载后（render 的内容插入 DOM 树中）调用。通常在这个阶段，我们可以：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">操作 DOM 节点</span><br><span class="line">发送请求</span><br></pre></td></tr></table></figure>
+<p><strong>shouldComponentUpdate(nextProps, nextState)</strong></p>
+<p>发生在更新阶段，getDerivedStateFromProps 之后，render 之前，该函数会返回一个布尔值，决定了后续是否<br>执行 render，首次渲染不会调用该函数</p>
+<p><strong>getSnapshotBeforeUpdate(prevProps, prevState)</strong></p>
+<p>该方法在 render() 之后，但是在输出到 DOM 之前执行，用来获取渲染之前的快照。当我们想在当前一次更新<br>前获取上次的 DOM 状态，可以在这里进行处理，该函数的返回值将作为参数传递给下个生命周期函数<br>componentDidUpdate</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">该函数并不常用。</span><br></pre></td></tr></table></figure>
+<p><strong>componentDidUpdate()</strong></p>
+<p>该函数会在 DOM 更新后立即调用，首次渲染不会调用该方法。我们可以在这个函数中对渲染后的 DOM 进行<br>操作</p>
+<p><strong>componentWillUnmount()</strong></p>
+<p>该方法会在组件卸载及销毁前调用，我们可以在这里做一些清理工作，如：组件内的定时器、未完成的请求等</p>
+<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><h4 id="当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用如下方法"><a href="#当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用如下方法" class="headerlink" title="当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用如下方法"></a>当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用如下方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">static getDerivedStateFromError()</span><br><span class="line">componentDidCatch()</span><br></pre></td></tr></table></figure>
+<h3 id="受控组件"><a href="#受控组件" class="headerlink" title="受控组件"></a>受控组件</h3><p>非受控组件: 我们不需要同步 value 值(defaultValue，defaultChecked)</p>
+<h3 id="todoList-初实现"><a href="#todoList-初实现" class="headerlink" title="todoList 初实现"></a>todoList 初实现</h3><h2 id="下节课内容"><a href="#下节课内容" class="headerlink" title="下节课内容"></a>下节课内容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">掌握React其他 API 使用：PureComponent、ref、children、dangerouslySetInnerHTML、key</span><br><span class="line">掌握函数式组件及常见 hooks 的使用</span><br><span class="line">可以独立开发基于Hooks 或 Component 的 todoList 应用</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/note/2020/06/17/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%89/" rel="prev" title="小程序三">
+      <i class="fa fa-chevron-left"></i> 小程序三
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/note/2020/06/29/React-1/" rel="next" title="React-1">
+      React-1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React"><span class="nav-number">1.</span> <span class="nav-text">React-</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#上节课重点内容回顾"><span class="nav-number">1.1.</span> <span class="nav-text">上节课重点内容回顾</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSX-注意事项"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">JSX 注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课程目标"><span class="nav-number">1.2.</span> <span class="nav-text">课程目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课程内容"><span class="nav-number">1.3.</span> <span class="nav-text">课程内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#state-和-setState"><span class="nav-number">1.3.1.</span> <span class="nav-text">state 和 setState</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件间通信"><span class="nav-number">1.3.2.</span> <span class="nav-text">组件间通信</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#子级向父级通信-在父级中定义相关的数据操作方法-或其他回调-把该方法传递给子级，在子级中调用该"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">子级向父级通信 在父级中定义相关的数据操作方法(或其他回调), 把该方法传递给子级，在子级中调用该</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法父级传递消息"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">方法父级传递消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例：完善好友列表"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">案例：完善好友列表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件的生命周期"><span class="nav-number">1.3.3.</span> <span class="nav-text">组件的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载阶段"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">挂载阶段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期函数详解"><span class="nav-number">1.3.4.</span> <span class="nav-text">生命周期函数详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误处理"><span class="nav-number">1.3.5.</span> <span class="nav-text">错误处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用如下方法"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用如下方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#受控组件"><span class="nav-number">1.3.6.</span> <span class="nav-text">受控组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#todoList-初实现"><span class="nav-number">1.3.7.</span> <span class="nav-text">todoList 初实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下节课内容"><span class="nav-number">1.4.</span> <span class="nav-text">下节课内容</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/note/archives/">
+        
+          <span class="site-state-item-count">86</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/note/lib/anime.min.js"></script>
+  <script src="/note/lib/velocity/velocity.min.js"></script>
+  <script src="/note/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/note/js/utils.js"></script>
+
+<script src="/note/js/motion.js"></script>
+
+
+<script src="/note/js/schemes/muse.js"></script>
+
+
+<script src="/note/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

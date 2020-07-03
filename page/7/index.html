@@ -145,6 +145,283 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/Buffer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/note/2020/06/07/Buffer/" class="post-title-link" itemprop="url">Buffer</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a><a href=""></a>Buffer</h2><p>buffer是数据的缓冲区，是内置的一个类，不是模块</p>
+<blockquote>
+<p><strong>buffer的创建</strong><br>node6.0之前的方法： <code>new Buffer()</code><br>现在的方法：Buffer.alloc(参数) 参数为内容大小，单位为b</p>
+</blockquote>
+<p>buffer会把数据(不限) 转换成二进制， 然后以十六进制的方式展示出来</p>
+<blockquote>
+<p><code>from()</code> 每个字转换为三组十六进制的数据<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200322123146691.png#pic_center" alt="在这里插入图片描述"><br>输出结果：<br><img src="https://img-blog.csdnimg.cn/20200322123154470.png#pic_center" alt="在这里插入图片描述"><br>如果要将这些十六进制的数据转换回去，需要在每组数据之前添加<code>0x</code>，用作标识十六进制数据<br>代码：<br><img src="https://img-blog.csdnimg.cn/202003222026364.png#pic_center" alt="在这里插入图片描述">输出结果：<br><img src="https://img-blog.csdnimg.cn/20200322202647912.png#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<p><code>string_decoder</code> class类<br>StringDecoder 固定名称<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200322205714764.png#pic_center" alt="在这里插入图片描述">输出结果：<br><img src="https://img-blog.csdnimg.cn/20200322205728631.png#pic_center" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/CSS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/note/2020/06/07/CSS/" class="post-title-link" itemprop="url">CSS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a><a href=""></a>CSS</h2><p>(Cascading Style Sheets) 用于渲染HTML元素标签的样式.<br>引入方式：</p>
+<blockquote>
+<p>1.<strong>行间样式</strong>：优先级最高<br>代码：<img src="https://img-blog.csdnimg.cn/20200117184134363.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200117184152908.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>2.<strong>内联样式</strong>：优先级第二<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200117184543648.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200117184558940.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>3.<strong>外部样式</strong>：优先级最低：<br><code>&lt;link&gt;</code>：引入外部资源，包括css，网页小图标<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200117185318738.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200117185341785.png" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200117185348962.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p><code>&lt;link&gt;</code>标签，单标签，只能存在与<code>&lt;head&gt;</code>标签，主要用于引入外部资源</p>
+</blockquote>
+<blockquote>
+<p>属性：<a href="https://www.runoob.com/tags/tag-link.html" target="_blank" rel="noopener">菜鸟教程-<code>&lt;link&gt;</code>标签</a><br>1.href：定义被链接文档的位置</p>
+</blockquote>
+<blockquote>
+<p>2.rel：定义当前文档与被链接文档之间的关系<br>属性值：<a href="https://www.runoob.com/tags/att-link-rel.html" target="_blank" rel="noopener">rel属性值</a><br>icon：网页小图标<br>stylesheet：默认。要导入的样式表的 URL</p>
+</blockquote>
+<blockquote>
+<p>3.target：定义在何处加载被链接文档</p>
+</blockquote>
+<blockquote>
+<p>4.type：规定被链接文档的 MIME（媒体类型） 类型</p>
+</blockquote>
+<h3 id="important"><a href="#important" class="headerlink" title="!important"></a><a href=""></a>!important</h3><p>优先级最高，但是仅作用于一行</p>
+<blockquote>
+<p>代码：<img src="https://img-blog.csdnimg.cn/20200118145757331.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">显示效果：<br><img src="https://img-blog.csdnimg.cn/20200118145916497.png" alt="在这里插入图片描述"><br>代码：<img src="https://img-blog.csdnimg.cn/20200118150007911.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/202001181501039.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h2 id="css常用属性"><a href="#css常用属性" class="headerlink" title="css常用属性"></a><a href=""></a>css常用属性</h2><blockquote>
+<p><code>width：100px;</code>——宽。单位为px<br><code>height：100px;</code>——高。单位为px<br><code>border：1px solid red;</code>——边框。符合属性<br>共有三个属性，边框宽，边框类型(solid(实线),dashed(虚线),dotted(点线))，边框颜色<br>代码：<img src="https://img-blog.csdnimg.cn/20200118161143693.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200118161201645.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p><code>background</code>:背景。复合属性<br><code>background-color：red;</code> ——背景色<br><code>background-image:url(路径);</code>——背景图<br><code>background-size：100% 100%;</code>——图片宽与高<br><code>background-repeat：repeat-x(水平铺满) / repeat-y(垂直铺满) / no-repeat(不铺满);</code><br>——图片平铺。默认为全铺满<br><code>background-position：水平位置 垂直位置;</code>——背景图的位置<br>形式：1.垂直(top，center，bottom);水平(left,center,right) 2.px 3. %(大小%参考标签自身大小，移动%参考图片自身大小)</p>
+<p><code>background-attachment：scroll(图随页面一同滚动) / fiexd(图片固定不动)；</code></p>
+</blockquote>
+<blockquote>
+<p><code>font-size：20px/2em;</code>——字体大小。单位px(像素)/em(默认字体大小的几倍)<br><code>color：red;</code>——字体颜色。<br>代码：<img src="https://img-blog.csdnimg.cn/20200118161610346.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200118161634297.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p><code>border-radius：50%;</code>——边框切圆。可用px和%<br><code>line-height:10px;</code>——行高，用来垂直居中，单位px<br><code>text-align:left/center/right;</code>——水平对齐方式<br>代码：<img src="https://img-blog.csdnimg.cn/20200118162019942.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200118162031375.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p><code>vertical-align(垂直对齐方式):top/center/bottom;</code><br>——适用于表格单元格中对象及图片，对块级元素不起作用</p>
+</blockquote>
+<blockquote>
+<p><code>font-family:楷体;</code>——字体，如果有多个字体，需要用”,”隔开<br>代码：<img src="https://img-blog.csdnimg.cn/20200118154541501.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200118154558308.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p><code>font-style(文字倾斜):</code><br><code>normal(正常)/oblique(偏斜体)/italic(斜体);</code><br>代码：<img src="https://img-blog.csdnimg.cn/20200118162616318.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200118162627441.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p><code>font-weight(文字加粗):</code><br><code>normal(正常)/bold(比正常粗)/bolder(比bold粗)/lighter(比正常细)</code><br>代码：<img src="https://img-blog.csdnimg.cn/2020011816283526.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200118162844681.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p><code>text-transform（英文字母大小写）:</code><br><code>capitalize(首字母大写)/uppercase(全部大写)/lowercase(全部小写);</code><br>代码：<img src="https://img-blog.csdnimg.cn/20200118163119178.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200118163129425.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p><code>text-decoration(文字装饰):</code><br><code>none(正常显示,可用来去除超链接下划线)underline(下划线)line-throungh(删除线)overline(加顶线)</code><br>代码：<img src="https://img-blog.csdnimg.cn/20200118191026285.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/2020011819103879.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p><code>text-indent(段落首行缩进):10px/10em(首行缩进几个字的距离);</code><br>代码：<img src="https://img-blog.csdnimg.cn/20200118191351193.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200118191409416.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p><code>word-spacing(单词/词语间距):10px;</code><br><code>letter-spacing(字母/文字间距):10px;</code><br>代码：<img src="https://img-blog.csdnimg.cn/20200118192215185.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200118192229300.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p><code>text-align-last(属性规定如何对齐文本的最后一行) : auto(默认值。最后一行被调整，并向左对齐) / left / center / right / start / end / justify(两端对齐);</code><br>代码测试：<a href="https://www.runoob.com/try/playit.php?fplaycss_text-align-last&prevalauto" target="_blank" rel="noopener">代码测试</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/CSS%E9%80%89%E6%8B%A9%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/note/2020/06/07/CSS%E9%80%89%E6%8B%A9%E5%99%A8/" class="post-title-link" itemprop="url">CSS选择器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>CSS选择器使用基本流程：<br>1.制作所需要的选择器，并在其中写入样式<br>2.将选择器绑定到指定的html标签上</p>
+<h3 id="通用选择器"><a href="#通用选择器" class="headerlink" title="通用选择器"></a><a href=""></a>通用选择器</h3><blockquote>
+<p>书写格式：*{ }<br>其优先级是选择器中最低的，它可以修改整个页面，所有标签样式，包括body，html<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200119190841858.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200119190857338.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<h3 id="标签选择器"><a href="#标签选择器" class="headerlink" title="标签选择器"></a><a href=""></a>标签选择器</h3><blockquote>
+<p>用标签名来定义，将当前页面所有与名字相同的标签都绑定上样式<br>优先级低于class选择器<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200119191823572.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200119191908555.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h3 id="class选择器"><a href="#class选择器" class="headerlink" title="class选择器"></a><a href=""></a>class选择器</h3><blockquote>
+<p>class选择器用” . “来标识自身<br>自定义名称（可以用数字，字母，下划线，但是不能以数字开头）<br>可以给多个标签使用，可以给指定的标签绑定，优先级高于标签选择器<br>代码：<img src="https://img-blog.csdnimg.cn/20200119192126466.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200119192133529.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h3 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a><a href=""></a>id选择器</h3><blockquote>
+<p>id选择器用” # “来标识自身，命名规则与class选择器相同<br>优先级高于class选择器<br>不具有重用性，具有唯一性，如果多个标签使用，会造成不可预知的错误<br>禁止重复使用同一个id</p>
+</blockquote>
+<h3 id="群组选择器"><a href="#群组选择器" class="headerlink" title="群组选择器"></a><a href=""></a>群组选择器</h3><blockquote>
+<p>只能用于大批量的样式，如果需要给个别的标签写样式，请使用class或id选择器<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200119192756338.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200119192809871.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<h3 id="子代选择器"><a href="#子代选择器" class="headerlink" title="子代选择器"></a><a href=""></a>子代选择器</h3><blockquote>
+<p>语法：父级&gt;子级{  样式  }<br>对指定父级下指定的子级进行修改<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200119193435222.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200119193446952.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<h3 id="后代选择器"><a href="#后代选择器" class="headerlink" title="后代选择器"></a><a href=""></a>后代选择器</h3><blockquote>
+<p>语法:父级 空格 子级 { }  <code>父级 子级{ }</code><br>对指定父级下的所有元素进行操作<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200119194355503.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200119194357771.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</blockquote>
+<h3 id="交叉选择器"><a href="#交叉选择器" class="headerlink" title="交叉选择器"></a><a href=""></a>交叉选择器</h3><p>需要同时满足两个条件</p>
+<blockquote>
+<p>div.box选择的是标签是div，class名为box的元素<br>或者说是class名为box的div标签<br>交叉选择器中没有空格<br>代码：<img src="https://img-blog.csdnimg.cn/20200120112819654.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200120112844552.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<h2 id="鼠标伪类hover"><a href="#鼠标伪类hover" class="headerlink" title="鼠标伪类hover"></a><a href=""></a>鼠标伪类hover</h2><p>效果：在鼠标移入该元素时，触发指定效果，移出时回到初始样式<br>语法：<code>XXX:hover{ }</code> 冒号前是触发者，冒号之后是显示者<br>使用hover时，子代、后代选择器写在hover之后<code>XXX:hover&gt;XX{ }</code><br>代码：<img src="https://img-blog.csdnimg.cn/20200120113627229.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：鼠标移入前<br><img src="https://img-blog.csdnimg.cn/20200120113653573.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>鼠标移入后<br><img src="https://img-blog.csdnimg.cn/20200120113708748.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="transition过渡"><a href="#transition过渡" class="headerlink" title="transition过渡"></a><a href=""></a>transition过渡</h2><p>transition是复合属性<br>transition：值1 值2；<br>值1：需要修改的样式<br>值2：改变所用的时间，单位为s</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/DOM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1300,204 +1577,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/14/14-%E8%B7%AF%E7%94%B1%E6%87%92%E5%8A%A0%E8%BD%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/note/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="javascript.note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/note/2020/05/14/14-%E8%B7%AF%E7%94%B1%E6%87%92%E5%8A%A0%E8%BD%BD/" class="post-title-link" itemprop="url">14-路由懒加载</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-14 09:26:31" itemprop="dateCreated datePublished" datetime="2020-05-14T09:26:31+08:00">2020-05-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h1><p>[TOC]</p>
-<h2 id="路由懒加载"><a href="#路由懒加载" class="headerlink" title="路由懒加载"></a>路由懒加载</h2><p>当打包构建应用时，JavaScript 包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> NProgress <span class="keyword">from</span> <span class="string">'nprogress'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'nprogress/nprogress.css'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// import Home from './views/Home.vue'</span></span><br><span class="line"><span class="comment">// import About from './views/About.vue'</span></span><br><span class="line"><span class="comment">// import Item from './views/Item.vue'</span></span><br><span class="line"><span class="comment">// import User from './views/User.vue'</span></span><br><span class="line"><span class="comment">// import Profile from './views/User/Profile'</span></span><br><span class="line"><span class="comment">// import Cart from './views/User/Cart'</span></span><br><span class="line"><span class="comment">// import BookChoose from './views/Book/BookChoose'</span></span><br><span class="line"><span class="comment">// import BookBoy from './views/Book/BookBoy'</span></span><br><span class="line"><span class="comment">// import BookGirl from './views/Book/BookGirl'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  mode: <span class="string">'history'</span>,</span><br><span class="line">  base: process.env.BASE_URL,</span><br><span class="line">  scrollBehavior (to, <span class="keyword">from</span>, savedPosition) &#123;</span><br><span class="line">    <span class="keyword">if</span> (savedPosition) &#123;</span><br><span class="line">      <span class="keyword">return</span> savedPosition</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/'</span>,</span><br><span class="line">      name: <span class="string">'home'</span>,</span><br><span class="line">      component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./views/Home.vue'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/about'</span>,</span><br><span class="line">      name: <span class="string">'about'</span>,</span><br><span class="line">      component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./views/About.vue'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/item/:itemId'</span>,</span><br><span class="line">      name: <span class="string">'item'</span>,</span><br><span class="line">      component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./views/Item.vue'</span>),</span><br><span class="line">      props: <span class="function"><span class="params">r</span> =&gt;</span> (&#123; <span class="attr">itemId</span>: <span class="built_in">Number</span>(r.params.itemId) &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/user'</span>,</span><br><span class="line">      component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "user" */</span> <span class="string">'./views/User.vue'</span>),</span><br><span class="line">      meta: &#123; <span class="attr">requiresAuth</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          path: <span class="string">''</span>,</span><br><span class="line">          name: <span class="string">'user'</span>,</span><br><span class="line">          component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "user" */</span> <span class="string">'./views/User/Profile.vue'</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          path: <span class="string">'cart'</span>,</span><br><span class="line">          name: <span class="string">'user-cart'</span>,</span><br><span class="line">          component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "user" */</span> <span class="string">'./views/User/Cart.vue'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/book'</span>,</span><br><span class="line">      name: <span class="string">'book'</span>,</span><br><span class="line">      <span class="comment">// redirect: &#123; name: 'book-choose' &#125;</span></span><br><span class="line">      redirect: <span class="function"><span class="params">to</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> type = localStorage.getItem(<span class="string">'book-type'</span>)</span><br><span class="line">        <span class="keyword">return</span> &#123; <span class="attr">name</span>: type || <span class="string">'book-choose'</span> &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/book-choose'</span>,</span><br><span class="line">      name: <span class="string">'book-choose'</span>,</span><br><span class="line">      component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "book" */</span> <span class="string">'./views/Book/BookChoose.vue'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/book-boy'</span>,</span><br><span class="line">      name: <span class="string">'book-boy'</span>,</span><br><span class="line">      component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "book" */</span> <span class="string">'./views/Book/BookBoy.vue'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/book-girl'</span>,</span><br><span class="line">      name: <span class="string">'book-girl'</span>,</span><br><span class="line">      component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "book" */</span> <span class="string">'./views/Book/BookGirl.vue'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  NProgress.start()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (to.matched.some(<span class="function"><span class="params">record</span> =&gt;</span> record.meta.requiresAuth) &amp;&amp; !isLogin) &#123;</span><br><span class="line">      next(&#123;</span><br><span class="line">        name: <span class="string">'login'</span>,</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    next()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  next()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.afterEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  NProgress.done()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/14/11-%E8%B7%AF%E7%94%B1%E5%8A%A8%E6%95%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/note/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="javascript.note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/note/2020/05/14/11-%E8%B7%AF%E7%94%B1%E5%8A%A8%E6%95%88/" class="post-title-link" itemprop="url">11-路由动效</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-14 09:26:29" itemprop="dateCreated datePublished" datetime="2020-05-14T09:26:29+08:00">2020-05-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h1><p>[TOC]</p>
-<h2 id="路由动效"><a href="#路由动效" class="headerlink" title="路由动效"></a>路由动效</h2><p>利用 <code>transition</code> 组件，我们还可以给路由导航加上动效</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; App.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">...</span><br><span class="line">&lt;transition name&#x3D;&quot;fade&quot;&gt;</span><br><span class="line">  &lt;router-view&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;transition&gt;</span><br><span class="line">...</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.fade-enter-active &#123;</span><br><span class="line">  transition: opacity .5s;</span><br><span class="line">&#125;</span><br><span class="line">.fade-leave-active &#123;</span><br><span class="line">  transition: none;</span><br><span class="line">&#125;</span><br><span class="line">.fade-enter, .fade-leave-to &#123;</span><br><span class="line">  opacity: 0;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/14/10-%E8%B7%AF%E7%94%B1%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/note/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="javascript.note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/note/2020/05/14/10-%E8%B7%AF%E7%94%B1%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96/" class="post-title-link" itemprop="url">10-路由数据获取</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-14 09:26:26" itemprop="dateCreated datePublished" datetime="2020-05-14T09:26:26+08:00">2020-05-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h1><p>[TOC]</p>
-<h2 id="数据获取"><a href="#数据获取" class="headerlink" title="数据获取"></a>数据获取</h2><p>有的时候，进入某个路由以后，我们需要从服务端获取数据，比如 <code>/item/:itemId</code> ，通常，我们有两种方式来实现</p>
-<ul>
-<li><strong>导航完成之后获取</strong>：先完成导航，然后在接下来的组件生命周期钩子中获取数据，在数据获取期间显示加载中之类的 loading 提示</li>
-<li><strong>导航完成之前获取：</strong> 导航完成之前，在路由进入的守卫中获取数据，在数据获取成功以后执行导航。</li>
-</ul>
-<p>这两种方式都没有任何问题（对错、好坏），自行选择</p>
-<h3 id="导航完成之后获取"><a href="#导航完成之后获取" class="headerlink" title="导航完成之后获取"></a>导航完成之后获取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;template v-if&#x3D;&quot;loading&quot;&gt;</span><br><span class="line">            Loading......</span><br><span class="line">        &lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">        &lt;template v-if&#x3D;&quot;hasError&quot;&gt;</span><br><span class="line">            &lt;h2&gt;没有该商品信息&lt;&#x2F;h2&gt;</span><br><span class="line">        &lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">        &lt;template v-if&#x3D;&quot;item&quot;&gt;</span><br><span class="line">            &lt;h2&gt;商品详情 - &#123;&#123;item.name&#125;&#125;&lt;&#x2F;h2&gt;</span><br><span class="line">            &lt;dt&gt;ID&lt;&#x2F;dt&gt;</span><br><span class="line">            &lt;dd&gt;&#123;&#123;item.id&#125;&#125;&lt;&#x2F;dd&gt;</span><br><span class="line">            &lt;dt&gt;名称&lt;&#x2F;dt&gt;</span><br><span class="line">            &lt;dd&gt;&#123;&#123;item.name&#125;&#125;&lt;&#x2F;dd&gt;</span><br><span class="line">            &lt;dt&gt;价格&lt;&#x2F;dt&gt;</span><br><span class="line">            &lt;dd&gt;&#123;&#123;item.price|RMB&#125;&#125;&lt;&#x2F;dd&gt;</span><br><span class="line">        &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import axios from &#39;axios&#39;;</span><br><span class="line">import &#123;RMB&#125; from &#39;@&#x2F;filters&#x2F;RMB&#39;;</span><br><span class="line">export default &#123;</span><br><span class="line">    name: &#39;item&#39;,</span><br><span class="line">    props: [&#39;itemId&#39;],</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            loading: false,</span><br><span class="line">            hasError: false,</span><br><span class="line">            item: null</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    filters: &#123;</span><br><span class="line">        RMB</span><br><span class="line">    &#125;,</span><br><span class="line">    watch: &#123;</span><br><span class="line">        itemId() &#123;</span><br><span class="line">            this.getItem();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    created() &#123;</span><br><span class="line">        this.getItem();</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        getItem() &#123;</span><br><span class="line">            this.loading &#x3D; true;</span><br><span class="line">            if (this.itemId) &#123;</span><br><span class="line">                axios(&#123;</span><br><span class="line">                    url: &#96;&#x2F;api&#x2F;item&#x2F;$&#123;this.itemId&#125;&#96;</span><br><span class="line">                &#125;).then(res &#x3D;&gt; &#123;</span><br><span class="line">                    this.item &#x3D; res.data;</span><br><span class="line">                &#125;).catch(err&#x3D;&gt;this.hasError&#x3D;true).then(_&#x3D;&gt;&#123;</span><br><span class="line">                    this.loading &#x3D; false;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="导航完成之前获取"><a href="#导航完成之前获取" class="headerlink" title="导航完成之前获取"></a>导航完成之前获取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; item.vue</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  ...,</span><br><span class="line">  beforeRouteEnter( to, from, next ) &#123;</span><br><span class="line">    console.log(&#39;开始&#39;);</span><br><span class="line">    return axios(&#123;</span><br><span class="line">      url: &#96;&#x2F;api&#x2F;item&#x2F;$&#123;to.params.itemId&#125;&#96;</span><br><span class="line">    &#125;).then(res &#x3D;&gt; &#123;</span><br><span class="line">      &#x2F;&#x2F; 注意 beforeRouteEnter 还不能获取组件实例</span><br><span class="line">      next(vm &#x3D;&gt; &#123;</span><br><span class="line">        vm.item &#x3D; res.data;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;).catch(err&#x3D;&gt;&#123;</span><br><span class="line">      next(vm &#x3D;&gt; &#123;</span><br><span class="line">        vm.hasError &#x3D; true;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeRouteUpdate(to, from, next) &#123;</span><br><span class="line">    return axios(&#123;</span><br><span class="line">      url: &#96;&#x2F;api&#x2F;item&#x2F;$&#123;to.params.itemId&#125;&#96;</span><br><span class="line">    &#125;).then(res &#x3D;&gt; &#123;</span><br><span class="line">      &#x2F;&#x2F; 注意 beforeRouteEnter 还不能获取组件实例</span><br><span class="line">      this.item &#x3D; res.data;</span><br><span class="line">    &#125;).catch(err&#x3D;&gt;&#123;</span><br><span class="line">      this.hasError &#x3D; true;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="扩展-nprogress"><a href="#扩展-nprogress" class="headerlink" title="扩展 - nprogress"></a>扩展 - nprogress</h3><p><a href="http://ricostacruz.com/nprogress/" target="_blank" rel="noopener">http://ricostacruz.com/nprogress/</a></p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i nprogress</span><br><span class="line">// OR</span><br><span class="line">yarn add nprogress</span><br></pre></td></tr></table></figure>
-
-<p>配合 <u>router</u> 全局守卫</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> NProgress <span class="keyword">from</span> <span class="string">'nprogress'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'nprogress/nprogress.css'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;);    </span><br><span class="line">router.beforeEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  NProgress.start()</span><br><span class="line">  next()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.afterEach(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  NProgress.done()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1567,7 +1646,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/note/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

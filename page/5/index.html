@@ -145,6 +145,277 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/koa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/note/2020/06/07/koa/" class="post-title-link" itemprop="url">koa</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="koa"><a href="#koa" class="headerlink" title="koa"></a><a href=""></a>koa</h1><h4 id="koa介绍"><a href="#koa介绍" class="headerlink" title="koa介绍"></a><a href=""></a>koa介绍</h4><p>  koa是express原班⼈⻢打造的轻量、健壮、富有表现⼒的nodejs框架。⽬前koa有koa1和koa2两个版本；koa2依赖Node.js 7.6.0或者更⾼版本；koa不在内核⽅法中绑定任何中间件，它仅仅是⼀个轻量级的函数库，⼏乎所有功能都必须通过第三⽅插件来实现</p>
+<h4 id="koa使用"><a href="#koa使用" class="headerlink" title="koa使用"></a><a href=""></a>koa使用</h4><p>安装：<code>npm install koa</code><br>简单的搭建一个koa服务器<br><img src="https://img-blog.csdnimg.cn/20200327141716166.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h5 id="Application对象"><a href="#Application对象" class="headerlink" title="Application对象"></a><a href=""></a>Application对象</h5><blockquote>
+<p> -application是koa的实例化对象，简称为app<br> -app.use()将给定的中间件方法添加到此应用程序，分为异步和同步  异步通过es7中的<code>async</code>和<code>await</code>来处理<br> -app.listen() 来设置服务器端口<br> -app.on()  错误处理</p>
+</blockquote>
+<h5 id="上下⽂context对象常⽤属性及⽅法"><a href="#上下⽂context对象常⽤属性及⽅法" class="headerlink" title="上下⽂context对象常⽤属性及⽅法"></a><a href=""></a>上下⽂context对象常⽤属性及⽅法</h5><blockquote>
+<p> context 将node中的request和response 封装到⼀个对象中，并提供⼀些新的api提供给⽤户进⾏<br>操作；<br>  ctx.app:应⽤程序实例引⽤,等同于app;<br>  ctx.req:Node 的 request 对象.<br>  ctx.res:Node 的 response 对象.<br>  ctx.request:koa中的Request对象；<br>  ctx.response:koa中的response对象；<br>  ctx.state：对象命名空间，通过中间件传递信息；<br>  ctx.throw:抛出错误；<br>  ctx.redirect()重定向<br> ctx.status 获取响应状态<br>  默认情况下， response.status 设置为 404 ⽽不是像 node 的res.statusCode 那样默认为 200 。<br> http状态码：1xx(消息)、2xx(成功)、3xx(重定向)、4xx(请求错误)、5xx和6xx(服务器错误)<br> 常用状态码：<br><img src="https://img-blog.csdnimg.cn/20200327143753419.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<h5 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a><a href=""></a>中间件</h5><blockquote>
+<p>Koa 利⽤中间件 控制”上游”，调⽤”下游“<br>koa是包含⼀组中间件函数的对象；可以将app.use⾥的函数理解成中间件<br><img src="https://img-blog.csdnimg.cn/202003271439414.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">)通过next()将控制转交给另⼀个中间件<br>上述过程也可以通过”洋葱模型“来解释中间件执⾏顺序<br><img src="https://img-blog.csdnimg.cn/20200327144045248.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">代码：<br><img src="https://img-blog.csdnimg.cn/20200327144446866.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>输出显示：<br><img src="https://img-blog.csdnimg.cn/20200327144530438.png#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<h5 id="koa常用中间件"><a href="#koa常用中间件" class="headerlink" title="koa常用中间件"></a><a href=""></a>koa常用中间件</h5><p>中间件在实际使用中，全都是模块</p>
+<blockquote>
+<h5 id="koa-router"><a href="#koa-router" class="headerlink" title="koa-router"></a><a href=""></a>koa-router</h5><p>-路由是引导匹配之意，是匹配url到相应处理程序的活动<br>-安装：<code>npm install koa-router -S</code><br>-引入：<code>const Router = require(&quot;koa-router&quot;)</code><br>-实例化：<code>let router = new Router()</code><br><img src="https://img-blog.csdnimg.cn/20200327150022765.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200327150321665.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200327150330659.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<h6 id="koa-static"><a href="#koa-static" class="headerlink" title="koa-static"></a><a href=""></a>koa-static</h6><p>koa-static 是⽤于加载静态资源的中间件，通过它可以加载css、js等静态资源<br>安装：<code>npm install koa-static</code><br>引入：<code>const static = require(&quot;koa-static&quot;)</code><br>使用：<br><img src="https://img-blog.csdnimg.cn/20200327153910767.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<h6 id="koa-views"><a href="#koa-views" class="headerlink" title="koa-views"></a><a href=""></a>koa-views</h6><p>Koa-views⽤于加载html模板⽂件；<br>安装：<code>npm install koa-views -S</code><br>引入：<code>const views = require(&quot;koa-views&quot;)</code><br>使用：<br><img src="https://img-blog.csdnimg.cn/20200327162012593.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/mysql%E6%95%B0%E6%8D%AE%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/note/2020/06/07/mysql%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-title-link" itemprop="url">mysql数据库</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="数据持久化保存"><a href="#数据持久化保存" class="headerlink" title="数据持久化保存"></a><a href=""></a>数据持久化保存</h2><h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a><a href=""></a>服务端</h4><p>数据库：mysql、mongodb、redis、oracle<br>⽂件存储 ：fs</p>
+<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a><a href=""></a>客户端</h4><p>本地缓存 locastorage 、 sessionStorage、cookie…</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a><a href=""></a>数据库</h2><p>数据库（Database）是按照数据结构来组织、存储和管理数据的仓库。</p>
+<blockquote>
+<h6 id="进入mysql命令环境"><a href="#进入mysql命令环境" class="headerlink" title="进入mysql命令环境"></a><a href=""></a>进入mysql命令环境</h6><p><code>mysql -u 用户名 -p</code><br><code>Enter Password</code>  输入密码<br><img src="https://img-blog.csdnimg.cn/20200327182318283.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<h6 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a><a href=""></a>数据库操作</h6><p>命令都需要<code>;</code>隔开</p>
+<ol>
+<li><code>SHOW DATABASES</code> 显示数据库</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20200327182410814.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.<code>CREATE DATABASE 数据库名</code>  创建数据库<br><img src="https://img-blog.csdnimg.cn/20200327182841852.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3.<code>SHOW CREATE DATABASE 数据库名</code> 查看数据库信息<br>4.<code>ALTER DATABASE 数据库名 CHARACTER SET = utf8</code>修改数据库编码格式<br>5. <code>DROP DATABASE 数据库名</code> 删除数据库<br>6.<code>quit</code> 退出</p>
+</blockquote>
+<blockquote>
+<h6 id="数据库中的表操作"><a href="#数据库中的表操作" class="headerlink" title="数据库中的表操作"></a><a href=""></a>数据库中的表操作</h6><p>1.<code>USE 数据库名</code>选择数据库<br>2.<code>SELECT DATABASE()</code>查看当前选择的数据库<br>3.<code>CREATE TABLE tablename()</code>创建数据表<br>   <code>CREATE TABLE users(</code><br>    <code>username VARCHAR(20),</code><br>    <code>age TINYINT UNSIGNED,</code><br>    <code>salary FLOAT(8,2) UNSIGNED</code><br>   <code>)</code><br>4.<code>SHOW TABLES</code>查看数据表<br>5.<code>SHOW COLUMNS FROM 表名</code>查看数据表的结构</p>
+</blockquote>
+<blockquote>
+<h6 id="数据库中的数据操作"><a href="#数据库中的数据操作" class="headerlink" title="数据库中的数据操作"></a><a href=""></a>数据库中的数据操作</h6><p>1.添加：<code>INSERT INTO 表名 (字段⼀,字段⼆,字段三) VALUES (&quot;值⼀&quot;,&quot;值⼆&quot;,&quot;值三&quot;)</code><br>2.删除：<code>DELETE FROM 表名 WHERE 条件;</code><br>3.修改：<code>UPDATE 表名 SET 设置的内容 WHERE 条件语句;</code><br>4.查找：<code>SELECT 字段 FROM 表名 WHERE 条件语句;</code><br>5.条件语句：<br>   1)ADN和  2)OR或  3)LIKE<br><img src="https://img-blog.csdnimg.cn/20200403154552162.png" alt="在这里插入图片描述"><br>   4) ORDER BY (DESC/ASC)<br><img src="https://img-blog.csdnimg.cn/20200403154904139.png#pic_center" alt="在这里插入图片描述"><br>   5)LIMIT 限制查询<br><img src="https://img-blog.csdnimg.cn/20200403154729452.png#pic_center" alt="在这里插入图片描述"></p>
+<p>   6)JOIN ON  7)AS 别名，将复杂的表明简化<br><img src="https://img-blog.csdnimg.cn/20200403160057726.png#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<h6 id="mysql2模块"><a href="#mysql2模块" class="headerlink" title="mysql2模块"></a><a href=""></a>mysql2模块</h6><p>下载：<code>npm install mysql2</code><br>引入：<code>const mysql = require(&quot;mysql2&quot;)</code><br>使用：<br><img src="https://img-blog.csdnimg.cn/20200327184958606.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>配置完成后，存入这个常量中<br>常量中内置一个query()方法，有两个参数<br>第一个参数数据操作，一般为查询语句；<br>第二个参数为一个回调函数，函数中返回一个错误信息和数据，这个函数会返回一个promise对象<br><img src="https://img-blog.csdnimg.cn/20200327192619230.png#pic_center" alt="在这里插入图片描述"><br>第二种方法： <code>connection.promise().query(1，2)</code><br>参数1数据操作 参数2 添加操作时的具体数据<br>返回一个数组，解构赋值<br><img src="https://img-blog.csdnimg.cn/20200405105716395.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/node.js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/note/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="javascript.note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/note/2020/06/07/node.js/" class="post-title-link" itemprop="url">node.js</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a><a href=""></a>node.js</h1><h4 id="node介绍"><a href="#node介绍" class="headerlink" title="node介绍"></a><a href=""></a>node介绍</h4><p>  Node.js 诞生于2009年，Node.js采用C++语言编写而成，是 一个Javascript的运行环境。Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境 ，让JavaScript的运行脱离浏览器端，可以使用JavaScript语言 书写服务器端代码。</p>
+<h4 id="node安装"><a href="#node安装" class="headerlink" title="node安装"></a><a href=""></a>node安装</h4><p>  <a href="https://nodejs.org">Node.js官网</a>下载稳定版本,node偶数版本为稳定版本，奇数版本为非稳定版本。<br>  指令：node -v 用来检查node是否安装完成和版本号</p>
+<h4 id="初步感受"><a href="#初步感受" class="headerlink" title="初步感受"></a><a href=""></a>初步感受</h4><p><img src="https://img-blog.csdnimg.cn/20200320094347637.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"> - Google Chrome 默认非安全端口列表，尽量避免以下端口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">1,    &#x2F;&#x2F; tcpmux</span><br><span class="line">7,    &#x2F;&#x2F; echo</span><br><span class="line">9,    &#x2F;&#x2F; discard</span><br><span class="line">11,   &#x2F;&#x2F; systat</span><br><span class="line">13,   &#x2F;&#x2F; daytime</span><br><span class="line">15,   &#x2F;&#x2F; netstat</span><br><span class="line">17,   &#x2F;&#x2F; qotd</span><br><span class="line">19,   &#x2F;&#x2F; chargen</span><br><span class="line">20,   &#x2F;&#x2F; ftp data</span><br><span class="line">21,   &#x2F;&#x2F; ftp access</span><br><span class="line">22,   &#x2F;&#x2F; ssh</span><br><span class="line">23,   &#x2F;&#x2F; telnet</span><br><span class="line">25,   &#x2F;&#x2F; smtp</span><br><span class="line">37,   &#x2F;&#x2F; time</span><br><span class="line">42,   &#x2F;&#x2F; name</span><br><span class="line">43,   &#x2F;&#x2F; nicname</span><br><span class="line">53,   &#x2F;&#x2F; domain</span><br><span class="line">77,   &#x2F;&#x2F; priv-rjs</span><br><span class="line">79,   &#x2F;&#x2F; finger</span><br><span class="line">87,   &#x2F;&#x2F; ttylink</span><br><span class="line">95,   &#x2F;&#x2F; supdup</span><br><span class="line">101,  &#x2F;&#x2F; hostriame</span><br><span class="line">102,  &#x2F;&#x2F; iso-tsap</span><br><span class="line">103,  &#x2F;&#x2F; gppitnp</span><br><span class="line">104,  &#x2F;&#x2F; acr-nema</span><br><span class="line">109,  &#x2F;&#x2F; pop2</span><br><span class="line">110,  &#x2F;&#x2F; pop3</span><br><span class="line">111,  &#x2F;&#x2F; sunrpc</span><br><span class="line">113,  &#x2F;&#x2F; auth</span><br><span class="line">115,  &#x2F;&#x2F; sftp</span><br><span class="line">117,  &#x2F;&#x2F; uucp-path</span><br><span class="line">119,  &#x2F;&#x2F; nntp</span><br><span class="line">123,  &#x2F;&#x2F; NTP</span><br><span class="line">135,  &#x2F;&#x2F; loc-srv &#x2F;epmap</span><br><span class="line">139,  &#x2F;&#x2F; netbios</span><br><span class="line">143,  &#x2F;&#x2F; imap2</span><br><span class="line">179,  &#x2F;&#x2F; BGP</span><br><span class="line">389,  &#x2F;&#x2F; ldap</span><br><span class="line">465,  &#x2F;&#x2F; smtp+ssl</span><br><span class="line">512,  &#x2F;&#x2F; print &#x2F; exec</span><br><span class="line">513,  &#x2F;&#x2F; login</span><br><span class="line">514,  &#x2F;&#x2F; shell</span><br><span class="line">515,  &#x2F;&#x2F; printer</span><br><span class="line">526,  &#x2F;&#x2F; tempo</span><br><span class="line">530,  &#x2F;&#x2F; courier</span><br><span class="line">531,  &#x2F;&#x2F; chat</span><br><span class="line">532,  &#x2F;&#x2F; netnews</span><br><span class="line">540,  &#x2F;&#x2F; uucp</span><br><span class="line">556,  &#x2F;&#x2F; remotefs</span><br><span class="line">563,  &#x2F;&#x2F; nntp+ssl</span><br><span class="line">587,  &#x2F;&#x2F; stmp?</span><br><span class="line">601,  &#x2F;&#x2F; ??</span><br><span class="line">636,  &#x2F;&#x2F; ldap+ssl</span><br><span class="line">993,  &#x2F;&#x2F; ldap+ssl</span><br><span class="line">995,  &#x2F;&#x2F; pop3+ssl</span><br><span class="line">2049, &#x2F;&#x2F; nfs</span><br><span class="line">3659, &#x2F;&#x2F; apple-sasl &#x2F; PasswordServer</span><br><span class="line">4045, &#x2F;&#x2F; lockd</span><br><span class="line">6000, &#x2F;&#x2F; X11</span><br><span class="line">6665, &#x2F;&#x2F; Alternate IRC [Apple addition]</span><br><span class="line">6666, &#x2F;&#x2F; Alternate IRC [Apple addition]</span><br><span class="line">6667, &#x2F;&#x2F; Standard IRC [Apple addition]</span><br><span class="line">6668, &#x2F;&#x2F; Alternate IRC [Apple addition]</span><br><span class="line">6669, &#x2F;&#x2F; Alternate IRC [Apple addition]</span><br></pre></td></tr></table></figure>
+
+<h4 id="nodemon工具"><a href="#nodemon工具" class="headerlink" title="nodemon工具"></a><a href=""></a><mark>nodemon工具</mark></h4><p> 可自动重启node服务<br> 安装:<code>npm i nodemon -g</code></p>
+<h4 id="npm包管理器"><a href="#npm包管理器" class="headerlink" title="npm包管理器"></a><a href=""></a><mark>npm包管理器</mark></h4><p> npm包管理器，又叫模块管理器<br> NPM(Node Package Manager)  官网的地址是 <a href="https://www.npmjs.com">npm官网</a><br> 安装完Node.js会自动安装NPM(Node Package Manager)<br> npm常用指令:</p>
+<blockquote>
+<p>1.<code>npm-version(npm -v)</code>    查看npm版本<br>2.<code>npm init</code>    引导创建一个package.json文件<br>3.<code>npm install(npm i) 模块名</code>安装默认在当前目录，没有node_modules<br> 则会创建文件夹<br> <code>npm install 模块名 -S或--s</code>     写入dependencies<br> <code>npm install 模块名 -D或--save-dev</code> 写入devDependencies<br> <code>npm install 模块名 -g</code>         全局安装(命令行使用)<br> <code>npm install 模块名 @1.0</code>       通过”@”符号安装指定版本模块<br>4.<code>npm uninstall 模块名</code>   卸载模块<br>5.<code>npm root</code>          查看当前包安装的路径<br>6.<code>npm root -g</code>        查看全局安装路径<br>7.<code>npm search</code>         查找<br>8.<code>npm help(-h)</code>        查看npm帮助信息</p>
+</blockquote>
+<h4 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a><a href=""></a><mark>package.json</mark></h4><p> <code>.json</code> 配置信息文件<br> <code>package.json</code> 当前模块中的配置信息<br><img src="https://img-blog.csdnimg.cn/20200320100534697.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><code>name</code> 模块名<br><code>version</code> 版本号<br><code>main</code> 主入口，未指定时，默认未<code>index.js</code>文件<br><code>dependencies</code> 运行依赖     如<code>jquery</code><br><code>devDependencies</code> 开发依赖  辅助写代码的工具 <code>sass</code></p>
+</blockquote>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a><a href=""></a>模块化</h2><h4 id="为什么会有模块化"><a href="#为什么会有模块化" class="headerlink" title="为什么会有模块化"></a><a href=""></a><mark>为什么会有模块化</mark></h4><p> 在JavaScript发展初期就是为了实现简单的页面交互逻辑，寥寥数语即，如今随着前端代码日益膨胀</p>
+<p> 这时候JavaScript作为嵌入式的脚本语言的定位动摇了，JavaScript却没有为组织代码提供任何明显帮助，JavaScript极其简单的代码组织规范不足以驾驭如此庞大规模的代码；</p>
+<blockquote>
+<ol>
+<li>使代码的结构更加清晰，便于后期维护</li>
+<li>避免变量污染，每一个模块 都有自己独立的命名空间</li>
+<li>可以按需加载, 提升性能</li>
+</ol>
+</blockquote>
+<h2 id="数据的导出和导入"><a href="#数据的导出和导入" class="headerlink" title="数据的导出和导入"></a><a href=""></a>数据的导出和导入</h2><p> <strong>导出</strong></p>
+<blockquote>
+<p>导出多个：module.exports = {}<br>     接收一个对象，对象中包含多个需要导出的内容(数量不限)<br>导出单个：<br><img src="https://img-blog.csdnimg.cn/20200320103035318.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</blockquote>
+<p> <strong>导入</strong></p>
+<blockquote>
+<p>使用变量接收:<code>let obj = require(&quot;&quot;)</code><br>使用解构赋值:<code>let {a,Person} = require(&quot;&quot;)</code></p>
+</blockquote>
+<h2 id="node模块"><a href="#node模块" class="headerlink" title="node模块"></a><a href=""></a>node模块</h2><p> <strong>模块的导入通过<code>require()</code>实现</strong><br> <strong>自定义模块</strong></p>
+<blockquote>
+<p>不需要安装，自定义使用，同级目录必须加”./“<br>位置自定义，导入时前缀添加”./“</p>
+</blockquote>
+<p> <strong>内置模块</strong></p>
+<blockquote>
+<p>由node自带，直接导入即可使用<br>位置 node_modules<br>导入时，直接写模块名称<br>不需要安装</p>
+</blockquote>
+<p> <strong>外置模块</strong></p>
+<blockquote>
+<p>使用npm通过指令，按需安装<br>位置 node_modules<br>导入时，直接写模块名称<br>需要安装</p>
+</blockquote>
+<h2 id="js模块和js文件的区别"><a href="#js模块和js文件的区别" class="headerlink" title="js模块和js文件的区别"></a><a href=""></a>js模块和js文件的区别</h2><p> <strong>文件:</strong></p>
+<blockquote>
+<p>1.使用时，script标签引入整体文件<br>2.需要文件名+文件格式<br>3.同级目录下直接写文件名+文件格式即可</p>
+</blockquote>
+<p> <strong>模块：</strong></p>
+<blockquote>
+<p>1.使用时，require引入的是模块中导出的部分<br>2.只需要模块名称即可<br>3.同级目录下，路径的前缀必须加”./“</p>
+</blockquote>
+<h2 id="common-js规范"><a href="#common-js规范" class="headerlink" title="common.js规范"></a><a href=""></a><strong>common.js规范</strong></h2><p>  CommonJS规范的提出，主要是为了弥补JavaScript没有标准的缺陷，已达到像Python、Ruby和Java那样具备开发大型应用的基础能力，而不是停留在开发浏览器端小脚本程序的阶段</p>
+<p>CommonJS模块规范主要分为三部分：模块引用、模块定义、模块标识。</p>
+<h6 id="CommonJS模块规范的好处"><a href="#CommonJS模块规范的好处" class="headerlink" title="CommonJS模块规范的好处"></a><a href=""></a>CommonJS模块规范的好处</h6><blockquote>
+<p>CommonJS模块规范很好地解决变量污染问题，每个模块具有独立空间，互不干扰，命名空间等方案与之相比相形见绌。<br>CommonJS规范定义模块十分简单，接口十分简洁。<br>CommonJS模块规范支持引入和导出功能，这样可以顺畅地连接各个模块，实现彼此间的依赖关系。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/node%E6%A8%A1%E5%9D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -747,368 +1018,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/Tween.js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/note/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="javascript.note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/note/2020/06/07/Tween.js/" class="post-title-link" itemprop="url">Tween.js</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Tween.js是一个让元素能够平滑地执行动画效果的js库</p>
-<h6 id="使用"><a href="#使用" class="headerlink" title="使用"></a><a href=""></a>使用</h6><p>1.下载，引入或网络链接<br><img src="https://img-blog.csdnimg.cn/20200201103834932.png" alt="在这里插入图片描述"><br>2.Quad,二次方缓动效果<br>3.Cubic,三次方缓动效果<br>4.Quart，四次方缓动效果<br>5.Quint，五次方缓动效果<br>6.Sine，正弦缓动效果<br>7.Expo，指数缓动效果<br>8.Circ，圆形缓动效果<br>9.Elastic，指数衰减正弦曲线缓动函数<br>10.Back，超过范围的三次方的缓动函数<br>11.Bounce，指数衰减的反弹曲线缓动函数</p>
-<blockquote>
-<p>以上每种函数的三种效果(速率)，不影响总时间，总路程<br>1.easeIn加速<br>2.easeOut减速<br>3easeInOut先加速后减速</p>
-</blockquote>
-<p>12.Linear，线性(匀速)</p>
-<h6 id="四个参数"><a href="#四个参数" class="headerlink" title="四个参数"></a><a href=""></a>四个参数</h6><p>t:动画已经执行的时间<br>b:初始的位置<br>c:变化的值<br>d:总时间(总步数)</p>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200201103808883.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/Vue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/note/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="javascript.note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/note/2020/06/07/Vue/" class="post-title-link" itemprop="url">Vue</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Vue-js"><a href="#Vue-js" class="headerlink" title="Vue.js"></a><a href=""></a>Vue.js</h1><p>vue.js前端主流框架，一套用于构建用户界面的渐进式框架，研发者尤雨溪<br>vue.js的引入<br><img src="https://img-blog.csdnimg.cn/20200415164700689.png#pic_center" alt="在这里插入图片描述"><br>构建用户界面：ui html css 静态页面<br>渐进式框架：延伸出来有五部分<br>   1.模板引擎 类似于pug nunjucks<br>   2.组件(核心功能之一),增加页面的复用性<br>   3.路由<br>   4.状态管理器(统筹管理属性-可伸缩性)<br>   5.自动化构建<br>渐进式的原理：一步一步执行</p>
-<blockquote>
-<h6 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a><a href=""></a>模板引擎</h6><p>三个核心：<br>  1.<code>el</code>   挂载点<br>  2.<code>template</code>  模板(最终形成用户界面的原始结构)<br>  3.<code>data</code>  数据<br>vue将data和template相结合，最后添加到挂载点上<br><img src="https://img-blog.csdnimg.cn/20200415163639103.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><mark>1.在模板生成后，会替换掉挂载点指定的元素</mark><br><img src="https://img-blog.csdnimg.cn/20200415165035722.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200415165043211.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><mark>2.每个独立的模板有且只能有一个顶级的根节点</mark><br><img src="https://img-blog.csdnimg.cn/20200415165611798.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200415165621913.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><mark>3.如果有指定的el而没有template,那么el中的outerHTML将作为template</mark><br> <mark>如果有template,则会优先选择template中的内容</mark><br><img src="https://img-blog.csdnimg.cn/20200415165836260.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200415165845795.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-</blockquote>
-<blockquote>
-<p>vue渲染<br>template→加载到VDOM(虚拟dom,与dom规则一致)→将结果返还给html页面</p>
-</blockquote>
-<blockquote>
-<p><strong>vue的<mark>render</mark>函数</strong><br> 渲染的方式有两种，template和render<br> render是字符串模板的代替方案，允许我们发挥JavaScript最大的编程能力,该写法相对复杂<br> 该渲染函数接收一个 <code>createElement</code>方法作为第一个参数用来创建Vnode<br> 这个<code>createElement</code>名字可自定义，它就是上面所说的虚拟DOM<br> <code>createElement()</code>有三个参数<br>   参数1：元素或标签名<br>   参数2：属性<br>   参数3：内容 可以是一个数组也可以是一个字符串<br><img src="https://img-blog.csdnimg.cn/20200415171219958.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200415171227410.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br> <br> render依然会覆盖掉挂载点el,可通过重新创建一个一样的元素来解决这个问题<br> <br><img src="https://img-blog.csdnimg.cn/20200415175908849.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200415175917763.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-</blockquote>
-<blockquote>
-<p><mark><strong>延迟挂载</strong></mark><br>实例化Vue时没有设置el挂载点的挂载方式<br>指定挂载点<br>1.el  挂载点不能是<code>body</code>和<code>html</code><br>2.当实例被挂载以后，实例对象上就会有一个<code>$el</code>的属性,这个属性中存的内容就是挂载的元素<br>3.vue实例上的内置属性都是以$或者_开头的，加上会被认为是内置属性<br><img src="https://img-blog.csdnimg.cn/20200415173144497.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200415173153250.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-</blockquote>
-<blockquote>
-<p><mark>data</mark><br>1.在当前模板中可以直接使用(不需要去使用this一类的关键字)<br>2.data中的数据命名不要使用$或_开头<br> 因为Vue解析data以后，会把当前data中的数据加载到 实例对象中<br><img src="https://img-blog.csdnimg.cn/20200415174950774.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200415174958857.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-</blockquote>
-<blockquote>
-<p><mark>视图更新</mark><br> 响应数据的变化(原理是数据驱动视图)<br> 数据的变化会自动更新视图 根据数据劫持<br><img src="https://img-blog.csdnimg.cn/20200415181714525.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200415181548470.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200415181654156.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>数据劫持<br> <code>Object.defineProperty()</code> 该方法只能监听某个对象中的某个属性<br>  参数1：被监听的对象<br>  参数2：被监听对象的属性<br>  参数3：被监听的属性发生改变时调用的方法，以对象的形式传入<code>set(){}和get(){}</code><br>       每当数据发生改变时将新的值赋值给被监听的属性，但因为方法问题，会陷入死循环<br>       所以需要一个数据,来代替被监听对象<br> 流程：当被监听的属性发生改变时，会赋值给替代数据，然后渲染视图,渲染视图时会去找被监听的属<br>    性，运行<code>get()</code>事件<br><img src="https://img-blog.csdnimg.cn/2020041518255856.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200415182757384.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020041518280632.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><mark>无法对新增的属性进行监听</mark><br> 只有更新已有属性时，才能更新未被监听的属性<br><img src="https://img-blog.csdnimg.cn/20200415183126595.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200415183252539.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200415183304714.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200415183405563.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-</blockquote>
-<blockquote>
-<p>在模板中，如果我们使用了一个不存在的数据，需要一个方法来添加这个属性<br><code>Vue.set()</code>或<code>实例.$set()</code>方法可以添加属性并监听该属性<br><img src="https://img-blog.csdnimg.cn/20200415190706972.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/2020041519072195.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200415190932734.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200415191004461.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-</blockquote>
-<blockquote>
-<p>以下的操作中并不会触发监听拦截<br>  属性新增属性<br>  数组方法：push、pop、shift、unshift、splice、sort、reverse<br>  数组新增值：[ ]<br>  数组 length 属性<br><code>vue</code> 对数组中的 <code>push</code>、<code>pop</code> 等方法进行重新包装，所以在 <code>vue</code> 中调用这些方法，可以对数组的修改进行监听拦截<br><img src="https://img-blog.csdnimg.cn/20200415191849247.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200415191825293.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200415192008370.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/20200415192051155.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/07/canvas%E7%94%BB%E5%B8%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/note/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="javascript.note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/note/2020/06/07/canvas%E7%94%BB%E5%B8%83/" class="post-title-link" itemprop="url">canvas画布</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-07 10:59:05" itemprop="dateCreated datePublished" datetime="2020-06-07T10:59:05+08:00">2020-06-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="canvas的基本使用"><a href="#canvas的基本使用" class="headerlink" title="canvas的基本使用"></a><a href=""></a>canvas的基本使用</h4><p>canvas是一个标签，必须设置宽高，画布是canvas的属性<br>在绘制之前，先通过标签获取画布，通过画布调用绘制方法<br>获取画布：<code>canvas.getContext(&quot;2d&quot;)</code></p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200205120115803.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200205120127148.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<h6 id="绘制直线的流程"><a href="#绘制直线的流程" class="headerlink" title="绘制直线的流程"></a><a href=""></a>绘制直线的流程</h6><blockquote>
-<p>1.开始绘制(落笔) <code>beginPath()</code><br>2.设置起点 <code>moveTo()</code><br>3.设置终点 <code>lineTo()</code><br>可以将最后一个终点和起点 相连接 <code>closePath()</code><br>4.根据设置的点，来连接 <code>stroke()</code><br><code>save()</code> 保存当前环境的状态<br><code>restore()</code> 返回之前保存的路径状态和属性<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200205130534110.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">显示效果：<br>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/20200205130547940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c=,size_16,color_FFFFFF,t_70" target="_blank" rel="noopener">https://img-blog.csdnimg.cn/20200205130547940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c=,size_16,color_FFFFFF,t_70</a></p>
-</blockquote>
-<h6 id="线条样式和阴影"><a href="#线条样式和阴影" class="headerlink" title="线条样式和阴影"></a><a href=""></a>线条样式和阴影</h6><p><strong>属性：</strong></p>
-<blockquote>
-<p>1.<code>fillstyle</code>：设置或返回用于填充绘画的颜色，渐变或模式<br>属性值：1.color 指示绘图填充色的css颜色值<br>    2.gradient 用于填充绘画的渐变对象<br>    3.pattern 用于填充绘图的pattern对象<br>2.<code>strokestyle</code>：设置或返回用于笔触的颜色，渐变或模式<br>属性值：1.color 指示绘图笔触颜色的 CSS 颜色值<br>    2.gradient 用于填充绘图的渐变对象（线性 或 放射性）<br>    3.pattern 用于创建 pattern 笔触的 pattern 对象<br>3. <code>shadowColor</code>：设置互殴返回用于阴影的颜色<br>属性值：color 用于阴影的 CSS 颜色值<br>4.<code>shadow&#39;Blur</code>：设置或返回阴影的模糊级数<br>属性值：number，阴影的模糊级数<br>5.<code>shadowOffsetX/Y</code>：设置或返回阴影与形状的水平/垂直距离</p>
-</blockquote>
-<p><strong>方法：</strong></p>
-<blockquote>
-<p>1.<code>createLinearGradient(x0,y0,x1,y1)</code>：创建线性渐变<br>属性值：1.<code>x0,y0</code> 渐变开始点的x，y坐标<br>    2.<code>x1,y1</code> 渐变开始点的x，y坐标<br>2.<code>createPattern(参数1,参数2)</code> 在指定的方向上重复指定的元素<br>属性值：参数1:<code>image</code>        规定要使用的模式的图片、画布或视频元素<br>    参数2:<code>repeat</code>        默认。该模式在水平和垂直方向重复<br>         <code>repeat-x</code>     该模式只在水平方向重复<br>         <code>repeat-y</code>     该模式只在垂直方向重复<br>         <code>no-repeat</code>     该模式只显示一次（不重复）<br>3.<code>createRadialGradient(x0,y0,r0,x1,y1,r1)</code>：创建放射状/环形的渐变（用在画布内容上）<br>属性值：1.<code>x0</code>     渐变的开始圆的 x 坐标<br>    2.<code>y0</code>     渐变的开始圆的 y 坐标<br>    3.<code>r0</code>     开始圆的半径<br>    4.<code>x1</code>     渐变的结束圆的 x 坐标<br>    5.<code>y1</code>     渐变的结束圆的 y 坐标<br>    6.<code>r1</code>     结束圆的半径<br>4.<code>addColorStop(参数1，参数2)</code>:规定渐变对象中的颜色和停止位置<br>属性值：参数1.<code>stop</code>     介于 0.0 与 1.0 之间的值，表示渐变中开始与结束之间的位置。<br>    参数2.<code>color</code>     在 stop 位置显示的 CSS 颜色值。</p>
-</blockquote>
-<h6 id="线条样式"><a href="#线条样式" class="headerlink" title="线条样式"></a><a href=""></a>线条样式</h6><p><strong>属性：</strong></p>
-<blockquote>
-<p>1.<code>lineCap</code>     设置或返回线条的结束端点样式<br>属性值：1.<code>butt</code>     默认。向线条的每个末端添加平直的边缘<br>    2.<code>round</code>     向线条的每个末端添加圆形线帽<br>    3.<code>square</code>     向线条的每个末端添加正方形线帽<br>2.<code>lineJoin</code>     设置或返回两条线相交时，所创建的拐角类型<br>属性值：1.<code>bevel</code>     创建斜角<br>    2.<code>round</code>     创建圆角<br>    3.<code>miter</code>     默认。创建尖角<br>3.<code>lineWidth</code>     设置或返回当前的线条宽度<br>属性值：<code>number</code>     当前线条的宽度，以像素计<br>4.<code>miterLimit</code>     设置或返回最大斜接长度<br>属性值：<code>number</code>     正数。规定最大斜接长度<br>如果斜接长度超过 miterLimit 的值，边角会以 lineJoin 的 “bevel” 类型来显示</p>
-</blockquote>
-<h6 id="矩形"><a href="#矩形" class="headerlink" title="矩形"></a><a href=""></a>矩形</h6><p><strong>方法：</strong></p>
-<blockquote>
-<p>1.<code>rect(x,y,width,height)</code>     创建矩形<br>参数值：1.<code>x</code>     矩形左上角的 x 坐标<br>   2.<code>y</code>     矩形左上角的 y 坐标<br>   3.<code>width</code>     矩形的宽度，以像素计<br>   4.<code>height</code>     矩形的高度，以像素计<br>2.<code>fillRect(x,y,width,height)</code>     绘制”被填充”的矩形<br>参数值：1.<code>x</code>     矩形左上角的 x 坐标<br>   2.<code>y</code>     矩形左上角的 y 坐标<br>   3.<code>width</code>     矩形的宽度，以像素计<br>   4.<code>height</code>     矩形的高度，以像素计<br>3.<code>strokeRect(x,y,width,height)</code>     绘制矩形（无填充）<br>参数值：1.<code>x</code>     矩形左上角的 x 坐标<br>   2.<code>y</code>     矩形左上角的 y 坐标<br>   3.<code>width</code>     矩形的宽度，以像素计<br>   4.<code>height</code>     矩形的高度，以像素计<br>4.<code>clearRect(x,y,width,height)</code>     在给定的矩形内清除指定的像素<br>参数值：1.<code>x</code>     要清除的矩形左上角的 x 坐标。<br>   2.<code>y</code>     要清除的矩形左上角的 y 坐标。<br>   3.<code>width</code>     要清除的矩形的宽度，以像素计。<br>   4.<code>height</code>     要清除的矩形的高度，以像素计。</p>
-</blockquote>
-<h6 id="路径"><a href="#路径" class="headerlink" title="路径"></a><a href=""></a>路径</h6><blockquote>
-<p>1.<code>fill()</code>     填充当前绘图（路径）。<br>使用<code>fillstyle</code>来改变内填充颜色<br>如果路径未关闭，那么<code>fill()</code> 方法会从路径结束点到开始点之间添加一条线，以关闭该路径（正如 <code>losePath()</code> 一样），然后填充该路径<br>2.<code>stroke()</code>     绘制已定义的路径。<br><code>strokestyle</code>来改变颜色<br>3.<code>beginPath()</code>     起始一条路径，或重置当前路径<br>4.<code>moveTo()</code>     把路径移动到画布中的指定点，不创建线条<br>5.<code>closePath()</code>     创建从当前点回到起始点的路径<br>6.<code>lineTo()</code>     添加一个新点，然后在画布中创建从该点到最后指定点的线条<br>7.<code>clip()</code>     从原始画布剪切任意形状和尺寸的区域<br>8.<code>quadraticCurveTo(cpx,cpy,x,y)</code>     创建二次贝塞尔曲线<br>参数值：1.<code>cpx</code>     贝塞尔控制点的 x 坐标<br>   2.<code>cpy</code>     贝塞尔控制点的 y 坐标<br>   3.<code>x</code>     结束点的 x 坐标<br>   4.<code>y</code>     结束点的 y 坐标<br>9.<code>bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y)</code>     创建三次贝塞尔曲线<br>参数值：1.<code>cp1x</code>     第一个贝塞尔控制点的 x 坐标<br>   2.<code>cp1y</code>     第一个贝塞尔控制点的 y 坐标<br>   3.<code>cp2x</code>     第二个贝塞尔控制点的 x 坐标<br>   4.<code>cp2y</code>     第二个贝塞尔控制点的 y 坐标<br>   5.<code>x</code>     结束点的 x 坐标<br>   6.<code>y</code>     结束点的 y 坐标<br>10.<code>arc(x,y,r,sAngle,eAngle,counterclockwise)</code>     创建弧/曲线（用于创建圆形或部分圆）<br>参数值：1.<code>x</code>     圆的中心的 x 坐标<br>   2.<code>y</code>     圆的中心的 y 坐标<br>   3.<code>r</code>     圆的半径<br>   4.<code>sAngle</code>     起始角，以弧度计（弧的圆形的三点钟位置是 0 度）<br>   5.<code>eAngle</code>     结束角，以弧度计<br>   6.<code>counterclockwise</code>     可选。规定应该逆时针还是顺时针绘图。false = 顺时针，true = 逆时针。<br>11.<code>arcTo(x1,y1,x2,y2,r)</code>     创建两切线之间的弧/曲线<br>参数值：1.<code>x1</code>     两切线交点的横坐标<br>   2.<code>y1</code>     两切线交点的纵坐标<br>   3.<code>x2</code>     第二条切线上一点的横坐标<br>   4.<code>y2</code>     第二条切线上一点的纵坐标<br>   5.<code>r</code>     弧的半径</p>
-</blockquote>
-<h6 id="转换"><a href="#转换" class="headerlink" title="转换"></a><a href=""></a>转换</h6><blockquote>
-<p>1.<code>scale(width,height)</code>     缩放当前绘图至更大或更小<br>参数值：1.<code>width</code> 缩放当前绘图的宽度（1=100%，0.5=50%，2=200%，依次类推）<br>    2.<code>height</code>     缩放当前绘图的高度（1=100%，0.5=50%，2=200%，依次类推）<br>2.<code>rotate()</code>     旋转当前绘图<br>参数值：以弧度记，<code>Math.PI/180为1°</code><br>3.<code>translate(x,y)</code>     重新映射画布上的 (0,0) 位置<br>参数值：1.<code>x</code>     添加到水平坐标（x）上的值<br>    2.<code>y</code>     添加到垂直坐标（y）上的值<br>4.<code>transform(a,b,c,d,e,f)</code>     替换绘图的当前转换矩阵<br>参数值：1.<code>a</code>     水平缩放绘图<br>    2.<code>b</code>     水平倾斜绘图<br>    3.<code>c</code>     垂直倾斜绘图<br>    4.<code>d</code>     垂直缩放绘图<br>    5.<code>e</code>     水平移动绘图<br>    6.<code>f</code>     垂直移动绘图<br>5.<code>setTransform(a,b,c,d,e,f)</code>     将当前转换重置为单位矩阵。然后运行 transform()<br>参数值：1.<code>a</code>     水平缩放绘图<br>    2.<code>b</code>     水平倾斜绘图<br>    3.<code>c</code>     垂直倾斜绘图<br>    4.<code>d</code>     垂直缩放绘图<br>    5.<code>e</code>     水平移动绘图<br>    6.<code>f</code>     垂直移动绘图</p>
-</blockquote>
-<h5 id="文本"><a href="#文本" class="headerlink" title="文本"></a><a href=""></a>文本</h5><p><strong>属性：</strong></p>
-<blockquote>
-<p>1.<code>font</code> 设置或返回画布上文本内容的当前字体属性<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200205145203507.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200205145207785.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.<code>textAlign</code> 设置或返回文本内容的当前对齐方式<br>属性值：<code>start</code>   默认。文本在指定的位置开始。<br>    <code>end</code>    文本在指定的位置结束。<br>    <code>center</code>    文本的中心被放置在指定的位置。<br>    <code>left</code>         文本在指定的位置开始。<br>    <code>right</code>       文本在指定的位置结束。<br>3.<code>textBaseline</code> 设置或返回在绘制文本时使用的当前文本基线<br>属性值：1.<code>alphabetic</code>       默认。文本基线是普通的字母基线。<br>    2.<code>top</code>       文本基线是 em 方框的顶端。<br>    3.<code>hanging</code>         文本基线是悬挂基线。<br>    4.<code>middle</code>             文本基线是 em 方框的正中。<br>    5.<code>ideographic</code>     文本基线是表意基线。<br>    6.<code>bottom</code>             文本基线是 em 方框的底端。</p>
-</blockquote>
-<p><strong>方法：</strong></p>
-<blockquote>
-<p>1.<code>fillText(text,x,y,maxWidth)</code>绘制被填充的文本<br>属性值：1.<code>text</code>        规定在画布上输出的文本。<br>    2.<code>x</code>           开始绘制文本的 x 坐标位置（相对于画布）。<br>    3.<code>y</code>           开始绘制文本的 y 坐标位置（相对于画布）。<br>    4.<code>maxWidth</code>      可选。允许的最大文本宽度，以像素计。<br>2.<code>strokeText(text,x,y,maxWidth)</code>     在画布上绘制文本（无填充）<br>属性值：1.<code>text</code>        规定在画布上输出的文本。<br>    2.<code>x</code>           开始绘制文本的 x 坐标位置（相对于画布）。<br>    3.<code>y</code>           开始绘制文本的 y 坐标位置（相对于画布）。<br>    4.<code>maxWidth</code>      可选。允许的最大文本宽度，以像素计。</p>
-</blockquote>
-<h1 id="拖拽Drag"><a href="#拖拽Drag" class="headerlink" title="拖拽Drag"></a><a href=""></a>拖拽Drag</h1><p>拖拽是指鼠标点击源对象后，不松手将其拖拽到目标对象，或半途松手(释放)的过程<br><strong>源对象</strong>：指定鼠标点击的一个事物<br><strong>目标对象</strong>：指的是我们拖动源对象后，预计要进入的区域</p>
-<h5 id="源对象触发的事件"><a href="#源对象触发的事件" class="headerlink" title="源对象触发的事件"></a><a href=""></a>源对象触发的事件</h5><blockquote>
-<p>1.<code>ondragstart</code> 源对象开始被拖动<br>2.<code>ondrag</code> 被拖动过程中<br><mark>drag事件最后一刻，无法读取鼠标坐标，x和y会变成0<br>添加if判断，直接结束，不赋值给元素</mark><br><img src="https://img-blog.csdnimg.cn/20200205152309950.png" alt="在这里插入图片描述"><br>3.<code>ondragend</code> 源对象被拖动结束</p>
-</blockquote>
-<h5 id="源对象进入目标对象触发"><a href="#源对象进入目标对象触发" class="headerlink" title="源对象进入目标对象触发"></a><a href=""></a>源对象进入目标对象触发</h5><blockquote>
-<p>1.<code>ondragenter</code> 源对象进入目标对象时触发<br>2.<code>ondragleave</code> 源对象被拖动着离开目标对象时触发<br>3.<code>ondragover</code>  源对象悬停在目标对象上方时触发<br>4.<code>ondrop</code> 源对象在目标对象上松手时触发<br><mark>ondrop直接使用时，无法触发，需要在ondragover中阻止默认事件</mark><br>代码：<br><img src="https://img-blog.csdnimg.cn/2020020515291894.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p><mark>draggable 标签自带属性，设置是否可以拖拽，默认为false不可以拖拽</mark></p>
-<h5 id="数据传递对象"><a href="#数据传递对象" class="headerlink" title="数据传递对象"></a><a href=""></a>数据传递对象</h5><blockquote>
-<p><strong>event.dataTransfer</strong><br>功能：用于在源对象和目标对象之间传递数据<br>方法：<code>setData(key,value)</code> 设置数据 value必须是字符串<br>   <code>getData(key)</code> 获取数据</p>
-</blockquote>
-<h5 id="JSON方法"><a href="#JSON方法" class="headerlink" title="JSON方法"></a><a href=""></a>JSON方法</h5><blockquote>
-<p>JSON.stringify(对象) 将对象类型转换为字符串<br>JSON.parse(字符串) 将字符串类型转换为对象类型</p>
-</blockquote>
-<h1 id="本地储存"><a href="#本地储存" class="headerlink" title="本地储存"></a><a href=""></a>本地储存</h1><p>本地储存分为<code>localStorange</code>(永久存储)和<code>sessionStorage</code>(临时存储)<br><mark>区别：</mark></p>
-<blockquote>
-<p>1.<code>localStorage</code> 这里做永久存储，浏览器关闭与否并不影响它<br>多数使用在用户自动登录，客户端保存数据方面<br>2.<code>sessionStorage</code> 做临时存储，浏览器或页面关闭时，数据自动删除，不再存储<br>多用于安全性较高的网站</p>
-</blockquote>
-<p><mark>方法：</mark></p>
-<blockquote>
-<p>1.<code>setItem(key,value)</code> 保存数据<br>2.<code>getItem(key)</code> 获取数据<br>3.<code>removeItem(key)/clear()</code> 删除数据</p>
-</blockquote>
-<h1 id="CSS3选择器"><a href="#CSS3选择器" class="headerlink" title="CSS3选择器"></a><a href=""></a>CSS3选择器</h1><h6 id="兄弟选择器"><a href="#兄弟选择器" class="headerlink" title="兄弟选择器"></a><a href=""></a>兄弟选择器</h6><blockquote>
-<p>1.<code>+</code> 紧邻选择器 相邻兄弟选择器<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200205160914495.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200205160955668.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.<code>~</code> 间接兄弟选择器 所有下面的兄弟<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200205161054826.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200205161053950.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<h6 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a><a href=""></a>属性选择器</h6><blockquote>
-<p>1.<code>a[target]</code> 选择带有target属性的a标签<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200205161551485.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200205161600348.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.<code>a[target=_blank]</code> 选择带有<code>target=_blank</code>的所有a标签<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200205161753178.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200205161809968.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3.<code>[title~=flower]</code> 选择title属性包含”flower”的元素<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200205162028259.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/2020020516204725.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4.<code>[lang|=en]</code> 选择lang属性以”en”开头的元素，均为自定义<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200205162241261.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200205162255218.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<h6 id="链接伪类"><a href="#链接伪类" class="headerlink" title="链接伪类"></a><a href=""></a>链接伪类</h6><blockquote>
-<p>1.<code>:link</code> 选择所有未被访问过的链接<br>2.<code>:visited</code> 选择所有已被访问过的链接<br>3.<code>:active</code> 选择所有活动链接<br>4.<code>:hover</code> 选择鼠标指针位于其上的链接</p>
-</blockquote>
-<h6 id="元素状态伪类"><a href="#元素状态伪类" class="headerlink" title="元素状态伪类"></a><a href=""></a>元素状态伪类</h6><blockquote>
-<p>1.<code>:enabled</code> 选择每个被启用的元素<br>2.<code>:disabled</code> 选择每个未被启用的元素<br>3.<code>:checked</code> 选择每个没选中的元素<br>4.<code>:focus</code> 选择获得焦点的元素</p>
-</blockquote>
-<h6 id="结构伪类"><a href="#结构伪类" class="headerlink" title="结构伪类"></a><a href=""></a>结构伪类</h6><p>单一类型：</p>
-<blockquote>
-<p>1.<code>first-of-type</code> 匹配父元素下第一个子元素<br>2.<code>last-of-type</code> 匹配父元素下最后一个子元素<br>3.<code>nth-of-type(n) 匹配父元素下第n个子元素 4.</code>nth-last-of-type(n)<code>匹配父元素下倒数第n个子元素 5.</code>only-of-type` 匹配属于其父元素的唯一子元素</p>
-</blockquote>
-<p>多类型：</p>
-<blockquote>
-<p>1.<code>first-child</code> 匹配父元素下第一个子元素<br>2.<code>last-child</code> 匹配父元素下最后一个子元素<br>3.<code>nth--child(n)</code> 匹配父元素下第n个子元素<br>4.<code>nth-last-child(n)</code> 匹配父元素下倒数第几个子元素<br>5.<code>only-child</code> 匹配属于其父元素的唯一子元素</p>
-</blockquote>
-<h6 id="伪元素选择器"><a href="#伪元素选择器" class="headerlink" title="伪元素选择器"></a><a href=""></a>伪元素选择器</h6><blockquote>
-<p>1.<code>:first-letter</code> 选择冒号前元素的第一个单词<br>2.<code>:first-line</code> 选择冒号前元素的第一行<br>3.<code>::selection</code> 匹配元素中被用户选中的部分</p>
-</blockquote>
-<h6 id="内容生成器"><a href="#内容生成器" class="headerlink" title="内容生成器"></a><a href=""></a>内容生成器</h6><blockquote>
-<p>1.<code>:before</code> 在···之前，配合content使用<br>2.<code>:after</code> 在···之后，配合content使用</p>
-</blockquote>
-<blockquote>
-<p><code>:lang(en)</code> 选择带有以”en”开头的lang属性值的每个元素 en为自定义<br><code>[class^=“xxx”]</code> 选择class属性值以xxx开头的所有元素<br><code>[class$=&quot;xxx&quot;]</code> 选择class属性值以xxx结尾的所有元素<br><code>[class*=&quot;xxx&quot;]</code> 选择class属性值包含”xxx”的所有元素<br><code>:root</code> 选择文档的根元素<br><code>:empty</code> 选择没有子元素的元素 包括文本节点<br><code>:target</code> 选择当前活动的元素<br><code>:not(n)</code> 非n元素外的所有元素</p>
-</blockquote>
-<h4 id="CSS2D效果"><a href="#CSS2D效果" class="headerlink" title="CSS2D效果"></a><a href=""></a>CSS2D效果</h4><p>1.旋转 单位<code>deg</code>度<br><code>rotate()</code> <code>rotateX()</code> <code>rotateY()</code> <code>rotateZ()</code></p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200205185416291.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/2020020518542632.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>2.位移：单位 px 像素<br><code>translate(参数1，参数2)</code> <code>translateX()</code> <code>translateY()</code> <code>translateZ()</code></p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200205202750416.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200205202927906.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>3.缩放：正常比例为1，大于1放大，小于1缩小<br><code>scale(参数1，参数2)</code> <code>scaleX()</code> <code>scaleY()</code></p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200205203325901.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200205203335664.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p>4.倾斜 单位 deg 度<br><code>skew(参数1，参数2)</code> <code>skewX()</code> <code>skewY()</code></p>
-<blockquote>
-<p>代码：<br><img src="https://img-blog.csdnimg.cn/20200205204028887.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">显示效果：<br><img src="https://img-blog.csdnimg.cn/20200205204039763.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<h6 id="设置3D效果"><a href="#设置3D效果" class="headerlink" title="设置3D效果"></a><a href=""></a>设置3D效果</h6><p><code>transform-style:preserve-3d;</code> 设置给父级</p>
-<h6 id="开启景深效果"><a href="#开启景深效果" class="headerlink" title="开启景深效果"></a><a href=""></a>开启景深效果</h6><p><code>perspective</code> 属性 属性值单位为px</p>
-<h6 id="指定变形中心"><a href="#指定变形中心" class="headerlink" title="指定变形中心"></a><a href=""></a>指定变形中心</h6><p><code>transform-origin:top/center/bottom/left/right</code></p>
-<h4 id="自定义动画"><a href="#自定义动画" class="headerlink" title="自定义动画"></a><a href=""></a>自定义动画</h4><p>也叫关键帧动画，分为制作动画和绑定动画</p>
-<h6 id="制作"><a href="#制作" class="headerlink" title="制作"></a><a href=""></a>制作</h6><p><code>@keyframes</code> 声明自定义动画的关键词，后面需要写自定义动画的名称，空格间隔</p>
-<blockquote>
-<p>代码：可多次使用<br><img src="https://img-blog.csdnimg.cn/20200206103411208.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<h6 id="绑定"><a href="#绑定" class="headerlink" title="绑定"></a><a href=""></a>绑定</h6><p><code>animation:动画名称,动画执行时间,动画执行的速度曲线,动画开始前的延迟,动画执行的次数,是否轮流反向播放</code><br>是一个简写属性，用于设置六个动画属性</p>
-<blockquote>
-<p>属性：1.<code>animation-name</code>:动画名称<mark>必填</mark><br>   2.<code>animation-duration</code>:动画执行所需的时间(<mark>必填</mark>)<br>   3.<code>animation-timing-function</code>:动画执行的速度曲线,<mark>可选</mark>，默认值为ease<br>   属性值：1.<code>linear</code> 匀速<br>       2.<code>ease</code> 默认值。低速开始，然后加快，结束前变慢<br>       3.<code>ease-in</code> 低速开始<br>       4.<code>ease-out</code> 低速结束<br>       5.<code>ease-in-out</code> 低速开始低速结束<br>       6.<code>cubic-bezier(n,n,n,n)</code> 可能值是从0到1的数值<br>   4.<code>animation-delay</code>:动画开始前的延迟，<mark>可选</mark>默认值为0s<br>   5.<code>animation-iteration-count</code>:动画执行的次数,<mark>可选</mark> 默认值1 没有单位 <code>infinite</code> 无限次<br>   6.<code>animation-direction</code>:规定是否轮流反向播放(注意：播放次数至少为2)<mark>可选</mark><br>    <code>alternate</code> 反向播放 <code>normal</code> 默认 正常播放<br>   7.<code>animation-fill-mode</code>:规定动画在播放之前或之后，其效果是否可见<br>   属性值：1.<code>none</code> 不改变默认行为<br>       2.<code>forwards</code> 动画完成后，保持最后一个属性值<br>       3.<code>backwards</code> 在<code>animation-delay</code>所指定的一段时间内，在动画显示之前，应用开<br>       始属性值(在第一个关键帧中定义)<br>       4.<code>both</code> 向前和向后填充模式都被应用<br>   8.<code>animation-play-state</code> 规定动画执行或暂停<br>   属性值：1.<code>paused</code> 动画暂停<br>       2.running 动画正在播放</p>
-</blockquote>
-<p><img src="https://img-blog.csdnimg.cn/20200206105833527.png" alt="在这里插入图片描述"></p>
-<h4 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a><a href=""></a>盒模型</h4><h6 id="标准盒模型"><a href="#标准盒模型" class="headerlink" title="标准盒模型"></a><a href=""></a>标准盒模型</h6><blockquote>
-<p><code>box-sizing:content-box</code><br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206110301427.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206110310760.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<h6 id="怪异盒模型-不影响实际占地面积）"><a href="#怪异盒模型-不影响实际占地面积）" class="headerlink" title="怪异盒模型(不影响实际占地面积）"></a><a href=""></a>怪异盒模型(不影响实际占地面积）</h6><blockquote>
-<p><code>box-sizing:border-box</code><br>不会改变元素的占地面积，但是会改变内容的区域大小<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206110518275.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206110527813.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200206110535302.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<h6 id="弹性盒模型"><a href="#弹性盒模型" class="headerlink" title="弹性盒模型"></a><a href=""></a>弹性盒模型</h6><blockquote>
-<p><code>display:flex</code>开启弹性盒模型</p>
-</blockquote>
-<p><strong>根据主轴上的位置变化，对齐方式 <code>justify-content</code></strong></p>
-<blockquote>
-<p>1.<code>flex-start</code> 开始位置，默认<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206113132258.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206113137216.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.<code>flex-end</code> 结束位置<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206113038809.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206113047264.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3.<code>center</code> 中心位置<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206113232580.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206113248428.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4.<code>space-around</code> 两端对齐(元素到边框的距离是元素之间的一半)<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206113442805.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206113455100.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>5.<code>space-between</code> 两端对齐(元素到边框之间无距离)<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206113340792.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206113342509.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p><strong>改变主轴的方向 <code>flex-direction</code></strong></p>
-<blockquote>
-<p>1.<code>row</code> 从左到右，默认<br>2.<code>row-reverse</code> 从右到左<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206113716606.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/202002061137266.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3.<code>colume</code> 从上到下<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206113832233.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206113841483.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4.<code>colume-reverse</code> 从下到上<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206113914903.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206113933316.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p><strong>交叉轴的对齐方式 <code>align-items</code></strong></p>
-<blockquote>
-<p>1.<code>flex-start</code> 交叉轴的起点对齐<br>2.<code>flex-end</code> 交叉轴的终点对齐<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206114145169.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206114200829.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3.<code>center</code> 交叉轴的中点对齐<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206114041104.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206114050208.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4.<code>baseline</code> 项目的第一行文字的基线对齐<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206114418704.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206114432340.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>5.<code>stretch</code> 如果项目未设置高度或为auto,将占满整个容器的高度</p>
-</blockquote>
-<p><strong>换行 <code>flex-wrap</code></strong></p>
-<blockquote>
-<p>开启换行，弹性盒模型下，默认为不换行<br>1.<code>nowrap</code> 不换行<br>代码：<br><img src="https://img-blog.csdnimg.cn/2020020611465190.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206114659175.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.<code>wrap</code> 换行<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206114755686.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206114807436.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3.<code>wrap-reverse</code> 倒序换行<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206114959451.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206115013959.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-<p><strong><code>align-content</code></strong></p>
-<blockquote>
-<p>功能与<code>align-items</code>类似，该属性对单行元素无效，可以去掉多余的行间距</p>
-</blockquote>
-<p><strong>元素缩放</strong></p>
-<blockquote>
-<p><code>flex-shrink</code> flex的收缩默认是按等比</p>
-</blockquote>
-<p><strong>元素排序</strong></p>
-<blockquote>
-<p><code>order:number;</code> 需要将当前层级的每一个元素都排序</p>
-</blockquote>
-<p><strong>盒子阴影 <code>box-shadow</code></strong></p>
-<blockquote>
-<p>1.水平位置偏移(必填) 单位px<br>2.垂直位置偏移(必填) 单位px<br>3.模糊度(可选) 单位px<br>4.阴影面积(可选)单位px<br>5.阴影颜色<br>6.内外阴影，默认为外阴影，<code>inset</code> 外阴影<br>代码：<br><img src="https://img-blog.csdnimg.cn/20200206115424942.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>显示效果：<br><img src="https://img-blog.csdnimg.cn/20200206115433253.png?x-oss-processimage/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hCRl9fY2c,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1178,7 +1087,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/note/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
